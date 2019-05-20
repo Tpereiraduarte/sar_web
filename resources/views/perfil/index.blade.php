@@ -10,7 +10,6 @@
 </head>
 <body>
 @if(!empty($dados) && count($dados) > 0)
-    @foreach($dados as $perfil)
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -18,6 +17,7 @@
                 <th>Ações</th>
             </tr>
         </thead>
+    @foreach($dados as $perfil)
         <tbody>
                 <tr>
                     <td>{{$perfil->nome}}</td>

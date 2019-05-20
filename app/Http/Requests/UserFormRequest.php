@@ -24,11 +24,10 @@ class UserFormRequest extends FormRequest
     public function rules()
     {
         return  [
-            'matricula' =>  'required|5'
-            'nome'      => 'required|max:100'
-            'password'  => 'required|100'
-            'categorias'=> 'required|50'
-           
+            'matricula' =>  'required|max:5',
+            'nome'      => 'required|max:100',
+            'password'  => 'required|max:10',
+            'categorias'=> 'required|max:50'           
         ];
     }
     public function messages(){

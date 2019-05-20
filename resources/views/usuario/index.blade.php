@@ -10,7 +10,6 @@
 </head>
 <body>
 @if(!empty($dados) && count($dados) > 0)
-    @foreach($dados as $user)
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -18,6 +17,7 @@
                 <th>Ações</th>
             </tr>
         </thead>
+    @foreach($dados as $user)
         <tbody>
                 <tr>
                     <td>{{$user->nome}}</td>
@@ -36,7 +36,7 @@
                     <td>{{$user->senha}}</td>
                     <td>
                         <div class="acoes-lista">
-                            <a id="edit" href="{{URL::route('user.edit',$user->id_usuario)}}" title="Editar" class="fas fa-edit">Editar</a>
+                            <a id="edit" href="{{URL::route('usuario.edit',$user->id_usuario)}}" title="Editar" class="fas fa-edit">Editar</a>
                             <form action="{{ action('UserController@destroy', $user->id_usuario) }}" method="POST">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
@@ -53,6 +53,6 @@
         <span class="sem-dados">Não há usuarios Cadastrado</span>
     </div>    
 @endif
-    <a id="list" href="{{URL::route('user.create')}}" title="Cadastrar" class="far fa-file">Cadastrar</a>
+    <a id="list" href="{{URL::route('usuario.create')}}" title="Cadastrar" class="far fa-file">Cadastrar</a>
 </body>
 </html>

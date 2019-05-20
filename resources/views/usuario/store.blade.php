@@ -18,13 +18,13 @@
         </ul>
     </div>
 @endif
-<form action="{{ action('UserController@store') }}" method="POST">
+<form action="{{ action('UsersController@store') }}" method="POST">
       @csrf
     <div class="row">
         <label class="required" for="name">Nome do perfil:</label><br />
         <input id="name" class="input" name="nome" type="text" value="" size="100" />
         <label class="required" for="senha">Senha:</label><br />
-        <input id="senha" class="input" name="senha" type="text" value="" size="10" />
+        <input id="password" class="input" name="password" type="text" value="" size="10" />
         <input type="submit" value="Cadastrar" />
     </div>
 </form>

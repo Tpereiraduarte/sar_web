@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,11 +41,16 @@ class UserController extends Controller
     {
         $validacao = $request->all();
         $dados = new User();
+        $dados->matricula = $request->matricula;
         $dados->nome = $request->nome;
         $dados->password = $request->password;
+        $dados->email = $request->email;
         $dados->usuario_alteracao = "";
+        $dados->categorias = "";
+        $dados->email = "";
+
         $dados->save();
-        return redirect()->action('UserController@index')->with('messages', 'Usuário criado com Sucesso!');
+        return redirect()->action('UsersController@index')->with('messages', 'Usuário criado com Sucesso!');
     }
 
     /**
@@ -85,10 +90,12 @@ class UserController extends Controller
         $dados->matricula = $request->matricula;
         $dados->nome = $request->nome;
         $dados->password = $request->password;
-        $dados->categorias = $request->categorias; 
+        $dados->email = $request->email;
         $dados->usuario_alteracao = "";
+        $dados->categorias = "";
+        $dados->email = "";
         $dados->update();
-        return redirect()->action('UserController@index')->with('message', 'Alterado com Sucesso!');
+        return redirect()->action('UsersController@index')->with('message', 'Alterado com Sucesso!');
     }
 
     /**
@@ -101,6 +108,6 @@ class UserController extends Controller
     {
         $dados = User::find($id_usuario);
         $dados->delete();
-        return redirect()->action('UserController@index')->with('message', 'Excluido com Sucesso!');
+        return redirect()->action('UsersController@index')->with('message', 'Excluido com Sucesso!');
     }
 }
