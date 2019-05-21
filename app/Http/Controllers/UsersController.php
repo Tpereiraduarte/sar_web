@@ -46,9 +46,8 @@ class UsersController extends Controller
         $dados->password = $request->password;
         $dados->email = $request->email;
         $dados->usuario_alteracao = "";
-        $dados->categorias = "";
-        $dados->email = "";
-
+        $dados->categoria = $request->categoria;       
+        
         $dados->save();
         return redirect()->action('UsersController@index')->with('messages', 'Usuário criado com Sucesso!');
     }
@@ -72,7 +71,7 @@ class UsersController extends Controller
      */
     public function edit($id_usuario)
     {
-        $dados = User::find($$id_usuario);
+        $dados = User::find($id_usuario);
         return view('usuario.edit')->with('dados',$dados);
     }
 
@@ -92,7 +91,7 @@ class UsersController extends Controller
         $dados->password = $request->password;
         $dados->email = $request->email;
         $dados->usuario_alteracao = "";
-        $dados->categorias = "";
+        $dados->categoria = "";
         $dados->email = "";
         $dados->update();
         return redirect()->action('UsersController@index')->with('message', 'Alterado com Sucesso!');

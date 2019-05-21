@@ -24,20 +24,7 @@
                     <td>
                         <div class="acoes-lista">
                             <a id="edit" href="{{URL::route('usuario.edit',$user->id_usuario)}}" title="Editar" class="fas fa-edit">Editar</a>
-                            <form action="{{ action('UserController@destroy', $user->id_usuario) }}" method="POST">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
-                                <button id="delete" type='submit' title="Excluir" class="fas fa-trash-alt">deletar</button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>{{$user->senha}}</td>
-                    <td>
-                        <div class="acoes-lista">
-                            <a id="edit" href="{{URL::route('usuario.edit',$user->id_usuario)}}" title="Editar" class="fas fa-edit">Editar</a>
-                            <form action="{{ action('UserController@destroy', $user->id_usuario) }}" method="POST">
+                            <form action="{{ action('UsersController@destroy', $user->id_usuario) }}" method="POST">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
                                 <button id="delete" type='submit' title="Excluir" class="fas fa-trash-alt">deletar</button>

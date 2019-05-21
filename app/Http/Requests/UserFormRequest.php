@@ -27,7 +27,8 @@ class UserFormRequest extends FormRequest
             'matricula' =>  'required|max:5',
             'nome'      => 'required|max:100',
             'password'  => 'required|max:10',
-            'categorias'=> 'required|max:50'           
+            'email'     =>'required|max:50',    
+            'categoria'=> 'required|max:50'           
         ];
     }
     public function messages(){
@@ -38,8 +39,8 @@ class UserFormRequest extends FormRequest
             'nome.max' => 'O nome tem que ter menos que 100 caracteres',
             'password.required' => 'O preenchimento da senha é obrigatório',
             'password.max' => 'A senha tem que ter menos que 100 caracteres',
-            'categorias.required' => 'O preenchimento das categorias é obrigatório',
-            'categorias.max' => 'A caracteristica tem que ter menos que 50 caracteres',
+            'categoria.required' => 'O preenchimento das categorias é obrigatório',
+            'categoria.max' => 'A caracteristica tem que ter menos que 50 caracteres',
         ];
     }
 }
