@@ -11,5 +11,9 @@
 |
 */
 
+
 Route::get('/','InicioController@index');
 Route::resource('pergunta','PerguntasController');
+Route::resource('perfil','PerfilsController');
+Route::resource('usuario', 'UsersController');
+
