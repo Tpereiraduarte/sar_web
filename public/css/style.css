@@ -1,0 +1,12 @@
+.acoes-lista{
+    display: -webkit-box;
+}
+#edit{
+    color:#003cff;
+}
+#delete{
+    color:#f00;
+    background:transparent;
+    border:none;
+    cursor: pointer;
+}
