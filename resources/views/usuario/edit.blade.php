@@ -32,9 +32,9 @@
         <input id="matricula" class="input" name="matricula" type="text" value="{{$dados->matricula}}" size="20"/><br /><br />
 
         <label class="required" for="senha">Senha:</label><br />
-        <input id="password" class="input" name="password" type="text" value="{{$dados->password}}"size="10"/><br /><br />
+        <input id="password" class="input" name="password" type="password" value="{{$dados->password}}"size="10"/><br /><br />
 
-        <label class="required" for="categoria">e-mail:</label><br />
+        <label class="required" for="categoria">Categoria:</label><br />
         <input id="categoria" class="input" name="categoria" type="text" value="{{$dados->categoria}}" size="10"/><br /><br />
 
         <input type="submit" value="Editar" />

@@ -29,7 +29,7 @@
         <label class="required" for="matricula">Matricula:</label><br />
         <input id="matricula" class="input" name="matricula" type="text" value="" size="20" /><br /><br />   
         <label class="required" for="senha">Senha:</label><br />
-        <input id="password" class="input" name="password" type="text" value="" size="10" />
+        <input id="password" class="input" name="password" type="password" value="" size="10" />
         <br /><br />
         <label class="required" for="categoria">Categoria:</label><br />
         <input id="categoria" class="input" name="categoria" type="text" value="" size="10" />
