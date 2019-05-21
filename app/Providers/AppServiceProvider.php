@@ -3,12 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\View;
-=======
 use Illuminate\Support\Facades\Schema;
 
->>>>>>> feature_perfil
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,10 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-<<<<<<< HEAD
         View::share('theme','lte'); 
-=======
         Schema::defaultStringLength(191);
->>>>>>> feature_perfil
     }
 }
