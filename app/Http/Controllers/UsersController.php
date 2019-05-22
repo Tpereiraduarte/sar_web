@@ -91,8 +91,7 @@ class UsersController extends Controller
         $dados->password = $request->password;
         $dados->email = $request->email;
         $dados->usuario_alteracao = "";
-        $dados->categoria = "";
-        $dados->email = "";
+        $dados->categoria = $request->categoria;
         $dados->update();
         return redirect()->action('UsersController@index')->with('message', 'Alterado com Sucesso!');
     }
