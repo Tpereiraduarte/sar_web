@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script>
-</head>
-<body>
+@extends("theme.$theme.layout")
+@section('titulo')
+    Cadastro de Perfis
+@endsection
+@section('conteudo')
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -18,13 +12,27 @@
         </ul>
     </div>
 @endif
-<form action="{{ action('PerfilsController@store') }}" method="POST">
-      @csrf
-    <div class="row">
-        <label class="required" for="name">Nome do perfil:</label><br />
-        <input id="name" class="input" name="nome" type="text" value="" size="50" />
-        <input type="submit" value="Cadastrar" />
+<div class="row">
+        <div class="col-md-10">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Cadastro de Perfil</h3>
+            </div>
+            <form role="form" action="{{ action('PerfilsController@store') }}" method="POST">
+            @csrf
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="Perfil">Nome do perfil</label>
+                  <input type="text" class="form-control" id="perfil" placeholder="Ex: Administrador" name="nome" maxlength="50" required>
+                </div>
+              </div>
+              <div class="box-footer">
+                <a href="{{URL::route('perfil.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+              </div>
+            </form>
+          </div>
+        </div>
     </div>
-</form>
-</body>
-</html>
+</div>
+@endsection
