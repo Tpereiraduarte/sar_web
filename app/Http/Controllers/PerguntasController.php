@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pergunta;
+use App\Models\Norma;
 use App\Http\Requests\PerguntasFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,7 @@ class PerguntasController extends Controller
     public function index()
     {
         $dados = Pergunta::all();
+        
         return view('pergunta.index')->with('dados',$dados);
     }
 
@@ -28,9 +30,24 @@ class PerguntasController extends Controller
      */
     public function create()
     {
-        return view('pergunta.store');
+        $dados = Norma::all();
+        return view('pergunta.store')->with('dados',$dados);
     }
-
+    
+    public function dinamico(Request $request)
+    {
+        $value = $request->get('value');
+        $data = DB::table('paragrafos')
+                ->where('norma_id',$value)
+                ->select('norma_id','paragrafo','descricao')
+                ->groupBy('norma_id','paragrafo','descricao')
+                ->get();
+        $resultado ='<option value="">Escolha o paragrafo desejado</option>';
+        foreach($data as $key => $row){
+            $resultado .='<option value="'.($key+1).'">'.$row->paragrafo.'</option>';
+        }
+        echo $resultado;
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -42,7 +59,8 @@ class PerguntasController extends Controller
         $validacao = $request->all();
         $dados = new Pergunta();
         $dados->pergunta = $request->pergunta;
-        $dados->norma = $request->norma;
+        $dados->norma_id = $request->norma;
+        $dados->paragrafo = $request->paragrafo;
         $dados->usuario_alteracao = "";
         $dados->save();
         return redirect()->action('PerguntasController@index')->with('messages', 'Pergunta criada com Sucesso!');
@@ -83,7 +101,8 @@ class PerguntasController extends Controller
         $validacao = $request->all();
         $dados = Pergunta::find($id_pergunta);
         $dados->pergunta = $request->pergunta;
-        $dados->norma = $request->norma;
+        $dados->norma_id = $request->norma;
+        $dados->paragrafo = $request->paragrafo;
         $dados->usuario_alteracao = "";
         $dados->update();
         return redirect()->action('PerguntasController@index')->with('message', 'Alterado com Sucesso!');
@@ -102,3 +121,4 @@ class PerguntasController extends Controller
         return redirect()->action('PerguntasController@index')->with('message', 'Alterado com Sucesso!');
     }
 }
+

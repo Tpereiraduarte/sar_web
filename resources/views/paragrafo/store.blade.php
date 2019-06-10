@@ -1,6 +1,6 @@
 @extends("theme.$theme.layout")
 @section('titulo')
-    Cadastro de Normas
+    Cadastro dos Parágrafos
 @endsection
 @section('conteudo')
 @if ($errors->any())
@@ -16,16 +16,26 @@
         <div class="col-md-10">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Cadastro das Normas</h3>
+              <h3 class="box-title">Cadastro de Parágrafos da Norma</h3>
             </div>
-            <form role="form" action="{{ action('NormasController@store') }}" method="POST">
+            <form role="form" action="{{ action('ParagrafosController@store') }}" method="POST">
             @csrf
-              <div class="box-body">
+            <div class="box-body">
                 <div class="form-group">
-                  <label for="Numero da Normas">Número da Norma</label>
-                  <input type="text" class="form-control" id="numero_norma" placeholder="Escreva Número da Norma" name="numero_norma" maxlength="2" size="50" required>
+                <label for="Numero da Normas">Número da Norma</label>
+                    <select class="form-control" id="numero_norma" name="norma_id" aria-required="true">
+                      <option selected disabled value="">Escolha o norma desejada</option>
+                      @foreach($dados as $value)
+                        <option value="{{$value->id_norma}}">{{$value->numero_norma}}</option>
+                      @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
+                  <label for="Paragrafo">Parágrafo</label>
+                  <input type="text" class="form-control" id="paragrafo" placeholder="Parágrafo da Norma" maxlength="15" name="paragrafo" size="50" required>
+                </div>
+
+                 <div class="form-group">
                   <label for="descricao">Descrição</label>
                   <input type="text" class="form-control" id="descricao" placeholder="Descrição da Norma" maxlength="400" name="descricao" size="50" required>
                 </div>

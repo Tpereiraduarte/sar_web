@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PerguntasFormRequest extends FormRequest
+class ParagrafosFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,22 +23,23 @@ class PerguntasFormRequest extends FormRequest
      */
     public function rules()
     {
-        return  [
-            'pergunta' => 'required|max:200',
-            'norma' => 'required',
+        return [
+            'norma_id' => 'required',
             'paragrafo' => 'required|max:15',
+            'descricao' => 'required|max:400'
         ];
-
     }
 
     public function messages()
     {
         return  [
-            'pergunta.required' => 'O preenchimento da pergunta é obrigatório',
-            'pergunta.max' => 'A pergunta tem que ter menos que 200 caracteres',
-            'norma.required' => 'O preenchimento da norma é obrigatório',
+            'norma_id.required' => 'Por favor cadastrar a Norma',
             'paragrafo.required' => 'O preenchimento do campo Parágrafo é obrigatório',
-            'paragrafo.max' => 'O campo Parágrafo tem que ter menos que 15 caracteres'
+            'paragrafo.max' => 'O campo Parágrafo tem que ter menos que 15 caracteres',
+            'descricao.required' => 'O preenchimento do campo Descrição é obrigatório',
+            'descricao.max' => 'O campo Descrição tem que ter menos que 400 caracteres'
+            
         ];
     }
 }
+

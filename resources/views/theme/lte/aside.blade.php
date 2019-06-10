@@ -42,6 +42,7 @@
             <li><a href="{{ url('/perfil/')}}"><i class="fa fa-angle-right"></i> Perfil</a></li>
             <li><a href="{{ url('/pergunta/')}}"><i class="fa fa-angle-right"></i> Perguntas</a></li>
             <li><a href="{{ url('/norma/')}}"><i class="fa fa-angle-right"></i> Normas</a></li>
+            <li><a href="{{ url('/paragrafo/')}}"><i class="fa fa-angle-right"></i> Paragrafos</a></li>
           </ul>
         </li>
 

@@ -28,12 +28,14 @@
                 </div>
                 <div class="form-group">
                   <label for="Norma">NR</label>
-                  <input type="text" class="form-control" id="norma" placeholder="Norma" maxlength="2" name="norma" value="{{$dados->norma}}"size="2" required>
+                    <select class="form-control" name="norma" required>
+                      <option value="">Escolha o norma desejada</option>
+                        <option value="{{$dados->normas->id_norma}}">{{$dados->normas->numero_norma}}</option>
+                    </select>
                 </div>
-              </div>
               <div class="box-footer">
                 <a href="{{URL::route('pergunta.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-primary">Atualizar</button>
               </div>
             </form>
           </div>
