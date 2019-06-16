@@ -7,6 +7,7 @@ use App\Http\Requests\UserFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -43,7 +44,7 @@ class UsersController extends Controller
         $dados = new User();
         $dados->matricula = $request->matricula;
         $dados->nome = $request->nome;
-        $dados->password = $request->password;
+        $dados->password = bcrypt($request['password']);
         $dados->email = $request->email;
         $dados->usuario_alteracao = "";
         $dados->categoria = $request->categoria;       
@@ -108,4 +109,5 @@ class UsersController extends Controller
         $dados->delete();
         return redirect()->action('UsersController@index')->with('message', 'Excluido com Sucesso!');
     }
+
 }

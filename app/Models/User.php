@@ -10,3 +10,5 @@ class User extends Model
     protected $fillable = ['matricula','nome','password','email','usuario_alteracao','categoria','email_verified_at'];
     protected $table = 'users';
 }
+
+
