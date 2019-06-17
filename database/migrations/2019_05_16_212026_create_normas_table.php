@@ -14,13 +14,11 @@ class CreateNormasTable extends Migration
     public function up()
     {
         Schema::create('normas', function (Blueprint $table) {
-            $table->bigIncrements('id_norma');
-            $table->string('numero_norma',2);
-            $table->string('paragrafo',15);
-            $table->string('descricao',400);
+            $table->increments('id_norma');
+            $table->string('numero_norma',2)->unique();
+            $table->string('descricao',200);
             $table->string('usuario_alteracao');
             $table->timestamps();
-
         });
     }
 
@@ -32,5 +30,6 @@ class CreateNormasTable extends Migration
     public function down()
     {
         Schema::dropIfExists('normas');
+        Schema::enableForeignKeyConstraints();
     }
 }

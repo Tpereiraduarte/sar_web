@@ -19,7 +19,6 @@
                 <tr>
                   <th>Ordem</th>
                   <th class="col-xs-1">N° Norma</th>
-                  <th>Parágrafo</th>
                   <th>Descrição</th>
                   <th>Ações</th>
                 </tr>
@@ -29,7 +28,6 @@
                 <tr>
                     <td>{{$key + 1}}</td>
                     <td>{{$valor->numero_norma}}</td>
-                    <td>{{$valor->paragrafo}}</td>
                     <td>{{$valor->descricao}}</td>
                     <td class="acoes-lista">
                         <a id="edit" href="{{URL::route('norma.edit',$valor->id_norma)}}" title="Editar" class="fa fa-edit"></a>
