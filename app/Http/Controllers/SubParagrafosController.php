@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SubParagrafo;
 use App\Models\Paragrafo;
-use App\Models\Norma;
-use App\Http\Requests\ParagrafosFormRequest;
+use App\Http\Requests\SubParagrafosFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class ParagrafosController extends Controller
+class SubParagrafosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class ParagrafosController extends Controller
      */
     public function index()
     {
-        $dados = Paragrafo::all();
-        return view('paragrafo.index')->with('dados',$dados);
+        $dados = SubParagrafo::all();
+        return view('subparagrafo.index')->with('dados',$dados);
     }
 
     /**
@@ -29,8 +29,8 @@ class ParagrafosController extends Controller
      */
     public function create()
     {
-        $dados = Norma::all();
-        return view('paragrafo.store')->with('dados',$dados);
+        $dados = Paragrafo::all();
+        return view('subparagrafo.store')->with('dados',$dados);
     }
 
     /**
@@ -39,16 +39,16 @@ class ParagrafosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ParagrafosFormRequest $request)
+    public function store(SubParagrafosFormRequest $request)
     {
         $validacao = $request->all();
-        $dados = new Paragrafo();
-        $dados->norma_id = $request->norma_id;
+        $dados = new SubParagrafo();
+        $dados->paragrafo_id = $request->paragrafo_id;
         $dados->numero_paragrafo = $request->numero_paragrafo;
-        $dados->descricao =$request->descricao;
+        $dados->descricao = $request->descricao;
         $dados->usuario_alteracao = "";
         $dados->save();
-        return redirect()->action('ParagrafosController@index')->with('messages', 'Parágrafo cadastrado com Sucesso!');
+        return redirect()->action('SubParagrafosController@index')->with('messages', 'Norma cadastrada com Sucesso!');
     }
 
     /**
@@ -57,9 +57,9 @@ class ParagrafosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_paragrafo)
+    public function show($id_Subparagrafo)
     {
-        return view('paragrafo.edit');
+        return view('subparagrafo.edit');
     }
 
     /**
@@ -68,11 +68,11 @@ class ParagrafosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_paragrafo)
+    public function edit($id_subparagrafo)
     {
-        $dados = Paragrafo::find($id_paragrafo);
-        $dadosNorma = Norma::all();
-        return view('paragrafo.edit')->with('dados',$dados)->with('dadosNorma',$dadosNorma);
+        $dados = SubParagrafo::find($id_subparagrafo);
+        $dadosParagrafo = Paragrafo::all();
+        return view('subparagrafo.edit')->with('dados',$dados)->with('dadosParagrafo',$dadosParagrafo);
     }
 
     /**
@@ -82,17 +82,17 @@ class ParagrafosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ParagrafosFormRequest $request, $id_paragrafo)
+    public function update(SubParagrafosFormRequest $request, $id_subparagrafo)
     {
          
         $validacao = $request->all();
-        $dados = Paragrafo::find($id_paragrafo);
-        $dados->norma_id = $request->norma_id;
+        $dados = SubParagrafo::find($id_subparagrafo);
+        $dados->paragrafo_id = $request->paragrafo_id;
         $dados->numero_paragrafo = $request->numero_paragrafo;
-        $dados->descricao =$request->descricao;
+        $dados->descricao = $request->descricao;
         $dados->usuario_alteracao = "";
         $dados->update();
-        return redirect()->action('ParagrafosController@index')->with('messages', 'Paragrafo cadastrado com Sucesso!');
+        return redirect()->action('SubParagrafosController@index')->with('messages', 'SubParagrafo cadastrado com Sucesso!');
     }
 
     /**
@@ -101,10 +101,10 @@ class ParagrafosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_paragrafo)
+    public function destroy($id_subparagrafo)
     {
-        $dados = Paragrafo::find($id_paragrafo);
+        $dados = SubParagrafo::find($id_subparagrafo);
         $dados->delete();
-        return redirect()->action('ParagrafosController@index')->with('message', 'Paragrafo excluido com Sucesso!');
+        return redirect()->action('SubParagrafosController@index')->with('message', 'SubParagrafo excluido com Sucesso!');
     }
 }

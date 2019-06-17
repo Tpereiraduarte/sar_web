@@ -9,7 +9,6 @@ class Norma extends Model
     protected $primaryKey = 'id_norma';
     protected $fillable = ['numero_norma','descricao','usuario_alteracao'];
     protected $table = 'normas';
-    protected $whith =['paragrafos'];
     
     public function paragrafos()
     {

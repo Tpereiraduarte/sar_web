@@ -39,13 +39,27 @@ class PerguntasController extends Controller
         $value = $request->get('value');
         $data = DB::table('paragrafos')
                 ->where('norma_id',$value)
-                ->select('norma_id','paragrafo','descricao')
-                ->groupBy('norma_id','paragrafo','descricao')
+                ->select('id_paragrafo','norma_id','numero_paragrafo','descricao')
+                ->groupBy('id_paragrafo','norma_id','numero_paragrafo','descricao')
                 ->get();
         $resultado ='<option value="">Escolha o paragrafo desejado</option>';
         foreach($data as $key => $row){
-            $resultado .='<option value="'.($key+1).'">'.$row->paragrafo.'</option>';
+            $resultado .='<option value="'.$row->id_paragrafo.'">'.$row->descricao.'</option>';
         }
+        echo $resultado;
+    }
+
+    public function paragrafodinamico(Request $request)
+    {
+        $value = $request->get('value2');
+        $dados = DB::table('subparagrafos')
+                    ->where('paragrafo_id',$value)
+                    ->get();
+        $resultado ='<div>';
+            foreach($dados as $key => $row){
+                $resultado .='<p>'.$row->numero_paragrafo.''.$row->descricao.'</p>';
+            }
+        $resultado .='</div>';
         echo $resultado;
     }
     /**
@@ -60,7 +74,7 @@ class PerguntasController extends Controller
         $dados = new Pergunta();
         $dados->pergunta = $request->pergunta;
         $dados->norma_id = $request->norma;
-        $dados->paragrafo = $request->paragrafo;
+        $dados->paragrafo_id = $request->paragrafo;
         $dados->usuario_alteracao = "";
         $dados->save();
         return redirect()->action('PerguntasController@index')->with('messages', 'Pergunta criada com Sucesso!');
@@ -86,7 +100,8 @@ class PerguntasController extends Controller
     public function edit($id_pergunta)
     {
         $dados = Pergunta::find($id_pergunta);
-        return view('pergunta.edit')->with('dados',$dados);
+        $dadosNorma = Norma::all();
+        return view('pergunta.edit')->with('dados',$dados)->with('dadosNorma',$dadosNorma);
     }
 
     /**
@@ -102,7 +117,7 @@ class PerguntasController extends Controller
         $dados = Pergunta::find($id_pergunta);
         $dados->pergunta = $request->pergunta;
         $dados->norma_id = $request->norma;
-        $dados->paragrafo = $request->paragrafo;
+        $dados->paragrafo_id = $request->paragrafo;
         $dados->usuario_alteracao = "";
         $dados->update();
         return redirect()->action('PerguntasController@index')->with('message', 'Alterado com Sucesso!');

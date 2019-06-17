@@ -14,9 +14,11 @@ class DatabaseSeeder extends Seeder
         DB::table('perfils')->delete();
         DB::table('normas')->delete();
         DB::table('paragrafos')->delete();
+        DB::table('subparagrafos')->delete();
         $this->call([
             PerfilsTableSeeder::class,
             NormasTableSeeder::class,
+            Nr10ParagrafosTableSeeder::class,
             Nr10TableSeeder::class
         ]);
     }

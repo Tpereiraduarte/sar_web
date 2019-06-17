@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePerguntasTable extends Migration
+class CreateParagrafosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreatePerguntasTable extends Migration
      */
     public function up()
     {
-        Schema::create('perguntas', function (Blueprint $table) {
-            $table->increments('id_pergunta');
+        Schema::create('paragrafos', function (Blueprint $table) {
+            $table->increments('id_paragrafo');
             $table->unsignedInteger('norma_id');
-            $table->string('pergunta',200);
-            $table->string('paragrafo',15);
+            $table->string('numero_paragrafo',10);
+            $table->string('descricao',300);
             $table->string('usuario_alteracao');
             $table->timestamps();
             $table->foreign('norma_id')
@@ -34,7 +34,6 @@ class CreatePerguntasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perguntas');
-        Schema::enableForeignKeyConstraints();
+        Schema::dropIfExists('paragrafos');
     }
 }

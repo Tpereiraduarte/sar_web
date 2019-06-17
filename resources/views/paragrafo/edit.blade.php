@@ -1,6 +1,6 @@
 @extends("theme.$theme.layout")
 @section('titulo')
-    Editar Parágrafo
+    Editar Paragrafos
 @endsection
 @section('conteudo')
 @if ($errors->any())
@@ -21,23 +21,28 @@
             <form role="form" action="{{ action('ParagrafosController@update', $dados->id_paragrafo) }}" method="POST">
             @method('PUT')
             @csrf
-            <div class="box-body">
+              <div class="box-body">
                 <div class="form-group">
                   <label for="Numero da Norma">Número da Norma</label>
-                  <input type="text" class="form-control" id="numero" placeholder="Número da Normas" name="numero_norma" value="{{$dados->numero_norma}}" maxlength="2" size="50" required>
+                  <select class="form-control" id="numero_norma" name="norma_id" aria-required="true">
+                    <option selected disabled value="">Escolha o norma desejada</option>
+                    @foreach($dadosNorma as $value)
+                      <option value="{{$value->id_norma}}">{{$value->numero_norma}}</option>
+                    @endforeach
+                  </select>
                 </div>
                 <div class="form-group">
                   <label for="Paragrafo">Parágrafo</label>
-                  <input type="text" class="form-control" id="paragrafo" placeholder="Parágrafo da Norma" maxlength="15" name="paragrafo" value="{{$dados->paragrafo}}"size="50" required>
+                  <input type="text" class="form-control" id="paragrafo" placeholder="Numero do Parágrafo" maxlength="15" name="numero_paragrafo" value="{{$dados->numero_paragrafo}}"size="50" required>
                 </div>
                 <div class="form-group">
                   <label for="descricao">Descrição</label>
-                  <input type="text" class="form-control" id="descricao" placeholder="Descrição da Norma" maxlength="400" name="descricao" value="{{$dados->descricao}}"size="50" required>
+                  <input type="text" class="form-control" id="descricao" placeholder="Descrição do Parágrafo" maxlength="400" name="descricao" value="{{$dados->descricao}}"size="50" required>
                 </div>
               </div>
               <div class="box-footer">
                 <a href="{{URL::route('paragrafo.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-primary">Atualizar</button>
               </div>
             </form>
           </div>

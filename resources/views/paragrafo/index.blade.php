@@ -1,6 +1,6 @@
 @extends("theme.$theme.layout")
 @section('titulo')
-	Lista de Parágrafos
+	Lista de Paragrafos
 @endsection
 @section('conteudo')
 <div class="row">
@@ -19,7 +19,6 @@
                 <tr>
                   <th>Ordem</th>
                   <th class="col-xs-1">N° Norma</th>
-                  <th>Parágrafo</th>
                   <th>Descrição</th>
                   <th>Ações</th>
                 </tr>
@@ -29,7 +28,6 @@
                 <tr>
                     <td>{{$key + 1}}</td>
                     <td>{{$valor->normas->numero_norma}}</td>
-                    <td>{{$valor->paragrafo}}</td>
                     <td>{{$valor->descricao}}</td>
                     <td class="acoes-lista">
                         <a id="edit" href="{{URL::route('paragrafo.edit',$valor->id_paragrafo)}}" title="Editar" class="fa fa-edit"></a>
@@ -46,7 +44,7 @@
     </div>
 @else
     <div class="sem-dados">
-        <span class="sem-dados">Não há parágrafos Cadastrados</span>
+        <span class="sem-dados">Não há Parágrafos Cadastrados</span>
     </div>    
 @endif
 @endsection

@@ -36,9 +36,11 @@
                 </div>
                 <div class="form-group">
                   <label for="Paragrafo">Paragrafo</label>
-                    <select class="form-control" id="paragrafo" name="paragrafo" aria-required="true">
+                    <select class="form-control dinamic-paragrafo" data-dependent="paragrafo" id="paragrafo" name="paragrafo" aria-required="true">
                       <option selected disabled value="">Escolha o paragrafo desejado</option>
                     </select>
+                </div>
+                <div class="form-group" id="subparagrafo">
                 </div>
               </div>
               <div class="box-footer">
@@ -71,6 +73,24 @@
           })
         }
       });
+      $('.dinamic-paragrafo').change(function(){
+        if($(this).val() !='')
+        {
+          var value2 = $(this).val();
+          var _token =$('input[name="_token"]').val();
+          $.ajax({
+            url:"{{URL::route('paragrafodinamico')}}",
+            method:"POST",
+            data:{value2:value2,_token:_token},
+            success:function(result)
+            {
+              $('#subparagrafo').empty();
+              $('#subparagrafo').append(result);
+            }
+          })
+        }
+      });
+
     });
     </script>
 </div>

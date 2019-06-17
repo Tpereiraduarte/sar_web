@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParagrafosTable extends Migration
+class CreateSubParagrafosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,19 @@ class CreateParagrafosTable extends Migration
      */
     public function up()
     {
-        Schema::create('paragrafos', function (Blueprint $table) {
-            $table->bigIncrements('id_paragrafo');
-            $table->unsignedInteger('norma_id');
-            $table->string('paragrafo',10);
+        Schema::create('subparagrafos', function (Blueprint $table) {
+            $table->increments('id_subparagrafo');
+            $table->unsignedInteger('paragrafo_id');
+            $table->string('numero_paragrafo',10);
             $table->string('descricao',3000);
             $table->string('usuario_alteracao');
             $table->timestamps();
-            $table->foreign('norma_id')
-            ->references('id_norma')
-            ->on('normas')
+        });
+
+        Schema::table('subparagrafos', function (Blueprint $table) {
+            $table->foreign('paragrafo_id')
+            ->references('id_paragrafo')
+            ->on('paragrafos')
             ->onDelete('cascade');
         });
     }
@@ -33,7 +36,6 @@ class CreateParagrafosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paragrafos');
-        Schema::enableForeignKeyConstraints();
+        Schema::dropIfExists('subparagrafos');
     }
 }
