@@ -26,14 +26,6 @@
                   <label for="Numero da Norma">Número da Norma</label>
                   <input type="text" class="form-control" id="numero" placeholder="Número da Normas" name="numero_norma" value="{{$dados->numero_norma}}" maxlength="2" size="50" required>
                 </div>
-
-                <div class="form-group">
-                  <label for="Parágrafo da Norma">Parágrafo da Norma</label>
-                  <input type="text" class="form-control" id="paragrafo" placeholder="Parágrafo da Normas" name="paragrafo" value="{{$dados->paragrafo}}" maxlength="15" size="50" required>
-                </div>
-
-
-
                 <div class="form-group">
                   <label for="descricao">Descrição</label>
                   <input type="text" class="form-control" id="descricao" placeholder="Descrição da Norma" maxlength="400" name="descricao" value="{{$dados->descricao}}"size="50" required>
@@ -41,7 +33,7 @@
               </div>
               <div class="box-footer">
                 <a href="{{URL::route('norma.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-primary">Atualizar</button>
               </div>
             </form>
           </div>

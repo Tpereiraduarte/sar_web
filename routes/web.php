@@ -12,6 +12,7 @@
 */
 
 
+
 Route::get('/','LoginController@index')->name('login');
 
 Route::post('/login','LoginController@login');
@@ -26,15 +27,23 @@ Route::group(['middleware'=>['auth']],function(){
             'LoginController@index');
 
     Route::get('inicio','InicioController@index')->name('inicio');
+
+    //Route::get('/','InicioController@index');
+Route::post('pergunta/dinamico', 'PerguntasController@dinamico')->name('dinamico');
+Route::post('pergunta/paragrafodinamico', 'PerguntasController@paragrafodinamico')->name('paragrafodinamico');
+
+Route::resource('pergunta','PerguntasController');
+Route::resource('perfil','PerfilsController');
+Route::resource('usuario', 'UsersController');
+Route::resource('norma', 'NormasController');
+Route::resource('paragrafo', 'ParagrafosController');
+Route::resource('subparagrafo', 'SubParagrafosController');
     
     });
 
 
 
 
-Route::resource('pergunta','PerguntasController');
-Route::resource('perfil','PerfilsController');
-Route::resource('usuario', 'UsersController');
-Route::resource('norma', 'NormasController');
 
-});
+
+

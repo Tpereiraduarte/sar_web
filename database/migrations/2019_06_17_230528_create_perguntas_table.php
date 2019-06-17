@@ -14,12 +14,28 @@ class CreatePerguntasTable extends Migration
     public function up()
     {
         Schema::create('perguntas', function (Blueprint $table) {
-            $table->bigIncrements('id_pergunta');
+            $table->increments('id_pergunta');
+            $table->unsignedInteger('norma_id');
+            $table->unsignedInteger('paragrafo_id');
             $table->string('pergunta',200);
-            $table->integer('norma');
             $table->string('usuario_alteracao');
             $table->timestamps();
         });
+    
+        Schema::table('perguntas', function (Blueprint $table) {
+            $table->foreign('norma_id')
+            ->references('id_norma')
+            ->on('normas')
+            ->onDelete('cascade');
+        });
+
+        Schema::table('perguntas', function (Blueprint $table) {
+            $table->foreign('paragrafo_id')
+            ->references('id_paragrafo')
+            ->on('paragrafos')
+            ->onDelete('cascade');
+        });
+    
     }
 
     /**
@@ -30,5 +46,6 @@ class CreatePerguntasTable extends Migration
     public function down()
     {
         Schema::dropIfExists('perguntas');
+        Schema::enableForeignKeyConstraints();
     }
 }

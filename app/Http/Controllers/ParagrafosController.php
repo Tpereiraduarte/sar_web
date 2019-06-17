@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paragrafo;
 use App\Models\Norma;
-use App\Http\Requests\NormasFormRequest;
+use App\Http\Requests\ParagrafosFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class NormasController extends Controller
+class ParagrafosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +18,8 @@ class NormasController extends Controller
      */
     public function index()
     {
-        $dados = Norma::all();
-        return view('norma.index')->with('dados',$dados);
+        $dados = Paragrafo::all();
+        return view('paragrafo.index')->with('dados',$dados);
     }
 
     /**
@@ -28,7 +29,8 @@ class NormasController extends Controller
      */
     public function create()
     {
-        return view('norma.store');
+        $dados = Norma::all();
+        return view('paragrafo.store')->with('dados',$dados);
     }
 
     /**
@@ -37,15 +39,16 @@ class NormasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NormasFormRequest $request)
+    public function store(ParagrafosFormRequest $request)
     {
         $validacao = $request->all();
-        $dados = new Norma();
-        $dados->numero_norma = $request->numero_norma;
+        $dados = new Paragrafo();
+        $dados->norma_id = $request->norma_id;
+        $dados->numero_paragrafo = $request->numero_paragrafo;
         $dados->descricao =$request->descricao;
         $dados->usuario_alteracao = "";
         $dados->save();
-        return redirect()->action('NormasController@index')->with('messages', 'Norma cadastrada com Sucesso!');
+        return redirect()->action('ParagrafosController@index')->with('messages', 'Parágrafo cadastrado com Sucesso!');
     }
 
     /**
@@ -54,9 +57,9 @@ class NormasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_norma)
+    public function show($id_paragrafo)
     {
-        return view('norma.edit');
+        return view('paragrafo.edit');
     }
 
     /**
@@ -65,10 +68,11 @@ class NormasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_norma)
+    public function edit($id_paragrafo)
     {
-        $dados = Norma::find($id_norma);
-        return view('norma.edit')->with('dados',$dados);
+        $dados = Paragrafo::find($id_paragrafo);
+        $dadosNorma = Norma::all();
+        return view('paragrafo.edit')->with('dados',$dados)->with('dadosNorma',$dadosNorma);
     }
 
     /**
@@ -78,16 +82,17 @@ class NormasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(NormasFormRequest $request, $id_norma)
+    public function update(ParagrafosFormRequest $request, $id_paragrafo)
     {
          
         $validacao = $request->all();
-        $dados = Norma::find($id_norma);
-        $dados->numero_norma = $request->numero_norma;
+        $dados = Paragrafo::find($id_paragrafo);
+        $dados->norma_id = $request->norma_id;
+        $dados->numero_paragrafo = $request->numero_paragrafo;
         $dados->descricao =$request->descricao;
         $dados->usuario_alteracao = "";
         $dados->update();
-        return redirect()->action('NormasController@index')->with('messages', 'Norma cadastrada com Sucesso!');
+        return redirect()->action('ParagrafosController@index')->with('messages', 'Paragrafo cadastrado com Sucesso!');
     }
 
     /**
@@ -96,10 +101,10 @@ class NormasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_norma)
+    public function destroy($id_paragrafo)
     {
-        $dados = Norma::find($id_norma);
+        $dados = Paragrafo::find($id_paragrafo);
         $dados->delete();
-        return redirect()->action('NormasController@index')->with('message', 'Norma excluida com Sucesso!');
+        return redirect()->action('ParagrafosController@index')->with('message', 'Paragrafo excluido com Sucesso!');
     }
 }

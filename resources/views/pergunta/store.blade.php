@@ -27,7 +27,20 @@
                 </div>
                 <div class="form-group">
                   <label for="Norma">NR</label>
-                  <input type="text" class="form-control" id="norma" placeholder="Norma" maxlength="2" name="norma" size="2" required>
+                    <select class="form-control dinamic" data-dependent="norma" id="norma_id" name="norma" aria-required="true">
+                      <option selected disabled value="">Escolha o norma desejada</option>
+                      @foreach($dados as $value)
+                        <option value="{{$value->id_norma}}">{{$value->numero_norma}}</option>
+                      @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label for="Paragrafo">Paragrafo</label>
+                    <select class="form-control dinamic-paragrafo" data-dependent="paragrafo" id="paragrafo" name="paragrafo" aria-required="true">
+                      <option selected disabled value="">Escolha o paragrafo desejado</option>
+                    </select>
+                </div>
+                <div class="form-group" id="subparagrafo">
                 </div>
               </div>
               <div class="box-footer">
@@ -38,5 +51,47 @@
           </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      $('.dinamic').change(function(){
+        if($(this).val() !='')
+        {
+          var value = $(this).val();
+          var dependent = $(this).data('dependent');
+          var _token =$('input[name="_token"]').val();
+          $.ajax({
+            url:"{{URL::route('dinamico')}}",
+            method:"POST",
+            data:{value:value,_token:_token,dependent:dependent},
+            success:function(result)
+            {
+              $('#'+dependent).html(result);
+              $('#paragrafo').empty();
+              $('#paragrafo').append(result);
+            }
+          })
+        }
+      });
+      $('.dinamic-paragrafo').change(function(){
+        if($(this).val() !='')
+        {
+          var value2 = $(this).val();
+          var _token =$('input[name="_token"]').val();
+          $.ajax({
+            url:"{{URL::route('paragrafodinamico')}}",
+            method:"POST",
+            data:{value2:value2,_token:_token},
+            success:function(result)
+            {
+              $('#subparagrafo').empty();
+              $('#subparagrafo').append(result);
+            }
+          })
+        }
+      });
+
+    });
+    </script>
 </div>
 @endsection
