@@ -44,7 +44,7 @@ class PerguntasController extends Controller
                 ->get();
         $resultado ='<option value="">Escolha o paragrafo desejado</option>';
         foreach($data as $key => $row){
-            $resultado .='<option value="'.$row->id_paragrafo.'">'.$row->descricao.'</option>';
+            $resultado .='<option value="'.$row->id_paragrafo.'">'.$row->numero_paragrafo.' - '.$row->descricao.'</option>';
         }
         echo $resultado;
     }
@@ -57,7 +57,7 @@ class PerguntasController extends Controller
                     ->get();
         $resultado ='<div>';
             foreach($dados as $key => $row){
-                $resultado .='<p>'.$row->numero_paragrafo.''.$row->descricao.'</p>';
+                $resultado .='<p>'.$row->numero_paragrafo.' - '.$row->descricao.'</p>';
             }
         $resultado .='</div>';
         echo $resultado;
