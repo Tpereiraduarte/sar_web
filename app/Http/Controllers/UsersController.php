@@ -46,9 +46,7 @@ class UsersController extends Controller
         $dados->nome = $request->nome;
         $dados->password = bcrypt($request['password']);
         $dados->email = $request->email;
-        $dados->usuario_alteracao = "";
-        $dados->categoria = $request->categoria;       
-        
+        $dados->usuario_alteracao = "";             
         $dados->save();
         return redirect()->action('UsersController@index')->with('messages', 'Usuário criado com Sucesso!');
     }
@@ -83,16 +81,14 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserFormRequest $request, $id_usuario)
+    public function update(Request $request, $id_usuario)
     {
-        $validacao = $request->all();
         $dados = User::find($id_usuario);
         $dados->matricula = $request->matricula;
         $dados->nome = $request->nome;
         $dados->password = $request->password;
         $dados->email = $request->email;
         $dados->usuario_alteracao = "";
-        $dados->categoria = $request->categoria;
         $dados->update();
         return redirect()->action('UsersController@index')->with('message', 'Alterado com Sucesso!');
     }

@@ -36,17 +36,12 @@
                     <div class="form-group">      
                         <label for="senha">Senha:</label><br />
                         <input id="password" class="form-control" name="password" type="password" value="" size="10" />
-                    </div>
-                    <div class="form-group">
-                        <label>Categoria</label>
-                        <select class="form-control" name="categoria" >
-                            <option value="interno" >Interno</option>
-                            <option value="externo">Externo</option>
-                            <option value="administrativo">Administrador</option>
-                        </select>
                     </div>    
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Cadastrar" />
+                        <div class="box-footer">
+                            <a href="{{URL::route('usuario.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
+                            <input type="submit" class="btn btn-primary" value="Cadastrar" />
+                        </div>
                     </div>
             </form>
         </div>

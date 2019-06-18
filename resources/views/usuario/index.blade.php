@@ -22,7 +22,6 @@
                     <th>Matricula</th>
                     <th>Nome</th>
                     <th>e-mail</th>
-                    <th>Categorias</th>
                     <th>Ações</th>
 
                 </tr>
@@ -34,7 +33,6 @@
                     <td>{{$user->matricula}}</td>
                     <td>{{$user->nome}}</td>                    
                     <td>{{$user->email}}</td>
-                    <td>{{$user->categoria}}</td>
                     <td>
                         <div class="acoes-lista">
                             <a id="edit" href="{{URL::route('usuario.edit',$user->id_usuario)}}" title="Editar" class="fa fa-edit"></a>
