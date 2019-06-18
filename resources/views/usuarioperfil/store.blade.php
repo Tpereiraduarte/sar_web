@@ -23,14 +23,25 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="usuariop">Usuário:</label>
-                        <input id="usuariop" class="form-control" name="usuariop" type="text" value="" size="50" />
+                        <select class="form-control" id="usuario_id" name="usuario_id" aria-required="true">
+                            @foreach($usuario as $value)
+                            <option value="{{$value->id_usuario}}">{{$value->nome}}                                
+                            </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">     
                         <label for="uperfil">Perfil:</label>
-                        <input id="uperfil" class="form-control" name="uperfil" type="text" value="" size="50" />
+                        <select class="form-control" id="usuario_id" name="perfil_id" aria-required="true">
+                            @foreach($perfil as $value)
+                            <option value="{{$value->id_perfil}}">{{$value->nome}}                                
+                            </option>
+                            @endforeach
+                        </select>                        
                     </div>                       
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Cadastrar" />
+                        <a href="{{URL::route('usuarioperfil.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
+                        <input type="submit" class="btn btn-primary" value="Cadastrar"/>
                     </div>
             </form>
         </div>

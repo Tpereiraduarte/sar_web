@@ -9,4 +9,8 @@ class User extends Model
 	protected $primaryKey = 'id_usuario';
     protected $fillable = ['matricula','nome','password','email','usuario_alteracao','categoria','email_verified_at'];
     protected $table = 'users';
+
+    public function usuarioperfil(){
+    	return $this->belongsTo(UsuarioPerfil::class,'id_usuario','usuario_id');
+    }
 }

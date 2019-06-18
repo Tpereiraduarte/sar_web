@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\UsuarioPerfil;
+use App\Models\Perfil;
+use App\Models\User;
 use App\Http\Requests\UsuarioPerfilFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +30,9 @@ class UsuarioPerfilController extends Controller
      */
     public function create()
     {
-        return view('usuarioperfil.store');
+        $usuario = User::all();
+        $perfil  = Perfil::all();      
+        return view('usuarioperfil.store')->with('usuario',$usuario)->with('perfil',$perfil);
     }
 
     /**
@@ -44,6 +48,7 @@ class UsuarioPerfilController extends Controller
         $dados = new UsuarioPerfil();
         $dados->usuario_id = $request->usuario_id;
         $dados->perfil_id  = $request->perfil_id;
+        $dados->usuario_alteracao = '';
         $dados->save();
         return redirect()->action('UsuarioPerfilController@index')->with('messages', 'Perfil criado com Sucesso!');
     }
@@ -54,7 +59,7 @@ class UsuarioPerfilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_perfilUsuario)
+    public function show($id_usuarioperfil)
     {
         return view('usuarioperfil.edit');
     }
@@ -65,10 +70,12 @@ class UsuarioPerfilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_perfilUsuario)
-    {
-        $dados = UsuarioPerfil::find($id_perfilUsuario);
-        return view('usuarioperfil.edit')->with('dados',$dados);
+    public function edit($id_usuarioperfil)
+    {        
+        $dados = UsuarioPerfil::find($id_usuarioperfil);
+        $usuario = User::all();
+        $perfil  = Perfil::all();      
+        return view('usuarioperfil.edit')->with('usuario',$usuario)->with('perfil',$perfil)->with('dados', $dados);
     }
 
     /**
@@ -78,12 +85,13 @@ class UsuarioPerfilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserFormRequest $request, $id_perfilUsuario)
+    public function update(UsuarioPerfilFormRequest $request, $id_usuarioperfil)
     {
         $validacao = $request->all();
-        $dados = UsuarioPerfil::find($id_perfilUsuario);
+        $dados = UsuarioPerfil::find($id_usuarioperfil);
         $dados->usuario_id = $request->usuario_id;
         $dados->perfil_id  = $request->perfil_id;
+        $dados->usuario_alteracao = '';
         $dados->update();
         return redirect()->action('UsuarioPerfilController@index')->with('message', 'Perfil alterado com Sucesso!');
     }
@@ -94,9 +102,9 @@ class UsuarioPerfilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_perfilUsuario)
+    public function destroy($id_usuarioperfil)
     {
-        $dados = UsuarioPerfil::find($id_perfilUsuario);
+        $dados = UsuarioPerfil::find($id_usuarioperfil);
         $dados->delete();
         return redirect()->action('UsuarioPerfilController@index')->with('message', 'Perfil excluido com Sucesso!');
     }

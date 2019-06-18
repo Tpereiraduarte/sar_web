@@ -17,3 +17,4 @@ Route::resource('pergunta','PerguntasController');
 Route::resource('perfil','PerfilsController');
 Route::resource('usuario', 'UsersController');
 Route::resource('norma', 'NormasController');
+Route::resource('usuarioperfil', 'UsuarioPerfilController');
