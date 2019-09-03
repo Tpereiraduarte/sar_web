@@ -14,8 +14,9 @@ class CreateParagrafosTable extends Migration
     public function up()
     {
         Schema::create('paragrafos', function (Blueprint $table) {
-            $table->increments('id_paragrafo');
-            $table->unsignedInteger('norma_id');
+            $table->uuid('id_paragrafo');
+            $table->primary('id_paragrafo');
+            $table->uuid('norma_id');
             $table->string('numero_paragrafo',10);
             $table->string('descricao',300);
             $table->string('usuario_alteracao');

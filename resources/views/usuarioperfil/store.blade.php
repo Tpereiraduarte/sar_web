@@ -24,6 +24,7 @@
                     <div class="form-group">
                         <label for="usuariop">Usuário:</label>
                         <select class="form-control" id="usuario_id" name="usuario_id" aria-required="true">
+                            <option selected disabled value="">Escolha o usuário desejado</option>
                             @foreach($usuario as $value)
                             <option value="{{$value->id_usuario}}">{{$value->nome}}                                
                             </option>
@@ -33,6 +34,7 @@
                     <div class="form-group">     
                         <label for="uperfil">Perfil:</label>
                         <select class="form-control" id="usuario_id" name="perfil_id" aria-required="true">
+                            <option selected disabled value="">Escolha o perfil desejado</option>
                             @foreach($perfil as $value)
                             <option value="{{$value->id_perfil}}">{{$value->nome}}                                
                             </option>

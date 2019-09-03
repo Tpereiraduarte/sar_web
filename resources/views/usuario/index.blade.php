@@ -15,7 +15,7 @@
         <h3 class="box-title">Dados Pessoais</h3>
     </div>
     <div class="box-body">
-        <table id="example2" class="table table-bordered table-hover">
+    <table id="table" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>Ordem</th>
@@ -23,11 +23,10 @@
                     <th>Nome</th>
                     <th>e-mail</th>
                     <th>Ações</th>
-
                 </tr>
             </thead>
-        @foreach($dados as $key => $user)
             <tbody>
+        @foreach($dados as $key => $user)
                 <tr>
                     <td>{{$key + 1}}</td>
                     <td>{{$user->matricula}}</td>
@@ -43,7 +42,7 @@
                             </form>
                         </div>
                     </td>
-                    </tr>
+                </tr>
         @endforeach
             </tbody>
         </table>
@@ -54,4 +53,7 @@
         <span class="sem-dados">Não há usuários Cadastradas</span>
     </div>    
 @endif
+@push('scripts')
+    <script src="{{ url('js/toast.js') }}"></script>
+@endpush
 @endsection

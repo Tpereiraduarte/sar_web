@@ -23,20 +23,24 @@
                 @csrf
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="usuariop">Usuário:</label>
+                        <label for="usuario">Usuário:</label>
                         <select class="form-control" id="usuario_id" name="usuario_id" aria-required="true">
+                            <option value="{{$dados->usuario_id}}" selected>{{$dados->usuario->nome}}</option>
                             @foreach($usuario as $value)
-                            <option value="{{$value->id_usuario}}">{{$value->nome}}                                
-                            </option>
-                            @endforeach
+                                @if($dados->usuario_id != $value->id_usuario)
+                                    <option value="{{$value->id_usuario}}">{{$value->nome}}</option>
+                                @endif
+                            @endforeach 
                         </select>                        
                     </div>
                     <div class="form-group">
                         <label for="uperfil">Perfil:</label>
-                        <select class="form-control" selected="$dados->id_usuarioperfil" id="perfil_id" name="perfil_id" aria-required="true">
+                        <select class="form-control" id="perfil_id" name="perfil_id" aria-required="true">
+                            <option value="{{$dados->perfil_id}}" selected>{{$dados->perfil->nome}}</option>
                             @foreach($perfil as $value)
-                            <option value="{{$value->id_perfil}}">{{$value->nome}}                                
-                            </option>
+                                @if($dados->perfil_id != $value->id_perfil)
+                                    <option value="{{$value->id_perfil}}">{{$value->nome}}</option>
+                                @endif
                             @endforeach
                         </select>   
                     </div>

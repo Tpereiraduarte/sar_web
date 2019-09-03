@@ -75,9 +75,9 @@ class PerguntasController extends Controller
         $dados->pergunta = $request->pergunta;
         $dados->norma_id = $request->norma;
         $dados->paragrafo_id = $request->paragrafo;
-        $dados->usuario_alteracao = "";
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->save();
-        return redirect()->action('PerguntasController@index')->with('messages', 'Pergunta criada com Sucesso!');
+        return redirect()->action('PerguntasController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
     /**
@@ -118,9 +118,9 @@ class PerguntasController extends Controller
         $dados->pergunta = $request->pergunta;
         $dados->norma_id = $request->norma;
         $dados->paragrafo_id = $request->paragrafo;
-        $dados->usuario_alteracao = "";
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->update();
-        return redirect()->action('PerguntasController@index')->with('message', 'Alterado com Sucesso!');
+        return redirect()->action('PerguntasController@index')->with('success', 'Alterado com Sucesso!');
     }
 
     /**
@@ -133,7 +133,7 @@ class PerguntasController extends Controller
     {
         $dados = Pergunta::find($id_pergunta);
         $dados->delete();
-        return redirect()->action('PerguntasController@index')->with('message', 'Alterado com Sucesso!');
+        return redirect()->action('PerguntasController@index')->with('success', 'Excluído com Sucesso!');
     }
 }
 

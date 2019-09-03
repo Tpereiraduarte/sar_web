@@ -26,7 +26,6 @@ class LoginController extends Controller
             'matricula' => 'required',
             'password' => 'required'
         ]);
-
         $credentials = ['matricula'=>$request->matricula,'password'=>$request->password];
         if(Auth::attempt($credentials)){
             $user = DB::table('users')->where('matricula', $request->matricula)->first();

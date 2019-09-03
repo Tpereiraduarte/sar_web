@@ -48,9 +48,9 @@ class UsuarioPerfilController extends Controller
         $dados = new UsuarioPerfil();
         $dados->usuario_id = $request->usuario_id;
         $dados->perfil_id  = $request->perfil_id;
-        $dados->usuario_alteracao = '';
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->save();
-        return redirect()->action('UsuarioPerfilController@index')->with('messages', 'Perfil criado com Sucesso!');
+        return redirect()->action('UsuarioPerfilController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
     /**
@@ -91,9 +91,9 @@ class UsuarioPerfilController extends Controller
         $dados = UsuarioPerfil::find($id_usuarioperfil);
         $dados->usuario_id = $request->usuario_id;
         $dados->perfil_id  = $request->perfil_id;
-        $dados->usuario_alteracao = '';
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->update();
-        return redirect()->action('UsuarioPerfilController@index')->with('message', 'Perfil alterado com Sucesso!');
+        return redirect()->action('UsuarioPerfilController@index')->with('success', 'Alterado com Sucesso!');
     }
 
     /**
@@ -106,7 +106,7 @@ class UsuarioPerfilController extends Controller
     {
         $dados = UsuarioPerfil::find($id_usuarioperfil);
         $dados->delete();
-        return redirect()->action('UsuarioPerfilController@index')->with('message', 'Perfil excluido com Sucesso!');
+        return redirect()->action('UsuarioPerfilController@index')->with('success', 'Excluído com Sucesso!');
     }
 
 }

@@ -14,8 +14,9 @@ class CreateSubParagrafosTable extends Migration
     public function up()
     {
         Schema::create('subparagrafos', function (Blueprint $table) {
-            $table->increments('id_subparagrafo');
-            $table->unsignedInteger('paragrafo_id');
+            $table->uuid('id_subparagrafo');
+            $table->primary('id_subparagrafo');
+            $table->uuid('paragrafo_id');
             $table->string('numero_paragrafo',10);
             $table->string('descricao',3000);
             $table->string('usuario_alteracao');

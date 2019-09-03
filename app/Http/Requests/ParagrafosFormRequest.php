@@ -25,7 +25,7 @@ class ParagrafosFormRequest extends FormRequest
     {
         return [
             'norma_id' => 'required',
-            'numero_paragrafo' => 'required|max:15',
+            'numero_paragrafo' => 'required|max:50',
             'descricao' => 'required|max:300'
         ];
     }
@@ -35,7 +35,7 @@ class ParagrafosFormRequest extends FormRequest
         return  [
             'norma_id.required' => 'Por favor cadastrar a Norma',
             'numero_paragrafo.required' => 'O preenchimento do campo Parágrafo é obrigatório',
-            'numero_paragrafo.max' => 'O campo Parágrafo tem que ter menos que 15 caracteres',
+            'numero_paragrafo.max' => 'O campo Parágrafo tem que ter menos que 50 caracteres',
             'descricao.required' => 'O preenchimento do campo Descrição é obrigatório',
             'descricao.max' => 'O campo Descrição tem que ter menos que 400 caracteres'            
         ];

@@ -18,7 +18,7 @@ class NormasTableSeeder extends Seeder
         Norma::create([
             'numero_norma'      => '10',
             'descricao'         => 'SEGURANÇA EM INSTALAÇÕES E SERVIÇOS EM ELETRICIDADE',
-            'usuario_alteracao' => ''
+            'usuario_alteracao' => 'Sistema'
         ]);        
     }
 }

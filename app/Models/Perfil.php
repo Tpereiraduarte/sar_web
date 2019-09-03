@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Uuids;
 
 class Perfil extends Model
 {
+    use Uuids;
+    public $incrementing = false;
+    
     protected $primaryKey = 'id_perfil';
     protected $fillable = ['nome','usuario_alteracao'];
     protected $table = 'perfils';

@@ -14,17 +14,17 @@
         <h3 class="box-title">Normas</h3>
     </div>
     <div class="box-body">
-        <table id="example2" class="table table-bordered table-hover">
+        <table id="table" class="table table-bordered table-hover dataTable">
             <thead>
                 <tr>
                   <th>Ordem</th>
-                  <th class="col-xs-1">N° Norma</th>
+                  <th class="col-xs-2">N° Norma</th>
                   <th>Descrição</th>
                   <th>Ações</th>
                 </tr>
             </thead>
-        @foreach($dados as $key => $valor)
             <tbody>
+        @foreach($dados as $key => $valor)
                 <tr>
                     <td>{{$key + 1}}</td>
                     <td>{{$valor->numero_norma}}</td>
@@ -42,9 +42,13 @@
             </tbody>
         </table>
     </div>
+</div>
 @else
     <div class="sem-dados">
         <span class="sem-dados">Não há Normas Cadastradas</span>
     </div>    
 @endif
+@push('scripts')
+    <script src="{{ url('js/toast.js') }}"></script>
+@endpush
 @endsection

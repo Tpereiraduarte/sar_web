@@ -46,9 +46,9 @@ class ParagrafosController extends Controller
         $dados->norma_id = $request->norma_id;
         $dados->numero_paragrafo = $request->numero_paragrafo;
         $dados->descricao =$request->descricao;
-        $dados->usuario_alteracao = "";
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->save();
-        return redirect()->action('ParagrafosController@index')->with('messages', 'Parágrafo cadastrado com Sucesso!');
+        return redirect()->action('ParagrafosController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
     /**
@@ -90,9 +90,9 @@ class ParagrafosController extends Controller
         $dados->norma_id = $request->norma_id;
         $dados->numero_paragrafo = $request->numero_paragrafo;
         $dados->descricao =$request->descricao;
-        $dados->usuario_alteracao = "";
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->update();
-        return redirect()->action('ParagrafosController@index')->with('messages', 'Paragrafo cadastrado com Sucesso!');
+        return redirect()->action('ParagrafosController@index')->with('success', 'Alterado com Sucesso!');
     }
 
     /**
@@ -105,6 +105,6 @@ class ParagrafosController extends Controller
     {
         $dados = Paragrafo::find($id_paragrafo);
         $dados->delete();
-        return redirect()->action('ParagrafosController@index')->with('message', 'Paragrafo excluido com Sucesso!');
+        return redirect()->action('ParagrafosController@index')->with('message', 'Excluído com Sucesso!');
     }
 }

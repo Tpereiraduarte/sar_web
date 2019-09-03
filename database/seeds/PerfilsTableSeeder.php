@@ -17,17 +17,17 @@ class PerfilsTableSeeder extends Seeder
     public function createPerfils(){
         Perfil::create([
             'nome'         => 'Administrador',
-            'usuario_alteracao' => ''
+            'usuario_alteracao' => 'Sistema'
         ]);
         
         Perfil::create([
             'nome'         => 'Revisor',
-            'usuario_alteracao' => ''
+            'usuario_alteracao' => 'Sistema'
         ]);
         
         Perfil::create([
             'nome'         => 'Usuario',
-            'usuario_alteracao' => ''
+            'usuario_alteracao' => 'Sistema'
         ]);
 
     }

@@ -25,7 +25,7 @@ class UsuarioPerfilFormRequest extends FormRequest
     {
         return  [
             'usuario_id'=>  'required|max:100',
-            'perfil_id' =>  'required|max:30'    
+            'perfil_id' =>  'required|max:50'    
         ];
     }
 

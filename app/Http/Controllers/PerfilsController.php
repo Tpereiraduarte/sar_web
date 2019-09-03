@@ -42,9 +42,9 @@ class PerfilsController extends Controller
         $validacao = $request->all();
         $dados = new Perfil();
         $dados->nome = $request->nome;
-        $dados->usuario_alteracao = "";
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->save();
-        return redirect()->action('PerfilsController@index')->with('messages', 'Perfil criado com Sucesso!');
+        return redirect()->action('PerfilsController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
     /**
@@ -82,9 +82,9 @@ class PerfilsController extends Controller
         $validacao = $request->all();
         $dados = Perfil::find($id_perfil);
         $dados->nome = $request->nome;
-        $dados->usuario_alteracao = "";
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->update();
-        return redirect()->action('PerfilsController@index')->with('message', 'Alterado com Sucesso!');
+        return redirect()->action('PerfilsController@index')->with('success', 'Alterado com Sucesso!');
     }
 
     /**
@@ -97,6 +97,6 @@ class PerfilsController extends Controller
     {
         $dados = Perfil::find($id_perfil);
         $dados->delete();
-        return redirect()->action('PerfilsController@index')->with('message', 'Alterado com Sucesso!');
+        return redirect()->action('PerfilsController@index')->with('success', 'Excluído com Sucesso!');
     }
 }

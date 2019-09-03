@@ -25,9 +25,11 @@
                 <div class="form-group">
                   <label for="Numero da Norma">Número da Norma</label>
                   <select class="form-control" id="numero_norma" name="norma_id" aria-required="true">
-                    <option selected disabled value="">Escolha o norma desejada</option>
+                    <option value="{{$dados->normas->id_norma}}"selected>{{$dados->normas->numero_norma}}</option>
                     @foreach($dadosNorma as $value)
-                      <option value="{{$value->id_norma}}">{{$value->numero_norma}}</option>
+                      @if($dados->norma_id != $value->id_norma)
+                        <option value="{{$value->id_norma}}">{{$value->numero_norma}}</option>
+                      @endif
                     @endforeach
                   </select>
                 </div>

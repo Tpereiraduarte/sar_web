@@ -43,9 +43,9 @@ class NormasController extends Controller
         $dados = new Norma();
         $dados->numero_norma = $request->numero_norma;
         $dados->descricao =$request->descricao;
-        $dados->usuario_alteracao = "";
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->save();
-        return redirect()->action('NormasController@index')->with('messages', 'Norma cadastrada com Sucesso!');
+        return redirect()->action('NormasController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
     /**
@@ -85,9 +85,9 @@ class NormasController extends Controller
         $dados = Norma::find($id_norma);
         $dados->numero_norma = $request->numero_norma;
         $dados->descricao =$request->descricao;
-        $dados->usuario_alteracao = "";
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->update();
-        return redirect()->action('NormasController@index')->with('messages', 'Norma cadastrada com Sucesso!');
+        return redirect()->action('NormasController@index')->with('success', 'Alterado com Sucesso!');
     }
 
     /**
@@ -100,6 +100,6 @@ class NormasController extends Controller
     {
         $dados = Norma::find($id_norma);
         $dados->delete();
-        return redirect()->action('NormasController@index')->with('message', 'Norma excluida com Sucesso!');
+        return redirect()->action('NormasController@index')->with('success', 'Excluído com Sucesso!');
     }
 }

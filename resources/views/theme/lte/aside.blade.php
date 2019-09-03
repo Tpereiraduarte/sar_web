@@ -9,7 +9,7 @@
         </div>
         <div class="pull-left info">
           <p>
-            nome
+          {{Auth::user()->nome}}
           </p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -59,8 +59,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-angle-right"></i> Novo Checklist</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Editar Checklist</a></li>
+            <li><a href="{{ url('/formulario/')}}"><i class="fa fa-angle-right"></i> Novo Checklist</a></li>
           </ul>
         </li>
 

@@ -29,7 +29,7 @@
               </div>
               <div class="box-footer">
                 <a href="{{URL::route('perfil.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-primary">Atualizar</button>
               </div>
             </form>
           </div>

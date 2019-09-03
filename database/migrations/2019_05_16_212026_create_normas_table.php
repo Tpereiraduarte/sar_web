@@ -14,7 +14,8 @@ class CreateNormasTable extends Migration
     public function up()
     {
         Schema::create('normas', function (Blueprint $table) {
-            $table->increments('id_norma');
+            $table->uuid('id_norma');
+            $table->primary('id_norma');
             $table->string('numero_norma',2)->unique();
             $table->string('descricao',200);
             $table->string('usuario_alteracao');

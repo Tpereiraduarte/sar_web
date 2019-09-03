@@ -14,7 +14,7 @@
         <h3 class="box-title">Perfis</h3>
     </div>
     <div class="box-body">
-        <table id="example2" class="table table-bordered table-hover">
+        <table id="table" class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Ordem</th>
@@ -22,8 +22,8 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-        @foreach($dados as $key => $valor)
             <tbody>
+        @foreach($dados as $key => $valor)
                 <tr>
                     <td>{{$key + 1}}</td>
                     <td>{{$valor->nome}}</td>
@@ -45,4 +45,7 @@
         <span class="sem-dados">Não há perfis Cadastrados</span>
     </div>    
 @endif
+@push('scripts')
+    <script src="{{ url('js/toast.js') }}"></script>
+@endpush
 @endsection

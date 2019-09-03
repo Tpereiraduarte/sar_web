@@ -26,7 +26,7 @@ class PerguntasFormRequest extends FormRequest
         return  [
             'pergunta' => 'required|max:200',
             'norma' => 'required',
-            'paragrafo' => 'required|max:15',
+            'paragrafo' => 'required|max:50',
         ];
 
     }
@@ -38,7 +38,7 @@ class PerguntasFormRequest extends FormRequest
             'pergunta.max' => 'A pergunta tem que ter menos que 200 caracteres',
             'norma.required' => 'O preenchimento da norma é obrigatório',
             'paragrafo.required' => 'O preenchimento do campo Parágrafo é obrigatório',
-            'paragrafo.max' => 'O campo Parágrafo tem que ter menos que 15 caracteres'
+            'paragrafo.max' => 'O campo Parágrafo tem que ter menos que 50 caracteres'
         ];
     }
 }

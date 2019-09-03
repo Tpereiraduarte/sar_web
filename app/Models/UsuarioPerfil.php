@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Uuids;
 
 class UsuarioPerfil extends Model
 {
-	protected $primaryKey = 'id_usuarioperfil';
+    use Uuids;
+    public $incrementing = false;
+
+    protected $primaryKey = 'id_usuarioperfil';
     protected $fillable = ['usuario_id','perfil_id','usuario_alteracao'];
     protected $table = 'usuarioperfils';
     protected $with = ['perfil','usuario'];

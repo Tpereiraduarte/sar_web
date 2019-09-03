@@ -7,7 +7,6 @@ use App\Http\Requests\UserFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -46,9 +45,9 @@ class UsersController extends Controller
         $dados->nome = $request->nome;
         $dados->password = bcrypt($request['password']);
         $dados->email = $request->email;
-        $dados->usuario_alteracao = "";             
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->save();
-        return redirect()->action('UsersController@index')->with('messages', 'Usuário criado com Sucesso!');
+        return redirect()->action('UsersController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
     /**
@@ -86,11 +85,9 @@ class UsersController extends Controller
         $dados = User::find($id_usuario);
         $dados->matricula = $request->matricula;
         $dados->nome = $request->nome;
-        $dados->password = $request->password;
-        $dados->email = $request->email;
-        $dados->usuario_alteracao = "";
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->update();
-        return redirect()->action('UsersController@index')->with('message', 'Alterado com Sucesso!');
+        return redirect()->action('UsersController@index')->with('success', 'Alterado com Sucesso!');
     }
 
     /**
@@ -103,7 +100,7 @@ class UsersController extends Controller
     {
         $dados = User::find($id_usuario);
         $dados->delete();
-        return redirect()->action('UsersController@index')->with('message', 'Excluido com Sucesso!');
+        return redirect()->action('UsersController@index')->with('success', 'Excluído com Sucesso!');
     }
 
 }

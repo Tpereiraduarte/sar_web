@@ -40,7 +40,7 @@
                 </div>
               </div>
               <div class="box-footer">
-                <a href="{{URL::route('norma.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
+                <a href="{{URL::route('paragrafo.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
               </div>
             </form>

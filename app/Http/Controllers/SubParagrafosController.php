@@ -46,9 +46,9 @@ class SubParagrafosController extends Controller
         $dados->paragrafo_id = $request->paragrafo_id;
         $dados->numero_paragrafo = $request->numero_paragrafo;
         $dados->descricao = $request->descricao;
-        $dados->usuario_alteracao = "";
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->save();
-        return redirect()->action('SubParagrafosController@index')->with('messages', 'Norma cadastrada com Sucesso!');
+        return redirect()->action('SubParagrafosController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
     /**
@@ -90,9 +90,9 @@ class SubParagrafosController extends Controller
         $dados->paragrafo_id = $request->paragrafo_id;
         $dados->numero_paragrafo = $request->numero_paragrafo;
         $dados->descricao = $request->descricao;
-        $dados->usuario_alteracao = "";
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->update();
-        return redirect()->action('SubParagrafosController@index')->with('messages', 'SubParagrafo cadastrado com Sucesso!');
+        return redirect()->action('SubParagrafosController@index')->with('success', 'Alterado com Sucesso!');
     }
 
     /**
@@ -105,6 +105,6 @@ class SubParagrafosController extends Controller
     {
         $dados = SubParagrafo::find($id_subparagrafo);
         $dados->delete();
-        return redirect()->action('SubParagrafosController@index')->with('message', 'SubParagrafo excluido com Sucesso!');
+        return redirect()->action('SubParagrafosController@index')->with('success', 'Excluído com Sucesso!');
     }
 }

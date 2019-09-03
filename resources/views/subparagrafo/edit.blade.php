@@ -25,9 +25,11 @@
                 <div class="form-group">
                 <label for="Numero do Paragrafo">Número do Parágrafo</label>
                     <select class="form-control" id="numero_paragrafo" name="paragrafo_id" aria-required="true">
-                      <option selected disabled value="">Escolha o paragrafo desejado</option>
+                      <option value="{{$dados->paragrafos->id_paragrafo}}" selected>{{$dados->paragrafos->descricao}}</option>
                       @foreach($dadosParagrafo as $value)
-                        <option value="{{$value->id_paragrafo}}">{{$value->descricao}}</option>
+                        @if($dados->paragrafo_id != $value->id_paragrafo)
+                          <option value="{{$value->id_paragrafo}}">{{$value->descricao}}</option>
+                        @endif
                       @endforeach
                     </select>
                 </div>
