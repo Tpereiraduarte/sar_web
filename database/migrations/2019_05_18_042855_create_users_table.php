@@ -20,8 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('nome',100);
             $table->string('password',80);
             $table->string('email',50)->unique();
+            $table->string('imagem')->default('padrao.jpg');
             $table->string('usuario_alteracao',50);
             $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

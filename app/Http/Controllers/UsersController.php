@@ -45,6 +45,15 @@ class UsersController extends Controller
         $dados->nome = $request->nome;
         $dados->password = bcrypt($request['password']);
         $dados->email = $request->email;
+        if($request->foto != null){
+            if($request->hasFile('foto')){
+                $dados->imagem = $request->foto;
+                $extensao = $dados->imagem->getMimeType();
+                $nome = time(). '.' .$dados->imagem->getClientOriginalName();
+                $upload = $dados->imagem->storeAs('fotos_usuarios',$nome);
+            }    
+        }
+        $dados->remember_token = bcrypt($request['password']);  
         $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->save();
         return redirect()->action('UsersController@index')->with('success', 'Cadastrado com Sucesso!');
@@ -86,6 +95,19 @@ class UsersController extends Controller
         $dados->matricula = $request->matricula;
         $dados->nome = $request->nome;
         $dados->usuario_alteracao = Auth()->user()->nome;
+        if ($request->password != ''){
+            $dados->password = bcrypt($request['password']);
+        }
+        
+        if($request->foto != null){
+            if($request->hasFile('foto')){
+                $dados->imagem = $request->foto;
+                $extensao = $dados->imagem->getMimeType();
+                $nome = time(). '.' .$dados->imagem->getClientOriginalName();
+                $upload = $dados->imagem->storeAs('fotos_usuarios',$nome);
+                $dados->imagem = $nome;
+            }
+        }
         $dados->update();
         return redirect()->action('UsersController@index')->with('success', 'Alterado com Sucesso!');
     }

@@ -14,7 +14,7 @@ class User extends Authenticatable
     public $incrementing = false;
 
 	protected $primaryKey = 'id_usuario';
-    protected $fillable = ['matricula','nome','password','email','usuario_alteracao','email_verified_at'];
+    protected $fillable = ['matricula','nome','password','email','imagem','remember_token','usuario_alteracao','email_verified_at'];
     protected $table = 'users';
 
     public function usuarioperfil(){

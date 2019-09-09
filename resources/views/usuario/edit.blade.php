@@ -18,7 +18,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Editar</h3>
             </div>
-            <form role="form" action="{{ action('UsersController@update', $dados->id_usuario) }}" method="POST">
+            <form role="form" action="{{ action('UsersController@update', $dados->id_usuario) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="box-body">
@@ -28,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email">e-mail:</label>
-                        <input id="email" class="form-control" name="email" type="text" placeholder="Insira o e-mail" value="{{$dados->email}}" maxlength="200"  required />
+                        <input id="email" class="form-control" name="email" type="text" placeholder="Insira o e-mail" value="{{$dados->email}}" maxlength="200"  required readonly/>
                     </div>
                     <div class="form-group">    
                         <label  for="matricula">Matricula:</label>
@@ -36,7 +36,11 @@
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha:</label>
-                        <input id="password" class="form-control" name="password" type="password" value="{{$dados->password}}"size="10"/>
+                        <input id="password" class="form-control" name="password" type="password" value=""/>
+                    </div>
+                    <div class="form-group">
+                        <label for="imagem">Imagem:</label><br />
+                        <input type="file" name="foto" id="camera" value="{{$dados->imagem}}">
                     </div> 
                     <div class="form-group">
                         <div class="box-footer">
