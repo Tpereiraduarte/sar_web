@@ -13,7 +13,7 @@
     </div>
 @endif
 <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-6">
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Cadastro de SubParágrafos</h3>
@@ -24,7 +24,7 @@
                 <div class="form-group">
                 <label for="Numero do Paragrafo">Número do Parágrafo</label>
                     <select class="form-control" id="numero_paragrafo" name="paragrafo_id" aria-required="true">
-                      <option selected disabled value="">Escolha o paragrafo desejado</option>
+                      <option selected disabled value="">Escolha um paragrafo</option>
                       @foreach($dados as $value)
                         <option value="{{$value->id_paragrafo}}">{{$value->descricao}}</option>
                       @endforeach
@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group">
                   <label for="SubParagrafo">SubParágrafo</label>
-                  <input type="text" class="form-control" id="paragrafo" placeholder="Numero do subparagrafo" maxlength="15" name="numero_paragrafo" size="50" required>
+                  <input type="text" class="form-control" id="paragrafo" placeholder="Numero do subparágrafo" maxlength="15" name="numero_paragrafo" size="50" required>
                 </div>
 
                  <div class="form-group">

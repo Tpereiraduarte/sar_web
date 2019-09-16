@@ -378,7 +378,5 @@
     barChart.Bar(barChartData, barChartOptions)
   })
 </script>
-
-
 @endsection
 

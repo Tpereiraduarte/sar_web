@@ -16,7 +16,7 @@
     <div class="col-md-6">
         <div class="box box-primary">
             <div class="box-header with-border">
-               <h3 class="box-title">Cadastre o usuário</h3>
+               <h3 class="box-title">Cadastro de usuários</h3>
             </div>
             <form role="form" action="{{action('UsersController@store') }}" method="POST">
                   @csrf
@@ -46,6 +46,6 @@
             </form>
         </div>
     </div>
-    
+
 </div>
 @endsection

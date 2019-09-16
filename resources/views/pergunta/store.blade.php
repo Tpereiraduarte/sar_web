@@ -16,7 +16,7 @@
   <div class="col-md-6">
     <div class="box box-primary">
       <div class="box-header with-border">
-        <h3 class="box-title">Cadastre as perguntas do checklist</h3>
+        <h3 class="box-title">Cadastro de Perguntas do Checklist</h3>
       </div>
       <form role="form" action="{{ action('PerguntasController@store') }}" method="POST">
         @csrf
@@ -28,7 +28,7 @@
           <div class="form-group">
             <label for="Norma">NR</label>
             <select class="form-control dinamic" data-dependent="norma" id="norma_id" name="norma" aria-required="true">
-              <option selected disabled value="">Escolha o norma desejada</option>
+              <option selected disabled value="">Escolha a norma desejada</option>
               @foreach($dados as $value)
                 <option value="{{$value->id_norma}}">{{$value->numero_norma}}</option>
               @endforeach

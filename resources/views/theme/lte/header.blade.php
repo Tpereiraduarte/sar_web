@@ -1,10 +1,11 @@
 <header class="main-header">
     <!-- Logo -->
     <a href="{{ url('inicio')}}" class="logo">
+    <img src="{{asset("assets/$theme/dist/img/logo-sarweb.png")}}" width= "40" height="30" />
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>S</b>AR</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>SAR</b> Mobile</span>
+      <span class="logo-lg"><b>SAR</b> WEB</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

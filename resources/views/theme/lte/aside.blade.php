@@ -29,7 +29,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
          <li class="treeview active">
-          <a href="#"><i class="fa fa-home"></i> <span>Home</span></a>
+          <a href="{{ url('inicio')}}"><i class="fa fa-home"></i> <span>Home</span></a>
         </li>
 
         <li class="treeview">
@@ -43,7 +43,7 @@
             <li><a href="{{ url('/usuario/')}}"><i class="fa fa-angle-right"></i> Usuários</a></li>
             <li><a href="{{ url('/perfil/')}}"><i class="fa fa-angle-right"></i> Perfil</a></li>
             <li><a href="{{ url('/usuarioperfil/')}}"><i class="fa fa-angle-right"></i> Perfil de Usuários</a></li>
-            <li><a href="{{ url('/pergunta/')}}"><i class="fa fa-angle-right"></i> Perguntas</a></li>
+            <li><a href="{{ url('/pergunta/')}}"><i class="fa fa-angle-right"></i> FAQ</a></li>
             <li><a href="{{ url('/norma/')}}"><i class="fa fa-angle-right"></i> Normas</a></li>
             <li><a href="{{ url('/paragrafo/')}}"><i class="fa fa-angle-right"></i> Paragrafos</a></li>
             <li><a href="{{ url('/subparagrafo/')}}"><i class="fa fa-angle-right"></i> Sub-Paragrafos</a></li>
