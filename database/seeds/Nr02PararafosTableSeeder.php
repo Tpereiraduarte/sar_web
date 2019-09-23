@@ -3,7 +3,7 @@
 use App\Models\Paragrafo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-class Nr10ParagrafosTableSeeder extends Seeder
+class Nr02ParagrafosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

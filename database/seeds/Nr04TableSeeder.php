@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\SubParagrafo;
 
-class Nr10TableSeeder extends Seeder
+class Nr04TableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

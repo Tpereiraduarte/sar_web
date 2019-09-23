@@ -4,7 +4,7 @@ use App\Models\Paragrafo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class Nr01ParagrafosTableSeeder extends Seeder{
+class Nr03ParagrafosTableSeeder extends Seeder{
 
     /**
      * Run the database seeds.
