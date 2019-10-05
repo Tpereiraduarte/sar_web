@@ -31,6 +31,8 @@ Route::group(['middleware'=>['auth']],function(){
     Route::resource('subparagrafo', 'SubParagrafosController');    
     Route::resource('usuarioperfil', 'UsuarioPerfilController');
     Route::resource('formulario', 'FormulariosController');
+    Route::resource('permissao', 'PermissaoController');
+    Route::resource('perfilpermissao', 'PerfilPermissaoController');
     Route::post('resposta/servico', 'RespostaFormulariosController@servico')->name('servico');
     Route::get('resposta/tiposervico', 'RespostaFormulariosController@tiposervico')->name('resposta.tiposervico');
     Route::resource('resposta', 'RespostaFormulariosController');

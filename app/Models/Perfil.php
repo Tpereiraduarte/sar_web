@@ -17,4 +17,8 @@ class Perfil extends Model
     public function usuarioperfil(){
     	return $this->belongsTo(User::class,'id_perfil','id_perfil');
     }
+    
+     public function perfilpermissao(){
+        return $this->belongsTo(Permissao::class,'id_perfil','id_perfil');
+    }
 }
