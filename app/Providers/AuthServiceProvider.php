@@ -1,9 +1,14 @@
 <?php
-
 namespace App\Providers;
-
+use App\Models\Perfilpermissao;
+use App\Models\User;
+use App\Models\Permissao;
+use App\Models\UsuarioPerfil;
+use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\DB;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,18 +18,15 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        \App\Models\Perfilpermissao::class => \App\Policies\PermissaoPolicy::class
     ];
-
     /**
      * Register any authentication / authorization services.
      *
      * @return void
      */
-    public function boot()
+    public function boot(GateContract $gate)
     {
-        $this->registerPolicies();
-
-        //
-    }
+       
+ }
 }

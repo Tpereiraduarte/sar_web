@@ -16,13 +16,15 @@ class DatabaseSeeder extends Seeder
         DB::table('normas')->delete();
         DB::table('paragrafos')->delete();
         DB::table('subparagrafos')->delete();
+        DB::table('permissoes')->delete();
         $this->call([
             UsersTableSeeder::class,
             PerfilsTableSeeder::class,
             //UsuarioPerfilsTableSeeder::class,
             NormasTableSeeder::class,
             Nr10ParagrafosTableSeeder::class,
-            Nr10TableSeeder::class
+            Nr10TableSeeder::class,
+            PermissaoTableSeeder::class
         ]);
     }
 }
