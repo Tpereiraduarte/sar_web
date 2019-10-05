@@ -115,4 +115,4 @@
             </ul>
         </div>
     </nav>
-</header><?php /**PATH /opt/lampp/htdocs/sar_web/resources/views/theme/lte/header.blade.php ENDPATH**/ ?>
+</header><?php /**PATH /var/www/html/sar_web/resources/views/theme/lte/header.blade.php ENDPATH**/ ?>

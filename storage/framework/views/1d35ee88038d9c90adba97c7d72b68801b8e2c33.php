@@ -60,4 +60,4 @@
       </ul>
     </section>
   </aside>
-<?php /**PATH /opt/lampp/htdocs/sar_web/resources/views/theme/lte/aside.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/html/sar_web/resources/views/theme/lte/aside.blade.php ENDPATH**/ ?>
