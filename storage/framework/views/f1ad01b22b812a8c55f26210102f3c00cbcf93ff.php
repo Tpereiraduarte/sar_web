@@ -21,7 +21,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="storage/fotos_usuarios/<?php echo e(Auth::user()->imagem); ?>"
+                                            <img src="<?php echo e(Storage::url('/fotos_usuarios/'.Auth::user()->imagem)); ?>"
                                                 class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
@@ -88,12 +88,12 @@
                 </li>
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="storage/fotos_usuarios/<?php echo e(Auth::user()->imagem); ?>" class="user-image" alt="User Image">
+                        <img src="<?php echo e(Storage::url('/fotos_usuarios/'.Auth::user()->imagem)); ?>" class="user-image" alt="User Image">
                         <span class="hidden-xs"><?php echo e(Auth::user()->nome); ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <img src="storage/fotos_usuarios/<?php echo e(Auth::user()->imagem); ?>" class="img-circle"
+                            <img src="<?php echo e(Storage::url('/fotos_usuarios/'.Auth::user()->imagem)); ?>" class="img-circle"
                                 alt="User Image">
                             <p>
                                 <?php echo e(Auth::user()->nome); ?>

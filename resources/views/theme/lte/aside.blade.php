@@ -2,7 +2,7 @@
     <section class="sidebar">
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="storage/fotos_usuarios/{{Auth::user()->imagem}}" class="img-circle" alt="User Image">
+          <img src="{{Storage::url('/fotos_usuarios/'.Auth::user()->imagem)}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>
