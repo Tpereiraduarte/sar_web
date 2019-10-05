@@ -22,4 +22,42 @@ class UsuarioPerfil extends Model
      public function usuario(){
     	return $this->belongsTo(User::class,'usuario_id','id_usuario');
     }
+
+    // public function existePerfil($perfil)
+    // {
+    //     if (is_string($perfil)) {
+    //         $perfil = Perfil::where('nome','=',$perfil)->firstOrFail();
+    //     }
+    //     return (boolean) $this->perfil()->find($perfil->id);
+    // }
+
+
+    // public function eAdmin()
+    // {
+    //   //return $this->id == 1;
+    //   return $this->existePerfil('Administrador');
+    // }
+
+
+    //  public function temUmPerfilDestes($perfil)
+    // {
+    //   $userPerfil = $this->perfil;
+    //   return $perfil->intersect($userPerfil)->count();
+    // }
+
+
+  public function temUmPerfil($perfil){
+
+    if(is_array($perfil) || is_object($roles)){
+        return !! $perfil->intersect($this->perfil)->count();
+    }
+
+    return $this->perfil->contains('nome', $perfil);
+    
+    }
+
+    
+     public function temUmPerfilDestes(Perfilpermissao $permissao){
+        return  $this->temUmPerfil($permissao->perfil);
+    }
 }
