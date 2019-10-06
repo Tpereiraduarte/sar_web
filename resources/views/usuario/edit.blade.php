@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha:</label>
-                        <input id="password" class="form-control" name="password" type="password" value=""/>
+                        <input id="password" class="form-control" name="password" type="password" value="{{$dados->password}}"size="10"/>
                     </div>
                     <div class="form-group">
                         <label for="imagem">Imagem:</label><br />
@@ -44,7 +44,8 @@
                     </div> 
                     <div class="form-group">
                         <div class="box-footer">
-                            <a href="{{URL::route('usuario.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>                    <input type="submit" class="btn btn-primary" value="Editar" />
+                            <a href="{{URL::route('usuario.index')}}" title="Voltar" class="btn btn-primary custom">Voltar</a>                    
+                            <input type="submit" class="btn btn-primary custom" value="Editar" />
                         </div>
                     </div>
             </form>

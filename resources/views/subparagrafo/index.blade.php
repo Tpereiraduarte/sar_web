@@ -5,7 +5,7 @@
 @section('conteudo')
 <div class="row">
     <div class="col-xs-2">
-        <a id="list" href="{{URL::route('subparagrafo.create')}}" title="Cadastrar" class="btn btn-primary">Cadastrar</a>
+        <a id="list" href="{{URL::route('subparagrafo.create')}}" title="Cadastrar" class="btn btn-primary custom"> Sub Parágrafo</a>
     </div>
 </div>
 @if(!empty($dados) && count($dados) > 0)

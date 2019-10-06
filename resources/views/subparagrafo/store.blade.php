@@ -13,7 +13,7 @@
     </div>
 @endif
 <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-6">
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Cadastro de SubParágrafos</h3>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group">
                   <label for="SubParagrafo">SubParágrafo</label>
-                  <input type="text" class="form-control" id="paragrafo" placeholder="Numero do subparagrafo" maxlength="15" name="numero_paragrafo" size="50" required>
+                  <input type="text" class="form-control" id="paragrafo" placeholder="Numero do subparágrafo" maxlength="15" name="numero_paragrafo" size="50" required>
                 </div>
 
                  <div class="form-group">
@@ -41,12 +41,22 @@
                 </div>
               </div>
               <div class="box-footer">
-                <a href="{{URL::route('subparagrafo.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <a href="{{URL::route('subparagrafo.index')}}" title="Voltar" class="btn btn-primary custom">Voltar</a>
+                <button type="submit" class="btn btn-primary custom">Cadastrar</button>
               </div>
             </form>
           </div>
         </div>
     </div>
+    <style>
+        .custom {
+            font-size: 14px !important;
+            
+            border:none !important;
+            width: 100px !important; 
+            height: 35px !important;
+            border-radius: 3px !important;
+    }
+    </style>
 </div>
 @endsection

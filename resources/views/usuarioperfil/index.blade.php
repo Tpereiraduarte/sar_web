@@ -3,11 +3,6 @@
     Perfil de Usuários
 @endsection
 @section('conteudo')
-<div class="row">
-    <div class="col-xs-2">
-        <a id="list" href="{{URL::route('usuarioperfil.create')}}" title="Cadastrar" class="btn btn-primary">Cadastro de Perfil de usuários</a>
-    </div>
-</div>
 @if(!empty($dados) && count($dados) > 0)
 <div class="box">
     <div class="box-header">
@@ -43,6 +38,11 @@
         @endforeach
             </tbody>
         </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-2">
+        <a id="list" href="{{URL::route('usuarioperfil.create')}}" title="Cadastrar" class="btn btn-primary custom">+ Perfil User</a>
     </div>
 </div>     
 @else

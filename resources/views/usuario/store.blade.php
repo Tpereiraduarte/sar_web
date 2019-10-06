@@ -1,6 +1,6 @@
 @extends("theme.$theme.layout")
 @section('titulo')
-Cadastro de Usuáios
+Cadastro de Usuários
 @endsection
 @section('conteudo')
 @if ($errors->any())
@@ -43,8 +43,8 @@ Cadastro de Usuáios
                     </div>
                     <div class="form-group">
                         <div class="box-footer">
-                            <a href="{{URL::route('usuario.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
-                            <input type="submit" class="btn btn-primary" value="Cadastrar" />
+                            <a href="{{URL::route('usuario.index')}}" title="Voltar" class="btn btn-primary custom">Voltar</a>
+                            <input type="submit" class="btn btn-primary custom" title="Cadastrar" value="Cadastrar" />
                         </div>
                     </div>
             </form>

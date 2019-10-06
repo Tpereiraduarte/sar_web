@@ -16,7 +16,7 @@
   <div class="col-md-6">
     <div class="box box-primary">
       <div class="box-header with-border">
-        <h3 class="box-title">Cadastre as perguntas do checklist</h3>
+        <h3 class="box-title">Cadastro de Perguntas do Checklist</h3>
       </div>
       <form role="form" action="{{ action('PerguntasController@store') }}" method="POST">
         @csrf
@@ -42,8 +42,8 @@
           </div>
         </div>
         <div class="box-footer">
-          <a href="{{URL::route('pergunta.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
-          <button type="submit" class="btn btn-primary">Cadastrar</button>
+          <a href="{{URL::route('pergunta.index')}}" title="Voltar" class="btn btn-primary custom">Voltar</a>
+          <button type="submit" class="btn btn-primary custom">Cadastrar</button>
         </div>
       </form>
     </div>

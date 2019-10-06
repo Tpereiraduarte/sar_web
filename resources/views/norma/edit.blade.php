@@ -13,7 +13,7 @@
     </div>
 @endif
 <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-6">
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Editar</h3>
@@ -32,8 +32,8 @@
                 </div>
               </div>
               <div class="box-footer">
-                <a href="{{URL::route('norma.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
-                <button type="submit" class="btn btn-primary">Atualizar</button>
+                <a href="{{URL::route('norma.index')}}" title="Voltar" class="btn btn-primary custom">Voltar</a>
+                <button type="submit" class="btn btn-primary custom">Atualizar</button>
               </div>
             </form>
           </div>
