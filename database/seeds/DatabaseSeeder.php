@@ -21,10 +21,23 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             PerfilsTableSeeder::class,
             //UsuarioPerfilsTableSeeder::class,
-            NormasTableSeeder::class,
+            NormasTableSeeder::class,            
+            Nr01ParagrafosTableSeeder::class,
+            Nr01TableSeeder::class,
+            Nr02ParagrafosTableSeeder::class,
+            Nr02TableSeeder::class,
+            Nr03ParagrafosTableSeeder::class,
+            Nr03TableSeeder::class,
+            Nr04ParagrafosTableSeeder::class,
+            Nr04TableSeeder::class,
+            Nr06ParagrafosTableSeeder::class,
+            // Nr06TableSeeder::class,
             Nr10ParagrafosTableSeeder::class,
             Nr10TableSeeder::class,
             PermissaoTableSeeder::class
+            // NR12ParagrafosTableSeeder::class,
+            // Nr12TableSeeder::class
         ]);
     }
 }
+
