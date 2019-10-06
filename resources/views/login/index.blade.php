@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" href="{{asset("assets/$theme/dist/img/logo.jpg")}}">
   <title>Sistema de Análise de Riscos| Index</title>
+  <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/bootstrap/dist/css/bootstrap.min.css")}}">
   <!-- Font Awesome -->
@@ -14,63 +16,90 @@
   <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/Ionicons/css/ionicons.min.css")}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset("assets/$theme/dist/css/AdminLTE.min.css")}}">
-  <!-- iCheck -->
+   <!-- iCheck -->
   <link rel="stylesheet" href="{{asset("assets/$theme/plugins/iCheck/square/blue.css")}}">
+
   <!-- Google Font -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-
 <body class="hold-transition login-page">
-  <div class="login-box">
-    <div class="login-logo">
-      Sistema de Análise de Riscos - logo
-    </div>
-    <div class="login-box-body">
-      <p class="login-box-msg">Entre para iniciar sua sessão</p>
-      @if ($errors->any())
-      <div class="alert alert-danger">
-        <ul>
-          @foreach ($errors->all() as $error)
-          <li>{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
-      @endif
-      @if(session('msg'))
-      <div class="alert alert-danger">{{session('msg')}}</div>
-      @endif
-      <form action="{{ action('LoginController@login') }}" method="post">
-        {{ csrf_field() }}
-        <div class="form-group has-feedback">
-          <input type="text" name="matricula" class="form-control" placeholder="Matrícula">
-          <span class="glyphicon glyphicon-user form-control-feedback"></span>
-        </div>
-        <div class="form-group has-feedback">
-          <input type="password" name="password" class="form-control" placeholder="Senha">
-          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-        </div>
-        <div class="row">
-          <div class="col-xs-4">
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
-          </div>
-        </div>
-      </form>
-      <a class="nav-link" href="{{ route('password.request') }}">Esqueci Minha Senha</a>
-    </div>
+<div class="login-box">
+  <div class="login-logo">
+  <img src="{{asset("assets/$theme/dist/img/logo-sarweb.png")}}" width= "320" height="205%" />
   </div>
-  <script src="{{asset("assets/$theme/bower_components/jquery/dist/jquery.min.js")}}"></script>
-  <script src=".{{asset("assets/$theme/bower_components/bootstrap/dist/js/bootstrap.min.js")}}"></script>
-  <script src="{{asset("assets/$theme/plugins/iCheck/icheck.min.js")}}"></script>
-  <script>
-    $(function () {
-      $('input').iCheck({
-        checkboxClass: 'icheckbox_square-blue',
-        radioClass: 'iradio_square-blue',
-        increaseArea: '20%'
-      });
-    });
-  </script>
-</body>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Entre para iniciar sua sessão</p>
 
+     <!-- EXIBINDO ERROS De VALIDAÇÃO DE DADOS -->
+      @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+       @endif
+
+    <!-- EXIBINDO AVISO DE CREDENCIAL INVÁLIDA -->
+        @if(session('msg'))
+            <div class="alert alert-danger">{{session('msg')}}</div>
+        @endif
+
+    <form action="{{ action('LoginController@login') }}" 
+          method="post">
+      {{ csrf_field() }}
+      <div class="form-group has-feedback">
+        <input type="text" name="matricula" class="form-control" placeholder="Matrícula">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" name="password" class="form-control" placeholder="Senha">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat custom">Login</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+    <br>
+    <a href="#">Esqueci minha senha</a><br>
+    <a href="register.html" class="text-center">Cadastre-se</a>
+
+    <style>
+        .custom {
+            font-size: 14px !important;
+            background-color: #003334 !important;
+            border:none !important;
+            width: 100px !important; 
+            height: 35px !important;
+            border-radius: 3px !important;
+    }
+    </style>
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery 3 -->
+<script src="{{asset("assets/$theme/bower_components/jquery/dist/jquery.min.js")}}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src=".{{asset("assets/$theme/bower_components/bootstrap/dist/js/bootstrap.min.js")}}"></script>
+<!-- iCheck -->
+<script src="{{asset("assets/$theme/plugins/iCheck/icheck.min.js")}}"></script>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' /* optional */
+    });
+  });
+</script>
+</body>
 </html>

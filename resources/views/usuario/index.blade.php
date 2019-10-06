@@ -3,11 +3,6 @@
     Usuários
 @endsection
 @section('conteudo')
-<div class="row">
-    <div class="col-xs-2">
-        <a id="list" href="{{URL::route('usuario.create')}}" title="Cadastrar" class="btn btn-primary">Cadastro de usuários</a>
-    </div>
-</div>
 
 @if(!empty($dados) && count($dados) > 0)
 <div class="box">
@@ -47,6 +42,11 @@
             </tbody>
         </table>
     </div>
+</div>
+<div class="row">
+    <div class="col-xs-2">
+        <a id="list" href="{{URL::route('usuario.create')}}" title="Cadastrar" class="btn btn-primary custom">Novo Usuário</a>
+    </div>    
 </div>     
 @else
     <div class="sem-dados">

@@ -20,10 +20,12 @@
               </span>
         </div>
       </form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU</li>
          <li class="treeview active">
-          <a href="#"><i class="fa fa-home"></i> <span>Home</span></a>
+          <a href="{{ url('inicio')}}"><i class="fa fa-home"></i> <span>Home</span></a>
         </li>
 
         <li class="treeview">

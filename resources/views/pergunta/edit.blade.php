@@ -45,8 +45,8 @@
           </div>
         </div>
         <div class="box-footer">
-          <a href="{{URL::route('pergunta.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
-          <button type="submit" class="btn btn-primary">Atualizar</button>
+          <a href="{{URL::route('pergunta.index')}}" title="Voltar" class="btn btn-primary custom">Voltar</a>
+          <button type="submit" class="btn btn-primary custom">Atualizar</button>
         </div>
       </form>
     </div>

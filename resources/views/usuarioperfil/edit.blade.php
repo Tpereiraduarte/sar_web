@@ -45,8 +45,8 @@
                         </select>   
                     </div>
                     <div class="box-footer">
-                        <a href="{{URL::route('usuarioperfil.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
-                        <input type="submit" class="btn btn-primary" value="Editar" />
+                        <a href="{{URL::route('usuarioperfil.index')}}" title="Voltar" class="btn btn-primary custom">Voltar</a>
+                        <input type="submit" class="btn btn-primary custom" value="Editar" />
                     </div>                    
                 </div>
             </form>
