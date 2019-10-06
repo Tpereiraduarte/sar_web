@@ -19,7 +19,7 @@ class Nr02TableSeeder extends Seeder
 
         $paragrafo1 = DB::table('paragrafos')->where('numero_paragrafo','2.1')->first();
         $sub1 = $paragrafo1->id_paragrafo;
-        $paragrafo1 = DB::table('paragrafos')->where('numero_paragrafo','2.2')->first();
+        $paragrafo2 = DB::table('paragrafos')->where('numero_paragrafo','2.2')->first();
         $sub2 = $paragrafo2->id_paragrafo;
         $paragrafo3 = DB::table('paragrafos')->where('numero_paragrafo','2.3')->first();
         $sub3 = $paragrafo3->id_paragrafo;

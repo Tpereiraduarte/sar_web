@@ -18,7 +18,7 @@ class CreateParagrafosTable extends Migration
             $table->primary('id_paragrafo');
             $table->uuid('norma_id');
             $table->string('numero_paragrafo',10);
-            $table->string('descricao',300);
+            $table->string('descricao',6000);
             $table->string('usuario_alteracao');
             $table->timestamps();
             $table->foreign('norma_id')

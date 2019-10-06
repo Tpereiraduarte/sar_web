@@ -238,31 +238,32 @@ class Nr04TableSeeder extends Seeder
             'paragrafo_id'      => $sub11,
             'numero_paragrafo'  =>'4.11',
             'descricao'         =>'Ficará por conta exclusiva do empregador todo o ônus decorrente da instalação e manutenção dos Serviços Especializados em Engenharia de Segurança e em Medicina do Trabalho. (104.022-7 / I2).','usuario_alteracao' =>'Sistema']);
-        SubParagrafo::create([
-            'paragrafo_id'      => $sub12,
-            'numero_paragrafo'  =>'4.12',
-            'descricao'         =>'Compete aos profissionais integrantes dos Serviços Especializados em Engenharia de Segurança e em Medicina do Trabalho:
+        // SubParagrafo::create([
+        //     'paragrafo_id'      => $sub12,
+        //     'numero_paragrafo'  =>'4.12',
+        //     'descricao'         =>'Compete aos profissionais integrantes dos Serviços Especializados em Engenharia de Segurança e em Medicina do Trabalho:
 
-            a) aplicar os conhecimentos de engenharia de segurança e de medicina do trabalho ao ambiente de trabalho e a todos os seus componentes, inclusive máquinas e equipamentos, de modo a reduzir até eliminar os riscos ali existentes à saúde do trabalhador;
+        //     a) aplicar os conhecimentos de engenharia de segurança e de medicina do trabalho ao ambiente de trabalho e a todos os seus componentes, inclusive máquinas e equipamentos, de modo a reduzir até eliminar os riscos ali existentes à saúde do trabalhador;
             
-            b) determinar, quando esgotados todos os meios conhecidos para a eliminação do risco e este persistir, mesmo reduzido, a utilização, pelo trabalhador, de Equipamentos de Proteção Individual-EPI, de acordo com o que determina a NR 6, desde que a concentração, a intensidade ou característica do agente assim o exija;
+        //     b) determinar, quando esgotados todos os meios conhecidos para a eliminação do risco e este persistir, mesmo reduzido, a utilização, pelo trabalhador, de Equipamentos de Proteção Individual-EPI, de acordo com o que determina a NR 6, desde que a concentração, a intensidade ou característica do agente assim o exija;
             
-            c) colaborar, quando solicitado, nos projetos e na implantação de novas instalações físicas e tecnológicas da empresa, exercendo a competência disposta na alínea "a";
+        //     c) colaborar, quando solicitado, nos projetos e na implantação de novas instalações físicas e tecnológicas da empresa, exercendo a competência disposta na alínea "a";
             
-            d) responsabilizar-se tecnicamente, pela orientação quanto ao cumprimento do disposto nas NR aplicáveis às atividades executadas pela empresa e/ou seus estabelecimentos;
-            e) manter permanente relacionamento com a CIPA, valendo-se ao máximo de suas observações, além de apoiá-la, treiná-la e atendê-la, conforme dispõe a NR 5;
+        //     d) responsabilizar-se tecnicamente, pela orientação quanto ao cumprimento do disposto nas NR aplicáveis às atividades executadas pela empresa e/ou seus estabelecimentos;
+        //     e) manter permanente relacionamento com a CIPA, valendo-se ao máximo de suas observações, além de apoiá-la, treiná-la e atendê-la, conforme dispõe a NR 5;
 
-            f) promover a realização de atividades de conscientização, educação e orientação dos trabalhadores para a prevenção de acidentes do trabalho e doenças ocupacionais, tanto através de campanhas quanto de programas de duração permanente;
+        //     f) promover a realização de atividades de conscientização, educação e orientação dos trabalhadores para a prevenção de acidentes do trabalho e doenças ocupacionais, tanto através de campanhas quanto de programas de duração permanente;
 
-            g) esclarecer e conscientizar os empregadores sobre acidentes do trabalho e doenças ocupacionais, estimulando-os em favor da prevenção;
+        //     g) esclarecer e conscientizar os empregadores sobre acidentes do trabalho e doenças ocupacionais, estimulando-os em favor da prevenção;
 
-            h) analisar e registrar em documento(s) específico(s) todos os acidentes ocorridos na empresa ou estabelecimento, com ou sem vítima, e todos os casos de doença ocupacional, descrevendo a história e as características do acidente e/ou da doença ocupacional, os fatores ambientais, as características do agente e as condições do(s) indivíduo(s) portador(es) de doença ocupacional ou acidentado(s);
+        //     h) analisar e registrar em documento(s) específico(s) todos os acidentes ocorridos na empresa ou estabelecimento, com ou sem vítima, e todos os casos de doença ocupacional, descrevendo a história e as características do acidente e/ou da doença ocupacional, os fatores ambientais, as características do agente e as condições do(s) indivíduo(s) portador(es) de doença ocupacional ou acidentado(s);
 
-            i) registrar mensalmente os dados atualizados de acidentes do trabalho, doenças ocupacionais e agentes de insalubridade, preenchendo, no mínimo, os quesitos descritos nos modelos de mapas constantes nos Quadros III, IV, V e VI, devendo a empresa encaminhar um mapa contendo avaliação anual dos mesmos dados à Secretaria de Segurança e Medicina do Trabalho até o dia 31 de janeiro, através do órgão regional do MTb;
+        //     i) registrar mensalmente os dados atualizados de acidentes do trabalho, doenças ocupacionais e agentes de insalubridade, preenchendo, no mínimo, os quesitos descritos nos modelos de mapas constantes nos Quadros III, IV, V e VI, devendo a empresa encaminhar um mapa contendo avaliação anual dos mesmos dados à Secretaria de Segurança e Medicina do Trabalho até o dia 31 de janeiro, através do órgão regional do MTb;
 
-            j) manter os registros de que tratam as alíneas "h" e "i" na sede dos Serviços Especializados em Engenharia de Segurança e em Medicina do Trabalho ou facilmente alcançáveis a partir da mesma, sendo de livre escolha da empresa o método de arquivamento e recuperação, desde que sejam asseguradas condições de acesso aos registros e entendimento de seu conteúdo, devendo ser guardados somente os mapas anuais dos dados correspondentes às alíneas "h" e "i" por um período não- inferior a 5 (cinco) anos;
+        //     j) manter os registros de que tratam as alíneas "h" e "i" na sede dos Serviços Especializados em Engenharia de Segurança e em Medicina do Trabalho ou facilmente alcançáveis a partir da mesma, sendo de livre escolha da empresa o método de arquivamento e recuperação, desde que sejam asseguradas condições de acesso aos registros e entendimento de seu conteúdo, devendo ser guardados somente os mapas anuais dos dados correspondentes às alíneas "h" e "i" por um período não- inferior a 5 (cinco) anos;
 
-            l) as atividades dos profissionais integrantes dos Serviços Especializados em Engenharia de Segurança e em Medicina do Trabalho são essencialmente prevencionistas, embora não seja vedado o atendimento de emergência, quando se tornar necessário. Entretanto, a elaboração de planos de controle de efeitos de catástrofes, de disponibilidade de meios que visem ao combate a incêndios e ao salvamento e de imediata atenção à vítima deste ou de qualquer outro tipo de acidente estão incluídos em suas atividades.','usuario_alteracao' =>'Sistema']);
+        //     l) as atividades dos profissionais integrantes dos Serviços Especializados em Engenharia de Segurança e em Medicina do Trabalho são essencialmente prevencionistas, embora não seja vedado o atendimento de emergência, quando se tornar necessário. Entretanto, a elaboração de planos de controle de efeitos de catástrofes, de disponibilidade de meios que visem ao combate a incêndios e ao salvamento e de imediata atenção à vítima deste ou de qualquer outro tipo de acidente estão incluídos em suas atividades.',
+        //     'usuario_alteracao' =>'Sistema']);
         SubParagrafo::create([
             'paragrafo_id'      => $sub13,
             'numero_paragrafo'  =>'4.13',
