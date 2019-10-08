@@ -18,79 +18,63 @@
   <link rel="stylesheet" href="{{asset("assets/$theme/dist/css/AdminLTE.min.css")}}">
    <!-- iCheck -->
   <link rel="stylesheet" href="{{asset("assets/$theme/plugins/iCheck/square/blue.css")}}">
-
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-  <img src="{{asset("assets/$theme/dist/img/logo-sarweb.png")}}" width= "320" height="205%" />
-  </div>
-  <!-- /.login-logo -->
-  <div class="login-box-body">
-    <p class="login-box-msg">Entre para iniciar sua sessão</p>
+    <div class="login-box">
+        <div class="login-logo">
+            <img src="{{asset("assets/$theme/dist/img/logo-sarweb.png")}}" width="320" height="205%" />
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Entre para iniciar sua sessão</p>
 
-     <!-- EXIBINDO ERROS De VALIDAÇÃO DE DADOS -->
-      @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
+            <!-- EXIBINDO ERROS De VALIDAÇÃO DE DADOS -->
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-       @endif
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
-    <!-- EXIBINDO AVISO DE CREDENCIAL INVÁLIDA -->
-        @if(session('msg'))
+            <!-- EXIBINDO AVISO DE CREDENCIAL INVÁLIDA -->
+            @if(session('msg'))
             <div class="alert alert-danger">{{session('msg')}}</div>
-        @endif
+            @endif
 
-    <form action="{{ action('LoginController@login') }}" 
-          method="post">
-      {{ csrf_field() }}
-      <div class="form-group has-feedback">
-        <input type="text" name="matricula" class="form-control" placeholder="Matrícula">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" name="password" class="form-control" placeholder="Senha">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-        
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat custom">Login</button>
+            <form action="{{ action('LoginController@login') }}" method="post">
+                {{ csrf_field() }}
+                <div class="form-group has-feedback">
+                    <input type="text" name="matricula" class="form-control" placeholder="Matrícula">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" name="password" class="form-control" placeholder="Senha">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat custom">Login</button>
+                    </div>
+                </div>
+            </form>
+            <a class="nav-link" href="{{ route('password.request') }}">Esqueci Minha Senha</a>
+            <style>
+                .custom {
+                    font-size: 14px !important;
+                    background-color: #003334 !important;
+                    border: none !important;
+                    width: 100px !important;
+                    height: 35px !important;
+                    border-radius: 3px !important;
+                }
+            </style>
         </div>
-        <!-- /.col -->
-      </div>
-    </form>
-    <br>
-    <a href="#">Esqueci minha senha</a><br>
-    <a href="register.html" class="text-center">Cadastre-se</a>
-
-    <style>
-        .custom {
-            font-size: 14px !important;
-            background-color: #003334 !important;
-            border:none !important;
-            width: 100px !important; 
-            height: 35px !important;
-            border-radius: 3px !important;
-    }
-    </style>
-  </div>
-  <!-- /.login-box-body -->
-</div>
-<!-- /.login-box -->
-
-<!-- jQuery 3 -->
+    </div>
 <script src="{{asset("assets/$theme/bower_components/jquery/dist/jquery.min.js")}}"></script>
-<!-- Bootstrap 3.3.7 -->
 <script src=".{{asset("assets/$theme/bower_components/bootstrap/dist/js/bootstrap.min.js")}}"></script>
-<!-- iCheck -->
 <script src="{{asset("assets/$theme/plugins/iCheck/icheck.min.js")}}"></script>
 <script>
   $(function () {
