@@ -34,13 +34,7 @@
   <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/bootstrap-daterangepicker/daterangepicker.css")}}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset("assets/$theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")}}">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-   <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css">
    @yield("style")
-
-   <!-- Google Font
-   <link rel="stylesheet" href="https://fonts.googleapis.com/   css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">-->
   </head>
    
   <body class="hold-transition skin-blue fixed sidebar-mini">
@@ -73,13 +67,6 @@
       <!-- DataTable -->
       <script src="{{asset("assets/$theme/bower_components/datatables.net/js/jquery.dataTables.js")}}"></script> 
       <script src="{{asset("assets/$theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js")}}"></script>
-
-
-    <!-- jQuery 3 -->
-      <script src="{{asset("assets/$theme/bower_components/jquery-knob/dist/jquery.knob.min.js")}}"></script>
-      <script src="{{asset("assets/$theme/bower_components/jquery/dist/jquery.min.js")}}"></script>
-      <!-- jQuery UI 1.11.4 -->
-      <script src="{{asset("assets/$theme/bower_components/jquery-knob/dist/jquery.knob.min.js")}}"></script>
       <script src="{{asset("assets/$theme/bower_components/jquery-ui/jquery-ui.min.js")}}"></script>
       <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
       <script>
@@ -87,21 +74,14 @@
       </script>
       <!-- Bootstrap 3.3.7 -->
       <script src="{{asset("assets/$theme/bower_components/jquery-knob/dist/jquery.knob.min.js")}}"></script>
-      <script src="{{asset("assets/$theme/bower_components/bootstrap/dist/js/bootstrap.min.js")}}"></script>
       <!-- ChartJS -->
       <script src="{{asset("assets/$theme/bower_components/chart.js/Chart.js")}}"></script>
-      <!-- DataTable -->
-      <script src="{{asset("assets/$theme/bower_components/datatables.net/js/jquery.dataTables.js")}}"></script> 
-      <script src="{{asset("assets/$theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js")}}"></script>
        <!-- Bootstrap WYSIHTML5 -->
        <script src="{{asset("assets/$theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")}}"></script>
       <!-- Morris.js charts -->
-      <script src="{{asset("assets/$theme/bower_components/jquery-knob/dist/jquery.knob.min.js")}}"></script>
       <script src="{{asset("assets/$theme/bower_components/raphael/raphael.min.js")}}"></script>
-      <script src="{{asset("assets/$theme/bower_components/jquery-knob/dist/jquery.knob.min.js")}}"></script>
       <script src="{{asset("assets/$theme/bower_components/morris.js/morris.min.js")}}"></script>
       <!-- jQuery Knob Chart -->
-      <script src="{{asset("assets/$theme/bower_components/jquery-knob/dist/jquery.knob.min.js")}}"></script>
       <!-- daterangepicker -->
       <script src="{{asset("assets/$theme/bower_components/moment/min/moment.min.js")}}"></script>
       <script src="{{asset("assets/$theme/bower_components/bootstrap-daterangepicker/daterangepicker.js")}}"></script>
@@ -115,26 +95,14 @@
       <script src="{{asset("assets/$theme/dist/js/adminlte.min.js")}}"></script>
       <script src="{{asset("assets/$theme/bower_components/datatables.net/js/table.js")}}"></script>
       <script src="{{asset("assets/$theme/plugins/iCheck/icheck.min.js")}}"></script>
-
       @yield("scripts")
       @stack('scripts')
       <!-- Sparkline -->
-      <script src="{{asset("assets/$theme/bower_components/jquery-knob/dist/jquery.knob.min.js")}}"></script>
       <script src="{{asset("assets/$theme/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js")}}"></script>
       <!-- jvectormap -->
-      <script src="{{asset("assets/$theme/bower_components/jquery-knob/dist/jquery.knob.min.js")}}"></script>
       <script src="{{asset("assets/$theme/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js")}}"></script>
-      <script src="{{asset("assets/$theme/bower_components/jquery-knob/dist/jquery.knob.min.js")}}"></script>
       <script src="{{asset("assets/$theme/plugins/jvectormap/jquery-jvectormap-world-mill-en.js")}}"></script>
       <!-- jQuery Knob Chart -->
-      <script src="{{asset("assets/$theme/bower_components/jquery-knob/dist/jquery.knob.min.js")}}"></script>
-      <!-- AdminLTE App -->
-      <script src="{{asset("assets/$theme/dist/js/adminlte.min.js")}}"></script>
-      <script src="{{asset("assets/$theme/bower_components/datatables.net/js/table.js")}}"></script>
-      <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
       <script src="{{asset("assets/$theme/dist/js/pages/dashboard.js")}}"></script>
-      
-
-    @yield("scripts")
   </body>
 </html>

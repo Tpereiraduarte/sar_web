@@ -32,11 +32,11 @@
                     </div>
                     <div class="form-group">    
                         <label  for="matricula">Matricula:</label>
-                        <input id="matricula" class="form-control" name="matricula" type="text" value="{{$dados->matricula}}" size="20"/>
+                        <input id="matricula" class="form-control" name="matricula" type="text" value="{{$dados->matricula}}" size="20" required readonly/>
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha:</label>
-                        <input id="password" class="form-control" name="password" type="password" value="{{$dados->password}}"size="10"/>
+                        <input id="password" class="form-control" name="password" type="password" value=""size="10"/>
                     </div>
                     <div class="form-group">
                         <label for="imagem">Imagem:</label><br />
