@@ -105,3 +105,12 @@
     height: 35px !important;
     border-radius: 3px !important;
 }
+.titulo-sistema {
+    color: #fff;
+    font-size: 1.8em;
+    font-weight: bold;
+    font-style: italic;
+    padding: 6px;
+    position: absolute;
+
+}
