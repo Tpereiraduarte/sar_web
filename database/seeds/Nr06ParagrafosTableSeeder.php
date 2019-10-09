@@ -75,6 +75,12 @@ class Nr06ParagrafosTableSeeder extends Seeder{
         ]);
         Paragrafo::create([
             'norma_id'          => $norma, 
+            'numero_paragrafo'  => '6.10',
+            'descricao'         => 'falta paragrafo 6.10',
+            'usuario_alteracao' => 'Sistema'
+        ]);
+        Paragrafo::create([
+            'norma_id'          => $norma, 
             'numero_paragrafo'  => '6.11',
             'descricao'         => 'DA COMPETÊNCIA DO MINISTÉRIO DO TRABALHO E EMPREGO / MTE',
             'usuario_alteracao' => 'Sistema'
