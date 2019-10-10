@@ -55,4 +55,45 @@ class FormularioTest extends TestCase
             'usuario_alteracao' => 'Sistema'
         ]);
     }
+
+    public function test_delete_formulario()
+    {
+        $checklist = Checklist::create([
+            'titulo'         => 'Serviço de Redes',
+            'usuario_alteracao' => 'Sistema'
+        ]);    
+
+        $norma = Norma::create([
+            'numero_norma'    =>  '55',
+            'descricao' =>  'Nova Norma',
+            'usuario_alteracao' => 'Sistema'
+        ]);  
+
+        $paragrafo = Paragrafo::create([
+            'norma_id'  =>  $norma->id_norma,
+            'numero_paragrafo'    =>  '55.1',
+            'descricao' =>  'Novo Paragrafo',
+            'usuario_alteracao' => 'Sistema'
+        ]); 
+        
+        $pergunta = Pergunta::create([
+            'norma_id'  =>  $norma->id_norma,
+            'paragrafo_id'  =>  $paragrafo->id_paragrafo,
+            'pergunta' =>  'Existe fios desencapados?',
+            'usuario_alteracao' => 'Sistema'
+        ]);
+
+        $formulario = Formulario::create([
+            'pergunta_id'  =>  $pergunta->id_pergunta,
+            'checklist_id'  =>  $checklist->id_checklist,
+            'usuario_alteracao' => 'Sistema'
+        ]);
+
+        $formulario->delete();
+        $this->assertDatabaseMissing('formularios',[
+            'pergunta_id'  =>  $pergunta->id_pergunta,
+            'checklist_id'  =>  $checklist->id_checklist,
+            'usuario_alteracao' => 'Sistema'
+        ]);
+    }
 }

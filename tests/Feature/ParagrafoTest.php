@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\Models\Norma;
 use App\Models\Paragrafo;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,20 +14,39 @@ class ParagrafoTest extends TestCase
 
     public function test_cria_paragrafo()
     {
-        $norma = Norma::create([
-            'numero_norma'    =>  '55',
-            'descricao' =>  'Nova Norma',
-            'usuario_alteracao' => 'Sistema'
-        ]); 
+        $paragrafo = factory(Paragrafo::class)->create();
 
-        Paragrafo::create([
-            'norma_id'  =>  $norma->id_norma,
+        $this->assertDatabaseHas('paragrafos',[
+            'norma_id'  =>  $paragrafo->norma_id,
             'numero_paragrafo'    =>  '55.1',
             'descricao' =>  'Novo Paragrafo',
             'usuario_alteracao' => 'Sistema'
-        ]); 
+        ]);
+    }
+
+    public function test_update_paragrafo()
+    {
+        $paragrafo = factory(Paragrafo::class)->create();
+        $paragrafo->numero_paragrafo = '55.2';
+        $paragrafo->descricao = 'Novo Paragrafo';
+        $paragrafo->usuario_alteracao = 'Sistema modificado';
+        $paragrafo->update();
+        
         $this->assertDatabaseHas('paragrafos',[
-            'norma_id'  =>  $norma->id_norma,
+            'norma_id'  =>  $paragrafo->norma_id,
+            'numero_paragrafo'    =>  '55.2',
+            'descricao' =>  'Novo Paragrafo',
+            'usuario_alteracao' => 'Sistema modificado'
+        ]);
+    }
+
+    public function test_delete_paragrafo()
+    {
+        $paragrafo = factory(Paragrafo::class)->create();
+        $paragrafo->delete();
+        
+        $this->assertDatabaseMissing('paragrafos',[
+            'norma_id'  =>  $paragrafo->norma_id,
             'numero_paragrafo'    =>  '55.1',
             'descricao' =>  'Novo Paragrafo',
             'usuario_alteracao' => 'Sistema'

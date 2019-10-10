@@ -14,12 +14,8 @@ class NormaTest extends TestCase
 
     public function test_cria_norma()
     {
-        Norma::create([
-            'numero_norma'    =>  '55',
-            'descricao' =>  'Nova Norma',
-            'usuario_alteracao' => 'Sistema'
-        ]); 
-               
+        $norma = factory(Norma::class)->create();
+
         $this->assertDatabaseHas('normas',[
             'numero_norma'=>'55',
             'descricao' =>  'Nova Norma',
@@ -29,19 +25,12 @@ class NormaTest extends TestCase
 
     public function test_update_norma()
     {
-        $norma = Norma::create([
-            'numero_norma'    =>  '55',
-            'descricao' =>  'Nova Norma',
-            'usuario_alteracao' => 'Sistema'
-        ]); 
+        $norma = factory(Norma::class)->create();
+        $norma->numero_norma = '52';
+        $norma->descricao = 'Nova Update';
+        $norma->usuario_alteracao = 'Sistema modificado';
+        $norma->update();
         
-        $update = [
-            'numero_norma'    =>  '52',
-            'descricao' =>  'Nova Update',
-            'usuario_alteracao' => 'Sistema modificado'
-        ]; 
-
-        $norma = Norma::find($update);
         $this->assertDatabaseHas('normas',[
             'numero_norma'    =>  '52',
             'descricao' =>  'Nova Update',
@@ -49,11 +38,15 @@ class NormaTest extends TestCase
         ]);
     }
 
-    public function test_view_norma()
+    public function test_delete_norma()
     {
-        $response = $this->get(route(''));
-        $response->assertSuccessful(); 
-        $response->assertViewIs('norma.index'); 
-        $response->assertViewHas('norma');    
+        $norma = factory(Norma::class)->create();
+        $norma->delete();
+        
+        $this->assertDatabaseMissing('normas',[
+            'numero_norma'    =>  '55',
+            'descricao' =>  'Nova Norma',
+            'usuario_alteracao' => 'Sistema'
+        ]);
     }
 }

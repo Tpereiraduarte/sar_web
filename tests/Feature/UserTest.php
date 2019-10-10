@@ -14,21 +14,22 @@ class UserTest extends TestCase
 
     public function test_cria_usuario()
     {
-        // $usuario = User::create([
-        //     'matricula' => '1111',
-        //     'nome'  => 'Thiago',
-        //     'password'  => bcrypt('123'),
-        //     'email' => 'thiago@gmail.com',
-        //     'imagem' => 'padrao.png',
-        //     'usuario_alteracao' => 'Sistema'
-        // ]);
-        // $this->assertDatabaseHas('users',[
-        //     'matricula' => '1111',
-        //     'nome'  => 'Thiago',
-        //     'password'  => bcrypt('123'),
-        //     'email' => 'thiago@gmail.com',
-        //     'imagem' => 'padrao.png',
-        //     'usuario_alteracao' => 'Sistema'
-        // ]);
+        $usuario = User::create([
+            'matricula' => '1111',
+            'nome'  => 'Thiago',
+            'password'  => '$2y$10$BF8lVrw6R8RTNOev\/W\/WEOWvbMfy\/uGTVmpQNOxIVNBu7wZjklxrS',
+            'email' => 'thiago@gmail.com',
+            'imagem' => 'padrao.png',
+            'usuario_alteracao' => 'Sistema'
+        ]);
+
+        $this->assertDatabaseHas('users',[
+            'matricula' => '1111',
+            'nome'  => 'Thiago',
+            'password'  => '$2y$10$BF8lVrw6R8RTNOev\/W\/WEOWvbMfy\/uGTVmpQNOxIVNBu7wZjklxrS',
+            'email' => 'thiago@gmail.com',
+            'imagem' => 'padrao.png',
+            'usuario_alteracao' => 'Sistema'
+        ]);
     }
 }
