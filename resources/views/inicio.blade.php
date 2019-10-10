@@ -9,7 +9,7 @@
               <p>Novas Ordens de serviços</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-android-clipboard"></i>
             </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
               <p>Checklists Respondidos</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-android-checkbox-outline"></i>
             </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
               <p>Checklists Pendentes</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="ion ion-alert"></i>
             </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                   <!--  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
                 </div>
             </div>
             <div class="box-body">
@@ -75,7 +75,7 @@
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                 </div>
                 <div class="box-body">
                     <div class="table-responsive">
@@ -146,8 +146,7 @@
                     </div>
                     <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
-                    <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                    </button>
+                   <!--  <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button> -->
                 </div>
                 <!-- /. tools -->
             </div>
