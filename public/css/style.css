@@ -97,14 +97,31 @@
     font-size: 20px;
 }
 .custom {
-    background-color: #003334 !important;
+    background-color: #047d80 !important;
+    /* background-color: #3844d8 !important;  */
     font-size: 14px !important;
     position: relative;
     border:none !important;
-    width: 110px !important; 
-    height: 35px !important;
+    /* width: 110px !important; 
+    height: 35px !important; */
     border-radius: 3px !important;
+    padding: 15px;
 }
+.custom-pdf{
+    background-color: #f00 !important;
+    
+    font-size: 14px !important;
+    font-weight: bold;
+    position: relative;
+    border:none !important;
+    border-radius: 3px !important;
+    padding: 15px;
+}
+.fa-file-pdf-o{
+    font-weight: bold;
+    font-size: 19px !important;
+}
+
 .titulo-sistema {
     color: #fff;
     font-size: 1.8em;

@@ -1,6 +1,6 @@
 <header class="main-header">
     <a href="{{ url('inicio')}}" class="logo">
-    <img src="{{asset("assets/$theme/dist/img/logo-sarweb.png")}}" width= "100" height="45" />    </a>
+    <img src="{{asset("assets/$theme/dist/img/logo-branco.png")}}" width= "100" height="45" />    </a>
     <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">Toggle navigation</span>

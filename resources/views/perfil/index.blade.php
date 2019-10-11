@@ -5,8 +5,12 @@
 @section('conteudo')
 <div class="row">
     <div class="col-xs-2">
-        <a id="list" href="{{URL::route('perfil.create')}}" title="Cadastrar" class="btn btn-primary">Cadastrar</a>
+        <a id="list" href="{{URL::route('perfil.create')}}" title="Cadastrar" class="btn btn-primary"><i class="fa fa-briefcase"></i> Novo Perfil</a>
     </div>
+    <div class="col-xs-0">
+        <a id="list" href="#" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
+    </div> 
+    
 </div>
 @if(!empty($dados) && count($dados) > 0)
 <div class="box">
