@@ -14,6 +14,6 @@ $factory->define(UsuarioPerfil::class, function (Faker $faker) {
     return [
         'usuario_id'  =>  $usuario->id_usuario,
         'perfil_id'   =>  $perfil->id_perfil,
-        'usuario_alteracao' => 'Sistema'
+        'usuario_alteracao' => $faker->name
     ];
 });

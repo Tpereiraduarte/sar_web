@@ -24,7 +24,7 @@ class NormasFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'numero_norma' => 'required|unique:normas|max:2',
+            'numero_norma' => 'required|max:2',
             'descricao' => 'required|max:200'
         ];
     }
@@ -32,7 +32,7 @@ class NormasFormRequest extends FormRequest
     public function messages()
     {
         return  [
-            'numero_norma.unique' => 'Já existe esta norma é cadastrada',
+            //'numero_norma.unique' => 'Já existe esta norma é cadastrada',
             'numero_norma.required' => 'O preenchimento da norma é obrigatório',
             'numero_norma.max' => 'O campo numero da Norma contém apenas 2 dígitos',
             'descricao.required' => 'O preenchimento do campo Descrição é obrigatório',

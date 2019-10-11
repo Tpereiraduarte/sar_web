@@ -8,14 +8,14 @@ use Faker\Generator as Faker;
 
 $factory->define(Paragrafo::class, function (Faker $faker) {
     $norma = Norma::create([
-        'numero_norma'    =>  '55',
-        'descricao' =>  'Nova Norma',
-        'usuario_alteracao' => 'Sistema'
+        'numero_norma'    =>  $faker->numberBetween($min = 50, $max = 99),
+        'descricao' =>  $faker->name,
+        'usuario_alteracao' => $faker->name
     ]); 
     return [
         'norma_id'  =>  $norma->id_norma,
-        'numero_paragrafo'    =>  '55.1',
-        'descricao' =>  'Novo Paragrafo',
-        'usuario_alteracao' => 'Sistema'
+        'numero_paragrafo'    =>  $faker->numberBetween($min = 50, $max = 999),
+        'descricao' =>  $faker->name,
+        'usuario_alteracao' => $faker->name
     ];
 });

@@ -17,8 +17,8 @@ class ChecklistTest extends TestCase
         $checklist = factory(Checklist::class)->create();
 
         $this->assertDatabaseHas('checklists',[
-            'titulo'=>'Serviço de Redes',
-            'usuario_alteracao'=>'Sistema'
+            'titulo' => $checklist->titulo,
+            'usuario_alteracao' => $checklist->usuario_alteracao
         ]);
     }
 
@@ -40,8 +40,8 @@ class ChecklistTest extends TestCase
         $checklist = factory(Checklist::class)->create();
         $checklist->delete();    
         $this->assertDatabaseMissing('checklists',[
-            'titulo' => 'Serviço de Telefonia',     
-            'usuario_alteracao' => 'Sistema modificado'
+            'titulo' => $checklist->titulo,
+            'usuario_alteracao' => $checklist->usuario_alteracao
         ]);
     }
 

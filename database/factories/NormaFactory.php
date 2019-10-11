@@ -7,8 +7,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Norma::class, function (Faker $faker) {
     return [
-        'numero_norma'    =>  '55',
-        'descricao' =>  'Nova Norma',
-        'usuario_alteracao' => 'Sistema'
+        'numero_norma'    =>  $faker->numberBetween($min = 50, $max = 99),
+        'descricao' =>  $faker->name,
+        'usuario_alteracao' => $faker->name
     ];
 });

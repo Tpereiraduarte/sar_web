@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Checklist::class, function (Faker $faker) {
     return [
-        'titulo' => 'Serviço de Redes',
-        'usuario_alteracao' => 'Sistema'
+        'titulo' => $faker->name,
+        'usuario_alteracao' => $faker->name
     ];
 });
