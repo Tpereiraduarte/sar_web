@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'matricula' => $faker->numberBetween($min = 1, $max = 99999),
+        'matricula' => $faker->unique()->numberBetween($min = 1, $max = 99999),
         'nome'  => $faker->name,
         'password'  => bcrypt('123'),
         'email' => $faker->unique()->safeEmail,

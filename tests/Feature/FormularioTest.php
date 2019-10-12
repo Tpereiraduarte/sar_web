@@ -3,9 +3,8 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\Models\Norma;
+use App\Models\User;
 use App\Models\Pergunta;
-use App\Models\Paragrafo;
 use App\Models\Checklist;
 use App\Models\Formulario;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -18,82 +17,150 @@ class FormularioTest extends TestCase
 
     public function test_cria_formulario()
     {
-        $checklist = Checklist::create([
-            'titulo'         => 'Serviço de Redes',
-            'usuario_alteracao' => 'Sistema'
-        ]);    
-
-        $norma = Norma::create([
-            'numero_norma'    =>  '55',
-            'descricao' =>  'Nova Norma',
-            'usuario_alteracao' => 'Sistema'
-        ]);  
-
-        $paragrafo = Paragrafo::create([
-            'norma_id'  =>  $norma->id_norma,
-            'numero_paragrafo'    =>  '55.1',
-            'descricao' =>  'Novo Paragrafo',
-            'usuario_alteracao' => 'Sistema'
-        ]); 
-        
-        $pergunta = Pergunta::create([
-            'norma_id'  =>  $norma->id_norma,
-            'paragrafo_id'  =>  $paragrafo->id_paragrafo,
-            'pergunta' =>  'Existe fios desencapados?',
-            'usuario_alteracao' => 'Sistema'
-        ]);
-
-        Formulario::create([
-            'pergunta_id'  =>  $pergunta->id_pergunta,
-            'checklist_id'  =>  $checklist->id_checklist,
-            'usuario_alteracao' => 'Sistema'
-        ]);
-
+        $formulario = factory(Formulario::class)->create();
         $this->assertDatabaseHas('formularios',[
-            'pergunta_id'  =>  $pergunta->id_pergunta,
-            'checklist_id'  =>  $checklist->id_checklist,
-            'usuario_alteracao' => 'Sistema'
+            'pergunta_id'  =>  $formulario->pergunta_id,
+            'checklist_id'  =>  $formulario->checklist_id,
+            'usuario_alteracao' => $formulario->usuario_alteracao
+        ]);
+    }
+    public function test_update_formulario()
+    {
+        $formulario = factory(Formulario::class)->create();
+        $pergunta = factory(Pergunta::class)->create();
+        $checklist = factory(Checklist::class)->create();
+        $formulario->pergunta_id = $pergunta->id_pergunta;
+        $formulario->checklist_id = $checklist->id_checklist;
+        $formulario->usuario_alteracao = 'Sistema modificado';
+        $formulario->update();
+        
+        $this->assertDatabaseHas('formularios',[
+            'pergunta_id'  =>  $formulario->pergunta_id,
+            'checklist_id'  =>  $formulario->checklist_id,
+            'usuario_alteracao' => $formulario->usuario_alteracao
         ]);
     }
 
     public function test_delete_formulario()
     {
-        $checklist = Checklist::create([
-            'titulo'         => 'Serviço de Redes',
-            'usuario_alteracao' => 'Sistema'
-        ]);    
-
-        $norma = Norma::create([
-            'numero_norma'    =>  '55',
-            'descricao' =>  'Nova Norma',
-            'usuario_alteracao' => 'Sistema'
-        ]);  
-
-        $paragrafo = Paragrafo::create([
-            'norma_id'  =>  $norma->id_norma,
-            'numero_paragrafo'    =>  '55.1',
-            'descricao' =>  'Novo Paragrafo',
-            'usuario_alteracao' => 'Sistema'
-        ]); 
-        
-        $pergunta = Pergunta::create([
-            'norma_id'  =>  $norma->id_norma,
-            'paragrafo_id'  =>  $paragrafo->id_paragrafo,
-            'pergunta' =>  'Existe fios desencapados?',
-            'usuario_alteracao' => 'Sistema'
-        ]);
-
-        $formulario = Formulario::create([
-            'pergunta_id'  =>  $pergunta->id_pergunta,
-            'checklist_id'  =>  $checklist->id_checklist,
-            'usuario_alteracao' => 'Sistema'
-        ]);
-
+        $formulario = factory(Formulario::class)->create();
         $formulario->delete();
+        
         $this->assertDatabaseMissing('formularios',[
-            'pergunta_id'  =>  $pergunta->id_pergunta,
-            'checklist_id'  =>  $checklist->id_checklist,
-            'usuario_alteracao' => 'Sistema'
+            'pergunta_id'  =>  $formulario->pergunta_id,
+            'checklist_id'  =>  $formulario->checklist_id,
+            'usuario_alteracao' => $formulario->usuario_alteracao
         ]);
+    }
+
+    public function test_rota_formulario_index_sem_autenticacao()
+    {
+        $response = $this->get('formulario');
+        $response->assertRedirect('/');
+        $response->assertStatus(302);
+
+    }
+    
+    public function test_rota_formulario_index_com_autenticacao()
+    {
+        $usuario = factory(User::class)->create();
+        $response = $this->actingAs($usuario)
+        ->get('inicio');
+        $response->assertStatus(200);
+    }
+
+    public function test_rota_formulario_edit_sem_autenticacao()
+    {
+        $checklist = factory(Checklist::class)->create();
+        $response = $this->get('formulario/'.$checklist->id_checklist.'/edit');
+        $response->assertStatus(302);
+    }
+
+    public function test_rota_formulario_edit_com_autenticacao()
+    {
+        $usuario = factory(User::class)->create();
+        $checklist = factory(Checklist::class)->create();
+        $response = $this->actingAs($usuario)->get('formulario/'.$checklist->id_checklist.'/edit');
+        $response->assertStatus(200);
+    }
+
+    public function test_rota_formulario_create_sem_autenticacao()
+    {
+        $formulario = factory(Formulario::class)->create();
+        $response = $this->get('formulario/create');
+        $response->assertStatus(302);
+    }
+
+    public function test_rota_formulario_create_com_autenticacao()
+    {
+        $usuario = factory(User::class)->create();
+        $formulario = factory(Formulario::class)->create();
+        $response = $this->actingAs($usuario)->get('formulario/create');
+        $response->assertStatus(200);
+    }
+
+    // public function test_cadastrar_formulario_view()
+    // {
+    //     $usuario = factory(User::class)->create();
+    //     $response = $this->actingAs($usuario)->get('formulario/create');
+    //     $pergunta = factory(Pergunta::class)->create();
+    //     $checklist = factory(Checklist::class)->create();
+
+    //     $acao = $this->json('POST', '/formulario',[
+    //         'pergunta_id'  =>  $pergunta->pergunta_id,
+    //         'checklist_id'  =>  $checklist->checklist_id,
+    //         'usuario_alteracao' => $usuario->usuario_alteracao
+    //     ]);
+
+    //     $this->assertDatabaseMissing('formularios',[
+    //         'pergunta_id'  =>  $pergunta->pergunta_id,
+    //         'checklist_id'  =>  $checklist->checklist_id,
+    //         'usuario_alteracao' => $usuario->usuario_alteracao
+    //     ]);
+        
+    //     $acao->assertStatus(302);
+    // }
+
+    public function test_editar_formulario_view()
+    {
+        $usuario = factory(User::class)->create();
+        $formulario = factory(Formulario::class)->create();
+        $checklist = factory(Checklist::class)->create();
+        $pergunta = factory(Pergunta::class)->create();
+
+        $response = $this->actingAs($usuario)->get('formulario/'.$checklist->id_checklist.'/edit');
+
+        $acao = $this->json('GET', 'formulario/'.$checklist->id_checklist.'/edit',[
+            'pergunta_id'  =>  $pergunta->pergunta_id,
+            'checklist_id'  =>  $checklist->checklist_id,
+            'usuario_alteracao' => $usuario->usuario_alteracao
+        ]);
+        $this->assertDatabaseMissing('formularios',[
+            'pergunta_id'  =>  $pergunta->pergunta_id,
+            'checklist_id'  =>  $checklist->checklist_id,
+            'usuario_alteracao' => $usuario->usuario_alteracao
+        ]);
+        
+        $acao->assertStatus(200);
+    }
+
+    public function test_deletar_formulario_view()
+    {
+        $usuario = factory(User::class)->create();
+        $formulario = factory(Formulario::class)->create();
+        $checklist = factory(Checklist::class)->create();
+        
+        $response = $this->actingAs($usuario)->get('formulario');
+
+        $primeiropasso = $this->json('DELETE', 'formulario/'.$checklist->id_checklist);
+        $segundopasso = $this->json('DELETE', 'formulario/'.$formulario->checklist_id);
+        
+        $this->assertDatabaseMissing('formularios',[
+            'pergunta_id'  =>  $formulario->pergunta_id,
+            'checklist_id'  =>  $formulario->checklist_id,
+            'usuario_alteracao' => $formulario->usuario_alteracao
+        ]);
+
+        $segundopasso->assertStatus(302);
     }
 }
