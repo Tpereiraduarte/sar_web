@@ -51,5 +51,10 @@
             </form>
         </div>
     </div>
-</div>            
+</div>  
+<div class="row">  
+<div class="col-md-6">
+    <img src="{{Storage::url('/fotos_usuarios/'.Auth::user()->imagem)}}" class="img-circle" alt="User Image">
+    </div>   
+</div>     
 @endsection

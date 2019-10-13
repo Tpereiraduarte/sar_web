@@ -4,10 +4,8 @@
 @endsection
 @section('conteudo')
 <div class="row">
-    <div class="col-xs-2">
+    <div class="col">
         <a id="list" href="{{URL::route('usuario.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-user"></i> Novo Usuário</a>
-    </div>    
-    <div class="col-xs-0">
         <a id="list" href="#" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
     </div> 
 </div>  
