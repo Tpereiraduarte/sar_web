@@ -20,6 +20,11 @@ class User extends Authenticatable
     public function usuarioperfil(){
     	return $this->belongsTo(UsuarioPerfil::class,'id_usuario','usuario_id');
     }
+
+    public function ordemservico()
+    {
+        return $this->belongsTo(OrdemServico::class,'usuario_id','id_usuario');
+    }
 }
 
 

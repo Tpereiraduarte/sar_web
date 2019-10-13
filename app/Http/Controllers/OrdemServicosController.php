@@ -2,7 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Checklist;
+use App\Models\OrdemServico;
+use App\Models\RespostaFormulario;
+use App\Http\Requests\OrdemServicosFormRequest;
+use Illuminate\Database\Eloquent\CollectionCollection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+
 
 class OrdemServicosController extends Controller
 {
@@ -13,7 +21,8 @@ class OrdemServicosController extends Controller
      */
     public function index()
     {
-        //
+        $dados = OrdemServico::all();
+        return view('ordemservico.index')->with('dados',$dados);
     }
 
     /**
@@ -23,7 +32,9 @@ class OrdemServicosController extends Controller
      */
     public function create()
     {
-        //
+        $usuario = User::all();
+        $checklist  = Checklist::all();      
+        return view('ordemservico.store')->with('usuario',$usuario)->with('checklist',$checklist);
     }
 
     /**
@@ -32,9 +43,25 @@ class OrdemServicosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrdemServicosFormRequest $request)
     {
-        //
+        $validacao = $request->all();
+        $dados = new OrdemServico();
+        $dados->numero_ordem_servico = $request->numero_ordem_servico;
+        $dados->usuario_id = $request->usuario_id;
+        $dados->checklist_id = $request->checklist_id;
+        $dados->usuario_alteracao = Auth()->user()->nome;
+        $dados->save();
+        return redirect()->action('OrdemServicosController@index')->with('success', 'Cadastrado com Sucesso!');
+    }
+
+    public function verificaOrdemServico($id_ordemservico)
+    {
+        $dados = RespostaFormulario::where('ordemservico_id',$id_ordemservico)->first();
+        if($dados != null){
+            return false;
+        }    
+        return true;
     }
 
     /**
@@ -43,9 +70,9 @@ class OrdemServicosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_ordemservico)
     {
-        //
+        return view('ordemservico.edit');
     }
 
     /**
@@ -54,11 +81,14 @@ class OrdemServicosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_ordemservico)
     {
-        //
+        $dados = OrdemServico::find($id_ordemservico);
+        $usuario = User::all();
+        $checklist  = Checklist::all();      
+        return view('ordemservico.edit')->with('usuario',$usuario)->with('checklist',$checklist)->with('dados', $dados);
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -66,9 +96,21 @@ class OrdemServicosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_ordemservico)
     {
-        //
+        if($this->verificaOrdemServico($id_ordemservico)){
+            $dados = OrdemServico::find($id_ordemservico);
+            $dados->numero_ordem_servico = $request->numero_ordem_servico;
+            $dados->usuario_id = $request->usuario_id;
+            $dados->checklist_id = $request->checklist_id;
+            $dados->usuario_alteracao = Auth()->user()->nome;
+            $dados->update();
+            return redirect()->action('OrdemServicosController@index')->with('success', 'Alterado com Sucesso!');
+        }else{
+            return back()
+                ->withInput()
+                ->withErrors(["Essa ordem de serviço já foi realizada e não pode ser editada"]);
+        }
     }
 
     /**
@@ -77,8 +119,15 @@ class OrdemServicosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_ordemservico)
     {
-        //
-    }
+        if($this->verificaOrdemServico($id_ordemservico)){
+            $dados = OrdemServico::find($id_ordemservico);
+            $dados->delete();
+            return redirect()->action('OrdemServicosController@index')->with('success', 'Excluído com Sucesso!');
+        }else{
+            return back()
+            ->withInput()
+            ->withErrors(["Essa ordem de serviço já foi realizada e não pode ser deletada"]);
+    }    }
 }

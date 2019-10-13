@@ -23,10 +23,10 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="Servico">Tipo de Serviço</label>
-                        <select class="form-control" id="checklist_id" name="checklist_id" aria-required="true" required> 
-                            <option selected disabled value="">Escolha o tipo de seriço</option>
+                        <select class="form-control" id="ordemservico_id" name="ordemservico_id" aria-required="true" required> 
+                            <option selected disabled value="">Escolha a ordem de serviço</option>
                             @foreach($dados as $value)
-                              <option value="{{$value->id_checklist}}">{{$value->titulo}}</option>
+                              <option value="{{$value->id_ordemservico}}">OR{{$value->numero_ordem_servico}}</option>
                             @endforeach
                         </select>
                     </div>
