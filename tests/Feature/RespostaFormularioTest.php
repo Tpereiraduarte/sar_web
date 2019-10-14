@@ -14,25 +14,19 @@ class RespostaFormularioTest extends TestCase
 
     public function test_cria_resposta_formulario()
     {
-        RespostaFormulario::create([
-            'titulo_formulario'  => 'Serviço de Instalação de Redes',
-            'ordem_servico'  => '32',
-            'pergunta' => 'Existe fios desencapados no poste?',
-            'valor' =>  'S',
-            'localizacao'   =>  '123123123',
-            'imagem'    =>  'imagem.jpg',
-            'status'    =>  'indeferido',
-            'usuario_alteracao' => 'Sistema'
-        ]);        
+        $reposta = factory(RespostaFormulario::class)->create();
+        
         $this->assertDatabaseHas('resposta_formularios',[
-            'titulo_formulario'  => 'Serviço de Instalação de Redes',
-            'ordem_servico'  => '32',
-            'pergunta' => 'Existe fios desencapados no poste?',
-            'valor' =>  'S',
-            'localizacao'   =>  '123123123',
-            'imagem'    =>  'imagem.jpg',
-            'status'    =>  'indeferido',
-            'usuario_alteracao' => 'Sistema'
+            'titulo_formulario'  => $reposta->titulo_formulario,
+            'ordemservico_id'  => $reposta->ordemservico_id,
+            'pergunta' => $reposta->pergunta,
+            'valor' =>  $reposta->valor,
+            'localizacao'   =>  $reposta->localizacao,
+            'imagem'    =>  $reposta->imagem,
+            'status'    =>  $reposta->status,
+            'observacao'    =>  $reposta->observacao,
+            'conclusao_servico'    =>  $reposta->conclusao_servico,
+            'usuario_alteracao' => $reposta->usuario_alteracao
         ]);
     }
 }
