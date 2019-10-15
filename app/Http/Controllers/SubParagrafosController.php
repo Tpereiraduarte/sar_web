@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SubParagrafo;
+use App\Models\Norma;
 use App\Models\Paragrafo;
+use App\Models\SubParagrafo;
 use App\Http\Requests\SubParagrafosFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +30,7 @@ class SubParagrafosController extends Controller
      */
     public function create()
     {
-        $dados = Paragrafo::all();
+        $dados = Norma::all();
         return view('subparagrafo.store')->with('dados',$dados);
     }
 
@@ -70,9 +71,21 @@ class SubParagrafosController extends Controller
      */
     public function edit($id_subparagrafo)
     {
-        $dados = SubParagrafo::find($id_subparagrafo);
-        $dadosParagrafo = Paragrafo::all();
-        return view('subparagrafo.edit')->with('dados',$dados)->with('dadosParagrafo',$dadosParagrafo);
+        $dadosNorma = Norma::all()->sortBy("numero_norma");
+        $dados = DB::table('normas')
+        ->join('paragrafos','normas.id_norma','=','paragrafos.norma_id')
+        ->join('subparagrafos','paragrafos.id_paragrafo','=','subparagrafos.paragrafo_id')
+        ->select('normas.id_norma',
+                'paragrafos.id_paragrafo',
+                'subparagrafos.id_subparagrafo',
+                'normas.numero_norma',
+                'paragrafos.numero_paragrafo',
+                'subparagrafos.numero_paragrafo as numero_subparagrafo',
+                'paragrafos.descricao',
+                'subparagrafos.descricao')
+        ->where('subparagrafos.id_subparagrafo',$id_subparagrafo)
+        ->get();
+        return view('subparagrafo.edit')->with('dados',$dados)->with('dadosNorma',$dadosNorma);
     }
 
     /**
