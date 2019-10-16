@@ -21,6 +21,7 @@ Route::group(['middleware'=>['auth']],function(){
         return redirect()->action('LoginController@index');            
     });
     Route::get('inicio','InicioController@index')->name('inicio');
+    Route::get('iniciomobile','InicioController@index')->name('iniciomobile');
     Route::post('pergunta/dinamico', 'PerguntasController@dinamico')->name('dinamico');
     Route::post('pergunta/paragrafodinamico', 'PerguntasController@paragrafodinamico')->name('paragrafodinamico');
     Route::resource('pergunta','PerguntasController');
