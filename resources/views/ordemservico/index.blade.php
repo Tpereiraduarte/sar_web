@@ -30,6 +30,7 @@
                   <th class="col-xs-2">N° da Ordem de Serviço</th>
                   <th>Usuario</th>
                   <th>Checklist</th>
+                  <th>Status</th>
                   <th>Ações</th>
                 </tr>
             </thead>
@@ -44,6 +45,7 @@
                     @foreach($valor->checklist as $checklist)
                         <td>{{$checklist->titulo}}</td>
                     @endforeach
+                    <td>{{$valor->status}}</td>
                     <td class="acoes-lista">
                         <a id="edit" href="{{URL::route('ordemservico.edit',$valor->id_ordemservico)}}" title="Editar" class="fa fa-edit"></a>
                         <form action="{{ action('OrdemServicosController@destroy', $valor->id_ordemservico) }}" method="POST">

@@ -30,7 +30,7 @@ class SubParagrafosController extends Controller
      */
     public function create()
     {
-        $dados = Norma::all();
+        $dados = Norma::all()->sortBy("numero_norma");
         return view('subparagrafo.store')->with('dados',$dados);
     }
 
