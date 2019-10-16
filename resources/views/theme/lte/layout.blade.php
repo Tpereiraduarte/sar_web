@@ -78,9 +78,6 @@
       <script src="{{asset("assets/$theme/bower_components/chart.js/Chart.js")}}"></script>
        <!-- Bootstrap WYSIHTML5 -->
        <script src="{{asset("assets/$theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js")}}"></script>
-      <!-- Morris.js charts -->
-      <script src="{{asset("assets/$theme/bower_components/raphael/raphael.min.js")}}"></script>
-      <script src="{{asset("assets/$theme/bower_components/morris.js/morris.min.js")}}"></script>
       <!-- jQuery Knob Chart -->
       <!-- daterangepicker -->
       <script src="{{asset("assets/$theme/bower_components/moment/min/moment.min.js")}}"></script>
@@ -99,10 +96,6 @@
       @stack('scripts')
       <!-- Sparkline -->
       <script src="{{asset("assets/$theme/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js")}}"></script>
-      <!-- jvectormap -->
-      <script src="{{asset("assets/$theme/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js")}}"></script>
-      <script src="{{asset("assets/$theme/plugins/jvectormap/jquery-jvectormap-world-mill-en.js")}}"></script>
-      <!-- jQuery Knob Chart -->
       <script src="{{asset("assets/$theme/dist/js/pages/dashboard.js")}}"></script>
   </body>
 </html>
