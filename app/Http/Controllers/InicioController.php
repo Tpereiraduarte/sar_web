@@ -38,6 +38,20 @@ class InicioController extends Controller
     	//dd($permissao);
     	//return view('inicio')->with('Permissao',$permissoes);
 
-           return view('inicio',compact('permissoes'));
+        $ordemservico = $this->dadosordemservico();
+        return view('inicio')->with('ordemservico',$ordemservico);
+    }
+
+    public function dadosordemservico(){
+        $pendente = DB::table('ordem_servicos')
+        ->select(DB::raw('count(status) as pendente'))->where('status','P')->get();
+    
+        $finalizado = DB::table('ordem_servicos')
+        ->select(DB::raw('count(status) as finalizado'))->where('status','F')->get();
+    
+        $cancelado = DB::table('ordem_servicos')
+        ->select(DB::raw('count(status) as cancelado'))->where('status','C')->get();
+        
+        return [$pendente, $finalizado, $cancelado];
     }
  }

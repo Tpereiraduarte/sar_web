@@ -141,23 +141,23 @@
             </div>
         </div>
     </section>
-
     <script>
+        let dados = @json($ordemservico);
         var pieData = [{
-                value: 300,
-                color: "#F7464A",
-                highlight: "#FF5A5E",
-                label: "Não Concluído"
-            }, {
-                value: 50,
-                color: "#00a65a",
-                highlight: "#0dca73",
-                label: "Concluído"
-            }, {
-                value: 100,
+                value: dados[0][0].pendente,
                 color: "#f39c12",
                 highlight: "#FFC870",
                 label: "Pendente"
+            }, {
+                value: dados[1][0].finalizado,
+                color: "#00a65a",
+                highlight: "#0dca73",
+                label: "Finalizado"
+            }, {
+                value: dados[2][0].cancelado,
+                color: "#F7464A",
+                highlight: "#FF5A5E",
+                label: "Cancelado"
             }
         ];
 
