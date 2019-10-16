@@ -19,6 +19,7 @@ class CreateOrdemServicosTable extends Migration
             $table->string('numero_ordem_servico',30)->unique();
             $table->uuid('usuario_id');
             $table->uuid('checklist_id');
+            $table->char('status',1)->default('P');
             $table->string('usuario_alteracao');
             $table->timestamps();
         });

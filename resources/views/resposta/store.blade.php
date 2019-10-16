@@ -64,7 +64,7 @@
                         <label>Não <input class="" type="radio" name="conclusao_servico" value="N" required></label>
                     </div>
                 </div>
-                <td><input type="hidden" id="id_ordemservico" name="ordemservico_id" value="{{$id_ordemservico}}"></td>
+                <td><input type="hidden" id="id_ordemservico" name="id_ordemservico" value="{{$id_ordemservico}}"></td>
                 <td><input type="hidden" id="geocalizacao" name="geocalizacao" value=""></td>
                 <td><input type="hidden" class="form-control" id="titulo" name="titulo" value="{{$dados->titulo}}" required></td>
                 <div class="box-footer">

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Checklist;
 use App\Models\OrdemServico;
-use App\Models\RespostaFormulario;
 use App\Http\Requests\OrdemServicosFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
@@ -57,11 +56,12 @@ class OrdemServicosController extends Controller
 
     public function verificaOrdemServico($id_ordemservico)
     {
-        $dados = RespostaFormulario::where('ordemservico_id',$id_ordemservico)->first();
+        $dados = OrdemServico::where('id_ordemservico',$id_ordemservico)
+        ->where('status','P')->first();
         if($dados != null){
-            return false;
+            return true;
         }    
-        return true;
+        return false;
     }
 
     /**
@@ -129,5 +129,6 @@ class OrdemServicosController extends Controller
             return back()
             ->withInput()
             ->withErrors(["Essa ordem de serviço já foi realizada e não pode ser deletada"]);
-    }    }
+        }    
+    }
 }

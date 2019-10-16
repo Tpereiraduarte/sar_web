@@ -11,7 +11,7 @@ class OrdemServico extends Model
     public $incrementing = false;
     
     protected $primaryKey = 'id_ordemservico';
-    protected $fillable = ['numero_ordem_servico','usuario_id','checklist_id','usuario_alteracao'];
+    protected $fillable = ['numero_ordem_servico','usuario_id','checklist_id','status','usuario_alteracao'];
     protected $table = 'ordem_servicos';
     protected $with = ['checklist', 'usuario'];
 

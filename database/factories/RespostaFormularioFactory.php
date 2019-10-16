@@ -17,7 +17,6 @@ $factory->define(RespostaFormulario::class, function (Faker $faker) {
         'imagem'    =>  'imagem.jpg',
         'status'    =>  $faker->name,
         'observacao'    =>  $faker->name,
-        'conclusao_servico'    =>  'S',
         'usuario_alteracao' => $faker->name
     ];
 });

@@ -24,7 +24,6 @@ class CreateRespostaFormulariosTable extends Migration
             $table->binary('imagem')->nullable();
             $table->string('status');
             $table->string('observacao')->nullable()->default(NULL);
-            $table->char('conclusao_servico',1);
             $table->string('usuario_alteracao');
             $table->timestamps();
         });

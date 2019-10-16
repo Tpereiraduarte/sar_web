@@ -20,7 +20,6 @@ class RespostaFormulario extends Model
         'imagem', 
         'status',
         'observacao',
-        'conclusao_servico',
         'usuario_alteracao'
     ];
     protected $table = 'resposta_formularios';

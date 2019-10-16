@@ -84,9 +84,14 @@ class RespostaFormulariosController extends Controller
         $nome   = $this->separadadosimagem($fotos, $imagem, $perguntas);
         $status = $this->confereStatus($valores);
         
+        $ordemservico = $this->alterastatusordemservico(
+            $request->conclusao_servico, 
+            $request->id_ordemservico
+        );
+
         for ($i = 0; $i < count($perguntas); $i++) {
             $dados                    = new RespostaFormulario();
-            $dados->ordemservico_id   = $request->ordemservico_id;
+            $dados->ordemservico_id   = $request->id_ordemservico;
             $dados->titulo_formulario = $request->titulo;
             $dados->pergunta          = $perguntas[$i];
             $dados->valor             = $valores[$i];
@@ -94,7 +99,6 @@ class RespostaFormulariosController extends Controller
             $dados->imagem            = $nome[$i];
             $dados->status            = $status;
             $dados->observacao        = $request->observacao;
-            $dados->conclusao_servico = $request->conclusao_servico;
             $dados->usuario_alteracao = Auth()->user()->nome;
             //dd($dados);
             $dados->save();
@@ -123,6 +127,19 @@ class RespostaFormulariosController extends Controller
             }
         }
         return $nome;
+    }
+
+    public function alterastatusordemservico($reposta,$id_ordemservico){      
+        if($reposta == 'S'){
+            
+            $dados = OrdemServico::find($id_ordemservico);
+            $dados->status = 'F';
+            $dados->update();
+        }else{
+            $dados = OrdemServico::find($id_ordemservico);
+            $dados->status = 'C';
+            $dados->update();
+        }
     }
     /**
      * Display the specified resource.
