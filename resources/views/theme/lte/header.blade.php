@@ -1,10 +1,24 @@
 <header class="main-header">
-    <a href="{{ url('inicio')}}" class="logo">
+@if ($detect->isMobile())
+
+ 
+    <nav class="navbar navbar-static-top">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Testesssssssssssssssssssss</span>
+        </a> 
+ 
+ @else
+
+ <a href="{{ url('inicio')}}" class="logo">
     <img src="{{asset("assets/$theme/dist/img/logo-branco.png")}}" width= "100" height="45" />    </a>
     <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">Toggle navigation</span>
         </a>
+
+@endif
+
+   
         <span class="titulo-sistema">Sistema de Análise de Riscos</span>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">

@@ -7,6 +7,7 @@ use App\Models\Permissao;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Gate;
 use Illuminate\Support\Facades\DB;
+use Mobile_Detect;
 
 
 class InicioController extends Controller
@@ -18,7 +19,10 @@ class InicioController extends Controller
      */
     public function index()
 
-    {
+    { 
+       
+         $detect = new Mobile_Detect;
+
         //$permissao = Perfilpermissao::all();
     	//dd($permissao);
 
@@ -36,8 +40,8 @@ class InicioController extends Controller
 
     	//Gate::allows('usuario-view',$permissao);
     	//dd($permissao);
-    	//return view('inicio')->with('Permissao',$permissoes);
+    	return view('iniciomobile')->with('detect',$detect);
 
-           return view('inicio',compact('permissoes'));
+           //return view('iniciomobile',compact('permissoes'));
     }
  }
