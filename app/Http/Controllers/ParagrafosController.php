@@ -29,7 +29,7 @@ class ParagrafosController extends Controller
      */
     public function create()
     {
-        $dados = Norma::all();
+        $dados = Norma::all()->sortBy("numero_norma");
         return view('paragrafo.store')->with('dados',$dados);
     }
 
@@ -71,7 +71,7 @@ class ParagrafosController extends Controller
     public function edit($id_paragrafo)
     {
         $dados = Paragrafo::find($id_paragrafo);
-        $dadosNorma = Norma::all();
+        $dadosNorma = Norma::all()->sortBy("numero_norma");
         return view('paragrafo.edit')->with('dados',$dados)->with('dadosNorma',$dadosNorma);
     }
 

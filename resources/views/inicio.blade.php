@@ -73,7 +73,7 @@
                                 <tr>
                                     <td>OR{{$valor->numero_ordem_servico}}</td>
                                     <td>Instalar TV a cabo</td>
-                                    <td><span id="status" class="" title="">{{$valor->status}}</span></td>
+                                    <td><span class="status" title="">{{$valor->status}}</span></td>
                                 </tr>
                                 @endforeach
                             </tbody>

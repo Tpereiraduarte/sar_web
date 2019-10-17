@@ -25,8 +25,11 @@ window.onload = function() {
     $("#pendente").append(pendente);
     $("#respondido").append(respondido);
 
-    let status = document.getElementById("status");
-    
+    let status = document.getElementsByClassName("status");
+    debugger
+    status.map(function(obj, value){
+        $(value).status.innerText == "F";
+    });
     if(status.innerText == "F"){
         $( "#status" ).addClass( "label label-success" );
         $('#status').prop('title', 'Finalizado');
