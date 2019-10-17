@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             PerfilsTableSeeder::class,
             //UsuarioPerfilsTableSeeder::class,
-            NormasTableSeeder::class,            
+            NormasTableSeeder::class,
              Nr01ParagrafosTableSeeder::class,
              Nr01TableSeeder::class,
              Nr02ParagrafosTableSeeder::class,

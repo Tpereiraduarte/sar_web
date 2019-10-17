@@ -19,8 +19,8 @@ class InicioController extends Controller
      */
     public function index()
 
-    { 
-       
+    {
+
          $detect = new Mobile_Detect;
 
         //$permissao = Perfilpermissao::all();
