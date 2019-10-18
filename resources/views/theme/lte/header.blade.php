@@ -2,11 +2,10 @@
 @if ($detect->isMobile())
 
 
-    <nav class="navbar navbar-static-top">
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only"></span>
-        </a>
-         <span class="titulo-sistema">SarWeb</span>
+<a href="{{ url('inicio')}}" class="logo">
+    <img src="{{asset("assets/$theme/dist/img/logo-branco.png")}}" width= "100" height="45" />    </a>
+   
+            
 
  @else
 
@@ -17,12 +16,7 @@
             <span class="sr-only">Toggle navigation</span>
         </a>
          <span class="titulo-sistema">Sistema de Análise de Riscos</span>
-
-@endif
-
-
-
-        <div class="navbar-custom-menu">
+  <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -51,4 +45,5 @@
             </ul>
         </div>
     </nav>
+@endif   
 </header>

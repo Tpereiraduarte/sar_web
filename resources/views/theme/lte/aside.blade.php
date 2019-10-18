@@ -23,6 +23,13 @@
               <i class="fa fa-angle-down"></i>
             </span>
                 </a>
+                @if($detect->isMobile())
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('/usuario/')}}"><i class="fa fa-angle-right"></i> Usuários</a></li>
+    
+                </ul>
+
+                @else
                 <ul class="treeview-menu">
                     <li><a href="{{ url('/usuario/')}}"><i class="fa fa-angle-right"></i> Usuários</a></li>
                     <li><a href="{{ url('/pergunta/')}}"><i class="fa fa-angle-right"></i> Perguntas</a></li>
@@ -34,7 +41,6 @@
                     <li><a href="{{ url('/subparagrafo/')}}"><i class="fa fa-angle-right"></i> Sub-Paragrafos</a></li>
                     <li><a href="{{ url('/permissao/')}}"><i class="fa fa-angle-right"></i> Permissão</a></li>
                     <li><a href="{{ url('/perfilpermissao/')}}"><i class="fa fa-angle-right"></i>Permissão do Perfil</a></li>
-                    
                 </ul>
             </li>
 
@@ -63,5 +69,6 @@
                 </ul>
             </li>
         </ul>
+        @endif
     </section>
 </aside>

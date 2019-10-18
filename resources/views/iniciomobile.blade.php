@@ -1,91 +1,59 @@
 @extends("theme.$theme.layout") @section('titulo') Home @endsection @section('conteudo')
 <div class="row">
-	<div class="box box-default">
-		<div class="box-header with-border">
-			<h3 class="box-title">{{Auth::user()->nome}}</h3>
-		</div>
-		<div class="box-body">
-			Técnico
-		</div>
-	</div>
+<div class="post" style="padding-bottom:12px">
+<div class="user-block" style="margin:0px 0px 15px 20px">
+                    <img class="img-circle img-bordered-sm" src="{{Storage::url('/fotos_usuarios/'.Auth::user()->imagem)}}" alt="user image">
+                        <span class="username ">
+                          {{Auth::user()->nome}}
+                        </span>
+                    <span class="description">Técnico</span>
+                  </div>
 </div>
+</div>
+<div class="row">
+        <div class="col-lg-3 col-xs-6">
+			<a href="#">
+          <div class="small-box bg-green">
+            <div class="inner">
+              <i class="fa fa-check-square-o" style="font-size:69px"></i>
+            </div>
+			<p style="font-size:17px">Ordens Serviços</p>
+		  </div>
+		</a>
+        </div>
 
-<div class="row">
-	<div class="callout  bg-yellow">
-		<h4>Checklists Pendentes</h4>
-	</div>
-</div>
-<div class="row">
-	<div class="col-lg-3 col-xs-6">
-		<!-- small box -->
-		<div class="small-box bg-yellow">
-			<div class="inner">
-				<h3>0S01</h3>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg-3 col-xs-6">
-		<!-- small box -->
-		<div class="small-box bg-yellow">
-			<div class="inner">
-				<h3>0S01</h3>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg-3 col-xs-6">
-		<!-- small box -->
-		<div class="small-box bg-yellow">
-			<div class="inner">
-				<h3>0S01</h3>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg-3 col-xs-6">
-		<!-- small box -->
-		<div class="small-box bg-yellow">
-			<div class="inner">
-				<h3>0S01</h3>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="callout  callout-info">
-		<h4>Checklists Realizados</h4>
-	</div>
-</div>
-<div class="row">
-	<div class="col-lg-3 col-xs-6">
-		<!-- small box -->
-		<div class="small-box bg-aqua">
-			<div class="inner">
-				<h3>0S01</h3>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg-3 col-xs-6">
-		<!-- small box -->
-		<div class="small-box bg-aqua">
-			<div class="inner">
-				<h3>0S01</h3>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg-3 col-xs-6">
-		<!-- small box -->
-		<div class="small-box bg-aqua">
-			<div class="inner">
-				<h3>0S01</h3>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg-3 col-xs-6">
-		<!-- small box -->
-		<div class="small-box bg-aqua">
-			<div class="inner">
-				<h3>0S01</h3>
-			</div>
-		</div>
-	</div>
-</div>
+		<div class="col-lg-3 col-xs-6">
+		<a href="#">
+          <div class="small-box bg-green">
+            <div class="inner">
+              <i class="fa fa-user" style="font-size:69px"></i>
+            </div>
+			<p style="font-size:17px">Perfil</p>
+		  </div>
+		  </a>
+        </div>
+
+		<div class="col-lg-3 col-xs-6">
+		<a href="#">
+          <div class="small-box bg-green">
+            <div class="inner">
+              <i class="fa fa-th-list" style="font-size:69px"></i>
+            </div>
+			<p style="font-size:17px">Histórico</p>
+		  </div>
+		  </a>
+        </div>
+
+		<div class="col-lg-3 col-xs-6">
+		<a href="#">
+          <div class="small-box bg-green">
+            <div class="inner">
+              <i class="fa fa-file" style="font-size:69px"></i>
+            </div>
+			<p style="font-size:17px">Normas</p>
+		  </div>
+		  </a>
+        </div>
+       
+      </div>
 @endsection

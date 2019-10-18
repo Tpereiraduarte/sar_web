@@ -39,9 +39,12 @@ class InicioController extends Controller
 
 
     	//Gate::allows('usuario-view',$permissao);
-    	//dd($permissao);
-    	return view('iniciomobile')->with('detect',$detect);
-
-           //return view('iniciomobile',compact('permissoes'));
+        //dd($permissao);
+        
+        if ($detect->isMobile()){
+    	 return view('iniciomobile')->with('detect',$detect);
+        }else{
+           return view('inicio')->with('detect',$detect);
+        } 
     }
  }
