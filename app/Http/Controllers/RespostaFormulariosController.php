@@ -34,22 +34,14 @@ class RespostaFormulariosController extends Controller
     public function tiposervico()
     {
         $id_usuario = Auth()->user()->id_usuario;
-        $resposta = DB::table('resposta_formularios')->count();
-        if($resposta > 0){
-            $id_usuario = Auth()->user()->id_usuario;
-            $dados = DB::table('ordem_servicos')
-            ->join('resposta_formularios','ordem_servicos.id_ordemservico','<>','resposta_formularios.ordemservico_id')
-            ->where('ordem_servicos.usuario_id',$id_usuario)
-            ->select('ordem_servicos.id_ordemservico','ordem_servicos.numero_ordem_servico')
-            ->distinct()
-            ->orderBy('ordem_servicos.numero_ordem_servico', 'asc')
-            ->get();
-        }else{
-            $dados = DB::table('ordem_servicos')->where('usuario_id', $id_usuario)
-            ->orderBy('ordem_servicos.numero_ordem_servico', 'asc')
-            ->get();
-        }
-        return view('resposta.tiposervico')->with('dados', $dados);    }
+        $dados = DB::table('ordem_servicos')
+        ->where('usuario_id',$id_usuario)
+        ->where('status','P')
+        ->select('id_ordemservico','numero_ordem_servico')
+        ->orderBy('numero_ordem_servico', 'asc')
+        ->get();
+        return view('resposta.tiposervico')->with('dados', $dados);    
+    }
 
     public function servico(Request $request)
     {

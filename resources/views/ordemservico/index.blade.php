@@ -14,7 +14,7 @@
 @endif
 <div class="row">
     <div class="col-xs-2">
-        <a id="list" href="{{URL::route('ordemservico.create')}}" title="Cadastrar" class="btn btn-primary custom">Delegar</a>
+        <a id="list" href="{{URL::route('ordemservico.create')}}" title="Cadastrar" class="btn btn-primary custom">Delegar Ordem de serviço</a>
     </div>
 </div>
 @if(!empty($dados) && count($dados) > 0)
@@ -45,7 +45,13 @@
                     @foreach($valor->checklist as $checklist)
                         <td>{{$checklist->titulo}}</td>
                     @endforeach
-                    <td>{{$valor->status}}</td>
+                    @if($valor->status == "F")
+                        <td>Finalizado</td>
+                    @elseif($valor->status == "P")
+                        <td>Pendente</td>
+                    @else
+                        <td>Cancelado</td>
+                    @endif
                     <td class="acoes-lista">
                         <a id="edit" href="{{URL::route('ordemservico.edit',$valor->id_ordemservico)}}" title="Editar" class="fa fa-edit"></a>
                         <form action="{{ action('OrdemServicosController@destroy', $valor->id_ordemservico) }}" method="POST">

@@ -42,7 +42,7 @@
     <section class="col-lg-6 connectedSortable">
         <div class="box box-success">
             <div class="box-header with-border">
-                <h3 class="box-title">Gráfico de Pizza</h3>
+                <h3 class="box-title">Ordem de Serviços</h3>
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
@@ -51,6 +51,11 @@
             <div class="box-body">
                 <div class="chart">
                     <canvas id="chart-area"></canvas>
+                  <ul class="chart-legend clearfix">
+                    <li><i class="fa fa-circle-o text-red"></i> Cancelado</li>
+                    <li><i class="fa fa-circle-o text-green"></i> Finalizado</li>
+                    <li><i class="fa fa-circle-o text-yellow"></i> Pendente</li>
+                  </ul>
                 </div>
             </div>
         </div>
@@ -115,7 +120,7 @@
                                 <tr>
                                     <td>OR{{$valor->numero_ordem_servico}}</td>
                                     <td>Instalar TV a cabo</td>
-                                    <td><span class="label label-warning" title="Pendente">{{$valor->status}}</span></td>
+                                    <td><span class="label label-warning" title="Pendente">{{$valor->status}}endente</span></td>
                                 </tr>
                                 @endforeach
                             </tbody>
