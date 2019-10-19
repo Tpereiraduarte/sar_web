@@ -8,6 +8,8 @@ use App\Models\Checklist;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Mobile_Detect;
+
 
 class FormulariosController extends Controller
 {
@@ -18,8 +20,9 @@ class FormulariosController extends Controller
      */
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = Checklist::all();
-        return view('formulario.index')->with('dados',$dados);
+        return view("formulario.index",compact('dados','detect'));
     }
 
     /**
@@ -29,8 +32,9 @@ class FormulariosController extends Controller
      */
     public function create()
     {
+        $detect = new Mobile_Detect;
         $dados = Pergunta::all();
-        return view('formulario.store')->with('dados',$dados);
+        return view("formulario.store",compact('dados','detect'));
     }
 
     /**
@@ -64,9 +68,10 @@ class FormulariosController extends Controller
      */
     public function show($id_checklist)
     {
+        $detect = new Mobile_Detect;
         $dados = Checklist::find($id_checklist);
         $lista = Formulario::where('checklist_id','=',$id_checklist)->get();
-        return view('formulario.show')->with('lista',$lista)->with('dados',$dados);
+        return view("formulario.show",compact('lista','dados','detect'));
     }
 
     /**
@@ -77,10 +82,11 @@ class FormulariosController extends Controller
      */
     public function edit($id_checklist)
     {
+        $detect = new Mobile_Detect;
         $perguntas = Pergunta::all();
         $dados = Checklist::find($id_checklist);
         $listas = DB::table('formularios')->where('checklist_id', '=', $id_checklist)->get();
-        return view('formulario.edit')->with('listas',$listas)->with('dados',$dados)->with('perguntas',$perguntas);
+        return view("formulario.edit",compact('listas','dados','perguntas','detect'));
     }
 
     /**

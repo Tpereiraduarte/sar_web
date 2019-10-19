@@ -9,6 +9,7 @@ use App\Http\Requests\UsuarioPerfilFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Mobile_Detect;
 
 class UsuarioPerfilController extends Controller
 {
@@ -19,8 +20,9 @@ class UsuarioPerfilController extends Controller
      */
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = UsuarioPerfil::all();
-        return view('usuarioperfil.index')->with('dados',$dados);
+        return view("usuarioperfil.index",compact('dados','detect'));
     }
 
     /**
@@ -30,9 +32,10 @@ class UsuarioPerfilController extends Controller
      */
     public function create()
     {
+        $detect = new Mobile_Detect;
         $usuario = User::all();
         $perfil  = Perfil::all();      
-        return view('usuarioperfil.store')->with('usuario',$usuario)->with('perfil',$perfil);
+        return view("usuarioperfil.store",compact('usuario','perfil','detect'));
     }
 
     /**
@@ -44,6 +47,7 @@ class UsuarioPerfilController extends Controller
 
     public function store(UsuarioPerfilFormRequest $request)
     {
+        $detect = new Mobile_Detect;
         $validacao = $request->all();
         $dados = new UsuarioPerfil();
         $dados->usuario_id = $request->usuario_id;
@@ -72,10 +76,11 @@ class UsuarioPerfilController extends Controller
      */
     public function edit($id_usuarioperfil)
     {        
+        $detect = new Mobile_Detect;
         $dados = UsuarioPerfil::find($id_usuarioperfil);
         $usuario = User::all();
         $perfil  = Perfil::all();      
-        return view('usuarioperfil.edit')->with('usuario',$usuario)->with('perfil',$perfil)->with('dados', $dados);
+        return view("usuarioperfil.edit",compact('usuario','perfil','dados','detect'));
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Http\Requests\ParagrafosFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Mobile_Detect;
 
 class ParagrafosController extends Controller
 {
@@ -18,8 +19,9 @@ class ParagrafosController extends Controller
      */
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = Paragrafo::all();
-        return view('paragrafo.index')->with('dados',$dados);
+        return view("paragrafo.index",compact('dados','detect'));
     }
 
     /**
@@ -29,8 +31,9 @@ class ParagrafosController extends Controller
      */
     public function create()
     {
+        $detect = new Mobile_Detect;
         $dados = Norma::all()->sortBy("numero_norma");
-        return view('paragrafo.store')->with('dados',$dados);
+        return view("paragrafo.store",compact('dados','detect'));
     }
 
     /**
@@ -70,9 +73,10 @@ class ParagrafosController extends Controller
      */
     public function edit($id_paragrafo)
     {
+        $detect = new Mobile_Detect;
         $dados = Paragrafo::find($id_paragrafo);
         $dadosNorma = Norma::all()->sortBy("numero_norma");
-        return view('paragrafo.edit')->with('dados',$dados)->with('dadosNorma',$dadosNorma);
+        return view("paragrafo.edit",compact('dados','dadosNorma','detect'));
     }
 
     /**

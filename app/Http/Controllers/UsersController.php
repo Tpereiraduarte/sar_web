@@ -11,6 +11,7 @@ use Mobile_Detect;
 
 class UsersController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +21,6 @@ class UsersController extends Controller
     {
         $detect = new Mobile_Detect;
         $dados = User::all();
-        //return view('usuario.index')->with('dados',$dados);
-
         return view("usuario.index",compact('dados','detect'));
     }
 
@@ -32,7 +31,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('usuario.store');
+        $detect = new Mobile_Detect;
+        return view("usuario.store",compact('dados','detect'));
     }
 
     /**
@@ -84,7 +84,6 @@ class UsersController extends Controller
     {
         $detect = new Mobile_Detect;
         $dados = User::find($id_usuario);
-        //return view('usuario.edit')->with('dados',$dados);
         return view("usuario.edit",compact('dados','detect'));
     }
 

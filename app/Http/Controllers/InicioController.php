@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Models\Perfilpermissao;
 use App\Models\Usuarioperfil;
 use App\Models\Permissao;
+use App\Models\Inicio;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Gate;
 use Illuminate\Support\Facades\DB;

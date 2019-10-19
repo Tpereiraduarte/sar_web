@@ -20,7 +20,6 @@ class NormasController extends Controller
     {
         $detect = new Mobile_Detect;
         $dados = Norma::all();
-        //return view('norma.index')->with('dados',$dados);
         return view("norma.index",compact('dados','detect'));
     }
 
@@ -31,7 +30,8 @@ class NormasController extends Controller
      */
     public function create()
     {
-        return view('norma.store');
+        $detect = new Mobile_Detect;
+        return view("norma.store",compact('detect'));
     }
 
     /**
@@ -70,8 +70,9 @@ class NormasController extends Controller
      */
     public function edit($id_norma)
     {
+        $detect = new Mobile_Detect;
         $dados = Norma::find($id_norma);
-        return view('norma.edit')->with('dados',$dados);
+        return view("norma.edit",compact('dados','detect'));
     }
 
     /**

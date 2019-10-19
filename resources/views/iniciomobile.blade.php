@@ -23,7 +23,7 @@
 </div>
 <div class="row">
         <div class="col-lg-3 col-xs-6">
-			<a href="#">
+			<a href="{{ url('/resposta/tiposervico/')}}">
           <div class="small-box bg-green">
             <div class="inner">
               <i class="fa fa-check-square-o" style="font-size:69px"></i>

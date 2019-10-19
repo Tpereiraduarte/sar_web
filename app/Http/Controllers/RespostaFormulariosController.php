@@ -9,6 +9,7 @@ use App\Models\OrdemServico;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
+use Mobile_Detect; 
 
 class RespostaFormulariosController extends Controller
 {
@@ -19,6 +20,7 @@ class RespostaFormulariosController extends Controller
      */
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = DB::table('resposta_formularios')
             ->join('ordem_servicos','resposta_formularios.ordemservico_id','=','ordem_servicos.id_ordemservico')
             ->select('resposta_formularios.ordemservico_id',
@@ -28,11 +30,12 @@ class RespostaFormulariosController extends Controller
             ->distinct()
             ->orderBy('ordem_servicos.numero_ordem_servico', 'asc')
             ->get();
-        return view('resposta.index')->with('dados', $dados);
+        return view("resposta.index",compact('dados','detect'));
     }
     
     public function tiposervico()
     {
+        $detect = new Mobile_Detect;
         $id_usuario = Auth()->user()->id_usuario;
         $resposta = DB::table('resposta_formularios')->count();
         if($resposta > 0){
@@ -49,10 +52,12 @@ class RespostaFormulariosController extends Controller
             ->orderBy('ordem_servicos.numero_ordem_servico', 'asc')
             ->get();
         }
-        return view('resposta.tiposervico')->with('dados', $dados);    }
+        return view("resposta.tiposervico",compact('dados','detect'));   
+    }
 
     public function servico(Request $request)
     {
+        $detect = new Mobile_Detect;
         $id_ordemservico = $request->ordemservico_id;
         
         $id_checklist = DB::table('ordem_servicos')
@@ -62,10 +67,7 @@ class RespostaFormulariosController extends Controller
         $numero_ordemservico = $id_checklist[0]->numero_ordem_servico;
         $dados        = Checklist::find($id_checklist[0]->checklist_id);
         $lista        = Formulario::where('checklist_id', '=', $id_checklist[0]->checklist_id)->get();
-        return view('resposta.store')->with('lista', $lista)
-                ->with('dados', $dados)
-                ->with('numero_ordemservico', $numero_ordemservico)
-                ->with('id_ordemservico', $id_ordemservico);
+        return view("usuarioperfil.store",compact('lista','dados','numero_ordemservico','id_ordemservico','detect'));
     }
     
     /**
@@ -149,7 +151,8 @@ class RespostaFormulariosController extends Controller
      */
     public function show($ordemservico_id)
     {
+        $detect = new Mobile_Detect;
         $dados = RespostaFormulario::where('ordemservico_id','=',$ordemservico_id)->get();
-        return view('resposta.show')->with('dados',$dados);
+        return view("resposta.show",compact('dados','detect'));
     }
 }
