@@ -52,9 +52,13 @@
         </div>
     </div>
 </div>  
+@if($detect->isMobile())
+@else
 <div class="row">  
 <div class="col-md-6">
     <img src="{{Storage::url('/fotos_usuarios/'.Auth::user()->imagem)}}" class="img-circle" alt="User Image">
     </div>   
-</div>     
+</div> 
+@endif
+
 @endsection

@@ -7,6 +7,7 @@ use App\Http\Requests\NormasFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Mobile_Detect;
 
 class NormasController extends Controller
 {
@@ -17,8 +18,10 @@ class NormasController extends Controller
      */
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = Norma::all();
-        return view('norma.index')->with('dados',$dados);
+        //return view('norma.index')->with('dados',$dados);
+        return view("norma.index",compact('dados','detect'));
     }
 
     /**

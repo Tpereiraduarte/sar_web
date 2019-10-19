@@ -7,6 +7,7 @@ use App\Http\Requests\UserFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Mobile_Detect;
 
 class UsersController extends Controller
 {
@@ -17,8 +18,11 @@ class UsersController extends Controller
      */
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = User::all();
-        return view('usuario.index')->with('dados',$dados);
+        //return view('usuario.index')->with('dados',$dados);
+
+        return view("usuario.index",compact('dados','detect'));
     }
 
     /**
@@ -78,8 +82,10 @@ class UsersController extends Controller
      */
     public function edit($id_usuario)
     {
+        $detect = new Mobile_Detect;
         $dados = User::find($id_usuario);
-        return view('usuario.edit')->with('dados',$dados);
+        //return view('usuario.edit')->with('dados',$dados);
+        return view("usuario.edit",compact('dados','detect'));
     }
 
     /**
@@ -91,6 +97,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id_usuario)
     {
+        $detect = new Mobile_Detect;
         $dados = User::find($id_usuario);
         $dados->matricula = $request->matricula;
         $dados->nome = $request->nome;
@@ -109,7 +116,11 @@ class UsersController extends Controller
             }
         }
         $dados->update();
-        return redirect()->action('UsersController@index')->with('success', 'Alterado com Sucesso!');
+        if($detect->isMobile()){
+            return redirect()->action('InicioController@index')->with('success', 'Alterado com Sucesso!')->with('detect');
+        }else{
+            return redirect()->action('UsersController@index')->with('success', 'Alterado com Sucesso!');
+        }
     }
 
     /**
