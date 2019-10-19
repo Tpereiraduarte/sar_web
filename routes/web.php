@@ -37,6 +37,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::post('resposta/servico', 'RespostaFormulariosController@servico')->name('servico');
     Route::get('resposta/tiposervico', 'RespostaFormulariosController@tiposervico')->name('resposta.tiposervico');
     Route::resource('resposta', 'RespostaFormulariosController');
+    Route::resource('ordemservico', 'OrdemServicosController');
 });
 
 // Password Reset Routes...

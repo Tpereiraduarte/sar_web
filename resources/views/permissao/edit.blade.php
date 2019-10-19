@@ -24,7 +24,7 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="Nome da Permissao">Nome da Permissão</label>
-                  <input type="text" class="form-control" id="nome" placeholder="Nome da Permissão" name="nome" value="{{$dados->nome}" maxlength="2" size="50" required>
+                  <input type="text" class="form-control" id="nome" placeholder="Nome da Permissão" name="nome" value="{{$dados->nome}}" maxlength="300" size="50" required>
                 </div>
                 <div class="form-group">
                   <label for="descricao">Descrição</label>

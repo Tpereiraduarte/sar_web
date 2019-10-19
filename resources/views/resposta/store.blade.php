@@ -17,17 +17,14 @@
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">{{$dados->titulo}}</h3>
+                <h6>#OR - {{$numero_ordemservico}}</h6>
             </div>
             <form id="myform" role="form" action="{{ action('RespostaFormulariosController@store') }}" method="POST" enctype="multipart/form-data">
             @csrf 
                 @if(!empty($dados) && !empty($lista))
                     <div class="box-body">
-                        <div class="form-group">
-                            <label for="Titulo">Ordem de Serviço</label>
-                            <input type="text" class="form-control" id="ordem" placeholder="Número da ordem de serviço" name="ordem" maxlength="15" size="50" required>
-                        </div>
-                        <div class="box-body justify-content-center">
-                            <table id="respostas" class="table table-bordered table-hover table-checklist">
+                        <div class="box-body">
+                            <table id="respostas" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th class="titulo-respostas">Perguntas</th>
@@ -57,7 +54,19 @@
                                 <span class="sem-dados">Não há perguntas Cadastradas</span>
                             </div>
                         @endif
+                    <div class="form-group">
+                        <label for="Observacao">Observação</label>
+                        <textarea class="form-control" id="observacao" placeholder="Observacao" name="observacao" maxlength="300" rows="2" cols="50"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="Observacao">O serviço foi Concluído?</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Sim <input class="" type="radio" name="conclusao_servico" value="S" required></label>
+                        <label>Não <input class="" type="radio" name="conclusao_servico" value="N" required></label>
+                    </div>
                 </div>
+                <td><input type="hidden" id="id_ordemservico" name="id_ordemservico" value="{{$id_ordemservico}}"></td>
                 <td><input type="hidden" id="geocalizacao" name="geocalizacao" value=""></td>
                 <td><input type="hidden" class="form-control" id="titulo" name="titulo" value="{{$dados->titulo}}" required></td>
                 <div class="box-footer">

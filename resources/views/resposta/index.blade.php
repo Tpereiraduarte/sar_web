@@ -15,7 +15,7 @@
                   <th>Ordem</th>
                   <th>Nº Ordem de Serviço</th>
                   <th>Título</th>
-                  <th>Status</th>
+                  <th>Conclusão de Serviço</th>
                   <th></th>
                 </tr>
             </thead>
@@ -23,9 +23,9 @@
         @foreach($dados as $key => $valor)
                 <tr>
                     <td>{{$key + 1}}</td>
-                    <td>{{$valor->ordem_servico}}</td>
-                    <td><a href="{{URL::route('resposta.show',$valor->ordem_servico)}}">{{$valor->titulo_formulario}}</a></td>
-                    <td>{{$valor->status}}</td>
+                    <td>{{$valor->numero_ordem_servico}}</td>
+                    <td><a href="{{URL::route('resposta.show',$valor->ordemservico_id)}}">{{$valor->titulo_formulario}}</a></td>
+                    <td>{{$valor->conclusao_servico}}</td>
                     <td></td>
                 </tr>
         @endforeach

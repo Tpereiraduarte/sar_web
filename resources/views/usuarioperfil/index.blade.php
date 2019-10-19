@@ -45,7 +45,11 @@
             </tbody>
         </table>
     </div>
+<<<<<<< HEAD
 </div>
+=======
+</div>     
+>>>>>>> fc5349fc275796ef74d117c2d77be42809339f21
 @else
     <div class="sem-dados">
         <span class="sem-dados">Não há perfis de usuários Cadastradas</span>
