@@ -77,7 +77,6 @@ $(document).ready( function () {
     "language": {
         "lengthMenu": "Exibe _MENU_ Registros por página",
             "search": "Pesquisar :",
-            //"paginate": { "previous": "Anterior", "next" : "Próximo"},
             "oPaginate": {
                 "sFirst": "Início",
                 "sPrevious": "Anterior",

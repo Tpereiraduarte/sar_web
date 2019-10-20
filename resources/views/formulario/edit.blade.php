@@ -40,7 +40,7 @@
                         <tbody>
                             @foreach($perguntas as $key => $valor)                              
                                 <tr>
-                                    <td><input type="checkbox" name="status[]" value="{{$valor->id_pergunta}}" 
+                                    <td><input class="check" type="checkbox" name="status[]" value="{{$valor->id_pergunta}}" 
                                         @foreach($listas as $lista)
                                         @if($lista->pergunta_id == $valor->id_pergunta)
                                         value="{{$lista->pergunta_id}}" checked
@@ -84,7 +84,6 @@ $(document).ready( function () {
     "language": {
             "lengthMenu": "Exibe _MENU_ Registros por página",
             "search": "Pesquisar :",
-            //"paginate": { "previous": "Anterior", "next" : "Próximo"},
             "oPaginate": {
                 "sFirst": "Início",
                 "sPrevious": "Anterior",
@@ -102,7 +101,9 @@ $(document).ready( function () {
         "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]], //define as opções de paginação
         "pageLength": 5,      // define o tamanho da página 
     } );
+    $ ('.check'). iCheck ({
+            checkboxClass: 'icheckbox_square-blue',
+        });   
 } );
-
 </script>
 @endsection

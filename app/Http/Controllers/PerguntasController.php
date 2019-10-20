@@ -30,7 +30,7 @@ class PerguntasController extends Controller
      */
     public function create()
     {
-        $dados = Norma::all();
+        $dados = Norma::all()->sortBy("numero_norma");
         return view('pergunta.store')->with('dados',$dados);
     }
     
@@ -41,6 +41,7 @@ class PerguntasController extends Controller
                 ->where('norma_id',$value)
                 ->select('id_paragrafo','norma_id','numero_paragrafo','descricao')
                 ->groupBy('id_paragrafo','norma_id','numero_paragrafo','descricao')
+                ->orderBy('paragrafos.numero_paragrafo', 'asc')
                 ->get();
         $resultado ='<option value="">Escolha o paragrafo desejado</option>';
         foreach($data as $key => $row){
@@ -54,6 +55,7 @@ class PerguntasController extends Controller
         $value = $request->get('value2');
         $dados = DB::table('subparagrafos')
                     ->where('paragrafo_id',$value)
+                    ->orderBy('subparagrafos.numero_paragrafo', 'asc')
                     ->get();
         $resultado ='<div>';
             foreach($dados as $key => $row){
@@ -100,7 +102,7 @@ class PerguntasController extends Controller
     public function edit($id_pergunta)
     {
         $dados = Pergunta::find($id_pergunta);
-        $dadosNorma = Norma::all();
+        $dadosNorma = Norma::all()->sortBy("numero_norma");
         return view('pergunta.edit')->with('dados',$dados)->with('dadosNorma',$dadosNorma);
     }
 

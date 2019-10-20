@@ -4,7 +4,7 @@
 @endsection
 @section('conteudo')
 <div class="row">
-    <div class="col-xs-2">
+    <div class="col">
         <a id="list" href="{{URL::route('norma.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-file-text-o"></i> Nova Norma</a>
     </div>
     <div class="col-xs-0">

@@ -4,7 +4,7 @@
 @endsection
 @section('conteudo')
 <div class="row">
-    <div class="col-xs-2">
+    <div class="col">
         <a id="list" href="{{URL::route('subparagrafo.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-align-left"></i> Novo Sub Parágrafo</a>
     </div>
     <div class="col-xs-2">

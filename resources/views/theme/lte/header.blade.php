@@ -94,7 +94,6 @@
                               <img src="{{Storage::url('/fotos_usuarios/'.Auth::user()->imagem)}}" class="img-circle" alt="User Image">
                             <p>
                                 {{Auth::user()->nome}}
-                                <small>Member since Nov. 2012</small>
                             </p>
                         </li>
                         <li class="user-footer">
