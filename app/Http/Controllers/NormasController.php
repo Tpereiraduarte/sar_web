@@ -106,4 +106,13 @@ class NormasController extends Controller
         $dados->delete();
         return redirect()->action('NormasController@index')->with('success', 'Excluído com Sucesso!');
     }
+    public function geraPDF()
+    {
+        $dados = Norma::all()->sortBy('numero_norma');
+        return \PDF::loadView('relatorios.relatorionormas', compact('dados'))
+            ->setPaper('A4-P', 'landscape')
+            ->download('Relatorio_Normas.pdf');
+    }
+
+
 }

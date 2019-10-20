@@ -27,7 +27,9 @@ class InicioController extends Controller
         //$permissao = Perfilpermissao::all();
     	//dd($permissao);
 
-    	$usuario = Auth()->user()->id_usuario;
+        $usuario = Auth()->user()->id_usuario;
+        $formularios = DB::table('formularios')->count();
+        $respostas = DB::table('resposta_formularios')->count();
 
     	//dd($usuario);
 
@@ -79,4 +81,4 @@ class InicioController extends Controller
         $dados = DB::table('ordem_servicos')->where('status','<>','P')->take(5)->get();        
         return $dados;
     }
- }
+}

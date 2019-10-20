@@ -13,6 +13,7 @@
             <div class="icon">
                 <i class="ion ion-android-clipboard"></i>
             </div>
+        
         </div>
     </div>
     <div class="col-lg-4 col-xs-6">

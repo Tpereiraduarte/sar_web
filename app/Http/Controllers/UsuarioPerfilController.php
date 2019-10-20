@@ -114,4 +114,12 @@ class UsuarioPerfilController extends Controller
         return redirect()->action('UsuarioPerfilController@index')->with('success', 'Excluído com Sucesso!');
     }
 
+    public function geraPDF()
+    {
+        $dados = UsuarioPerfil::all()->sortBy('usuario_id');
+        return \PDF::loadView('relatorios.relatoriousuarioperfil', compact('dados'))
+            ->setPaper('a4', 'landscape')
+            ->download('Relatorio_Usuario_Perfil.pdf');
+    }
+
 }
