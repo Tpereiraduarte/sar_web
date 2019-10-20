@@ -6,6 +6,7 @@ use App\Models\RespostaFormulario;
 use App\Models\Formulario;
 use App\Models\Checklist;
 use App\Models\OrdemServico;
+use App\Models\Norma;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
@@ -151,4 +152,24 @@ class RespostaFormulariosController extends Controller
             ->get();
         return view('resposta.historico')->with('dados',$dados);
     }
+
+    public function relatoriomobile(){
+        $dados = DB::table('normas')
+        ->join('paragrafos','normas.id_norma','=','paragrafos.norma_id')
+        ->join('subparagrafos','paragrafos.id_paragrafo','=','subparagrafos.paragrafo_id')
+        ->select('normas.numero_norma',
+                'normas.descricao as descricao_norma',
+                'paragrafos.numero_paragrafo as numero_paragrafo',
+                'paragrafos.descricao as descricao_paragrafo',
+                'subparagrafos.numero_paragrafo as numero_subparagrafo',
+                'subparagrafos.descricao as descricao_subparagrafo')
+        ->where('normas.numero_norma', '10')
+        ->orderBy('normas.numero_norma', 'asc')
+        ->orderBy('paragrafos.numero_paragrafo', 'asc')
+        ->orderBy('subparagrafos.numero_paragrafo', 'asc')
+        ->get();
+        return \PDF::loadView('resposta.relatoriomobile', compact('dados'))
+        ->setPaper('a4', 'landscape')
+        ->download('Relatorio_Norma.pdf');
+    } 
 }
