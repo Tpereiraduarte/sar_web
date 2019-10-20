@@ -7,6 +7,7 @@ use App\Models\Permissao;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Gate;
 use Illuminate\Support\Facades\DB;
+use Mobile_Detect;
 
 
 class InicioController extends Controller
@@ -19,6 +20,9 @@ class InicioController extends Controller
     public function index()
 
     {
+
+         $detect = new Mobile_Detect;
+
         //$permissao = Perfilpermissao::all();
     	//dd($permissao);
 
