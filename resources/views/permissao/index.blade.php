@@ -4,10 +4,8 @@
 @endsection
 @section('conteudo')
 <div class="row">
-    <div class="col-xs-2">
+    <div class="col">
         <a id="list" href="{{URL::route('permissao.create')}}" title="Cadastrar" class="btn btn-primary"><i class="fa fa-file-text-o"></i> Nova Permissão</a>
-    </div>
-    <div class="col-xs-0">
         <a id="list" href="{{URL::route('relatorios.relatoriopermissao')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
     </div> 
 </div>

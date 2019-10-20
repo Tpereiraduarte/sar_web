@@ -40,7 +40,6 @@
                 @else
                 <ul class="treeview-menu">
                     <li><a href="{{ url('/usuario/')}}"><i class="fa fa-angle-right"></i> Usuários</a></li>
-                    <li><a href="{{ url('/pergunta/')}}"><i class="fa fa-angle-right"></i> Perguntas</a></li>
                     <li><a href="{{ url('/perfil/')}}"><i class="fa fa-angle-right"></i> Perfil</a></li>
                     <li><a href="{{ url('/norma/')}}"><i class="fa fa-angle-right"></i> Normas</a></li>
                     <li><a href="{{ url('/usuarioperfil/')}}"><i class="fa fa-angle-right"></i> Perfil de Usuários</a></li>
