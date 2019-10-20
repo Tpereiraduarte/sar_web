@@ -12,10 +12,18 @@
         </div>
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MENU</li>
-            <li class="treeview active">
-                <a href="#"><i class="fa fa-home"></i> <span>Home</span></a>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-home"></i>
+                    <span>Home</span>
+                    <span class="pull-right-container">
+               <i class="fa fa-angle-down"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('inicio')}}"><i class="fa fa-angle-right"></i>Dashboard</a></li>
+                </ul>
             </li>
-
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-align-justify"></i> <span>Cadastro</span>
@@ -59,7 +67,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('')}}"><i class="fa fa-angle-right"></i>Incumbir Serviço</a></li>
+                    <li><a href="{{ url('/ordemservico/')}}"><i class="fa fa-angle-right"></i>Incumbir Serviço</a></li>
+                    <li><a href="{{ url('/resposta/')}}"><i class="fa fa-angle-right"></i>Resposta dos Serviços</a></li>
                 </ul>
             </li>
         </ul>

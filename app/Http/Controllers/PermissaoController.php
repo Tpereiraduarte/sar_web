@@ -41,12 +41,12 @@ class PermissaoController extends Controller
     public function store(PermissaoFormRequest $request)
     {
         $validacao = $request->all();
-        $dados = new Permissoa();
+        $dados = new Permissao();
         $dados->nome = $request->nome;
         $dados->descricao = $request->descricao;
-        $dados->usuario_alteracao = "";
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->save();
-        return redirect()->action('PermissaoController@index')->with('messages', 'Permissão criada com Sucesso!');
+        return redirect()->action('PermissaoController@index')->with('success', 'Cadastrado com Sucesso!');
     }
 
     /**
@@ -82,15 +82,15 @@ class PermissaoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(PermissaolFormRequest $request, $id_permissao)
+    public function update(PermissaoFormRequest $request, $id_permissao)
     {
         $validacao = $request->all();
         $dados = Permissao::find($id_permissao);
         $dados->nome = $request->nome;
         $dados->descricao =$request->descricao;
-        $dados->usuario_alteracao = "";
+        $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->update();
-        return redirect()->action('PermissaoController@index')->with('message', 'Alterado com Sucesso!');
+        return redirect()->action('PermissaoController@index')->with('success', 'Alterado com Sucesso!');
     }
 
     /**
@@ -104,11 +104,11 @@ class PermissaoController extends Controller
     {
         $dados = Permissao::find($id_permissao);
         $dados->delete();
-        return redirect()->action('Permissaoontroller@index')->with('message', 'Deletado com Sucesso!');
+        return redirect()->action('PermissaoController@index')->with('success', 'Excluído com Sucesso!');
     }
     public function geraPDF()
     {
-        $dados = Permissao::all();
+        $dados = Permissao::all()->sortBy('nome');
         return \PDF::loadView('relatorios.relatoriopermissao', compact('dados'))
             ->setPaper('a4', 'landscape')
             ->download('Relatorio_Permissao.pdf');

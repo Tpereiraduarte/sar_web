@@ -8,7 +8,13 @@
     <style>
         
         table{
-            border: 1;
+            border: 1; 
+            margin: 20px;
+            padding-right: 20px;           
+        }
+        .box-body{
+            margin: 20px;
+            padding-right: 20px;
         }
         .logo {
 	        position: absolute;
@@ -61,14 +67,8 @@
                 font-size: 28px;
                 line-height: 1.5cm;
             }
-        th{
+        th, td{
             text-align: center;
-            font-family:"Times New Roman";
-            font-style: normal;
-            color: #696969;
-        }
-        td{
-            text-align: left;
             font-family:"Times New Roman";
             font-style: normal;
             color: #696969;
@@ -86,7 +86,7 @@
         </div>
     </footer>
     <br class="clearfix" />
-<div class="box-body">
+    <div class="box-body">
     <table align="center" border=1 cellspacing=0 cellpadding=2 bordercolor="#A9A9A9">
         <thead>
             <tr>
@@ -97,9 +97,8 @@
         <tbody>
         @foreach($dados as $key => $perfilpermissao)
             <tr>
-                <td>{{$key + 1}}</td>
-                    <td>{{$perfilpermissao->nome}}</td>
-                    <td>{{$perfilpermissao->perfil->nome}}</td>          
+                <td width=150>{{$perfilpermissao->permissao->nome}}</td>
+                <td width=150>{{$perfilpermissao->perfil->nome}}</td>         
             </tr>
         @endforeach
         </tbody>

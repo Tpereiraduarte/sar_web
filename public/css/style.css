@@ -1,8 +1,9 @@
 .acoes-lista{
     display: -webkit-box;
+    font-size: 20px;
 }
 #edit{
-    color:#67a6a6;
+    color:#047d80;
 }
 #delete{
     color:#f00;
@@ -106,6 +107,7 @@
     height: 35px !important; */
     border-radius: 3px !important;
     padding: 15px;
+    margin-left:15px;
 }
 .custom-pdf{
     background-color: #f00 !important;
@@ -115,7 +117,6 @@
     position: relative;
     border:none !important;
     border-radius: 3px !important;
-    padding: 15px;
 }
 .fa-file-pdf-o{
     font-weight: bold;
@@ -130,4 +131,17 @@
     padding: 6px;
     position: absolute;
 
+}
+
+.table-checklist{
+    text-align: center;
+}
+.opcao-checklist{
+    margin-right: 20px;
+}
+.observacao{
+    background-color: #fff700;
+    padding: 10px;
+    border-radius: 4px;
+    color: #000;
 }

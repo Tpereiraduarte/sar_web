@@ -39,7 +39,36 @@ class InicioController extends Controller
     	//Gate::allows('usuario-view',$permissao);
     	//dd($permissao);
     	//return view('inicio')->with('Permissao',$permissoes);
+        $ordempendente = $this->ordemServicosPendentes();
+        $ordemrealizado = $this->ordemServicosRealizados();
 
-           return view('inicio',compact('permissoes'))->with('formularios', $formularios);
+        $quantidadeordemservico = $this->quantidadeOrdemServico();
+        return view('inicio')
+        ->with('quantidadeordemservico',$quantidadeordemservico)
+        ->with('ordempendente',$ordempendente)
+        ->with('ordemrealizado',$ordemrealizado);
+    }
+
+    public function quantidadeOrdemServico(){
+        $pendente = DB::table('ordem_servicos')
+        ->select(DB::raw('count(status) as pendente'))->where('status','P')->get();
+    
+        $finalizado = DB::table('ordem_servicos')
+        ->select(DB::raw('count(status) as finalizado'))->where('status','F')->get();
+    
+        $cancelado = DB::table('ordem_servicos')
+        ->select(DB::raw('count(status) as cancelado'))->where('status','C')->get();
+        
+        return [$pendente, $finalizado, $cancelado];
+    }
+
+    public function ordemServicosPendentes(){
+        $dados = DB::table('ordem_servicos')->where('status','P')->take(5)->get();        
+        return $dados;
+    }
+
+    public function ordemServicosRealizados(){
+        $dados = DB::table('ordem_servicos')->where('status','<>','P')->take(5)->get();        
+        return $dados;
     }
 }

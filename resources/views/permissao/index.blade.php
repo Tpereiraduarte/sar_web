@@ -51,4 +51,7 @@
         <span class="sem-dados">Não há Permissão Cadastradas</span>
     </div>    
 @endif
+@push('scripts')
+    <script src="{{ url('js/toast.js') }}"></script>
+@endpush
 @endsection

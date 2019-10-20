@@ -102,9 +102,9 @@ class PerfilsController extends Controller
 
     public function geraPDF()
     {
-        $dados = Perfil::all();
+        $dados = Perfil::all()->sortBy('nome');
         return \PDF::loadView('relatorios.relatorioperfils', compact('dados'))
-            ->setPaper('a4', 'landscape')
+            ->setPaper('A4-P', 'landscape')
             ->download('Relatorio_Perfil.pdf');
     }
 }

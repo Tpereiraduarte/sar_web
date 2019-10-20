@@ -11,6 +11,16 @@ class RespostaFormulario extends Model
     public $incrementing = false;
     
     protected $primaryKey = 'id_reposta';
-    protected $fillable = ['titulo_formulario','ordem_servico', 'pergunta', 'valor', 'localizacao', 'imagem', 'status','usuario_alteracao'];
+    protected $fillable = [
+        'titulo_formulario',
+        'ordem_servico', 
+        'pergunta', 
+        'valor', 
+        'localizacao', 
+        'imagem',
+        'observacao',
+        'conclusao_servico',
+        'usuario_alteracao'
+    ];
     protected $table = 'resposta_formularios';
 }
