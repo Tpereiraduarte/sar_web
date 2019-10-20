@@ -23,7 +23,7 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="Numero da Normas">Número da Norma</label>
-                  <input type="text" class="form-control" id="numero_norma" placeholder="Digite Número da Norma" name="numero_norma" maxlength="2" size="50" required>
+                  <input type="text" onkeypress="return onlynumber();" class="form-control" id="numero_norma" placeholder="Digite Número da Norma" name="numero_norma" maxlength="2" size="50" required>
                 </div>
                 <div class="form-group">
                   <label for="descricao">Descrição</label>
@@ -49,4 +49,7 @@
     }
     </style>
 </div>
+@push('scripts')
+<script src="{{ url('js/onlynumber.js') }}"></script>
+@endpush
 @endsection

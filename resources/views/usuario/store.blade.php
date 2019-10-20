@@ -23,7 +23,7 @@ Cadastro de Usuários
                 <div class="box-body">
                     <div class="form-group">
                         <label for="name">Usuário:</label>
-                        <input id="name" class="form-control" name="nome" type="text" value="" size="50" />
+                        <input id="name" class="form-control" name="nome" type="text" onkeypress="return lettersOnly(event);" value="" size="50" />
                     </div>
                     <div class="form-group">
                         <label for="email">e-mail:</label>
@@ -31,7 +31,7 @@ Cadastro de Usuários
                     </div>
                     <div class="form-group">
                         <label for="matricula">Matricula:</label>
-                        <input id="matricula" class="form-control" name="matricula" type="text" value="" size="20" />
+                        <input id="matricula" class="form-control" name="matricula" type="text" onkeypress="return onlynumber();"  value="" size="20" />
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha:</label><br />
@@ -51,4 +51,8 @@ Cadastro de Usuários
         </div>
     </div>
 </div>
+@push('scripts')
+<script src="{{ url('js/onlytext.js') }}"></script>
+<script src="{{ url('js/onlynumber.js') }}"></script>
+@endpush
 @endsection

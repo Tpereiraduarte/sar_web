@@ -23,7 +23,7 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="Numero da ordem de servico">Número da ordem de serviço</label>
-                        <input type="text" class="form-control" id="numero_ordem_servico" placeholder="Número da ordem de serviço" name="numero_ordem_servico" value="{{$dados->numero_ordem_servico}}" maxlength="30" size="50" required>
+                        <input type="text" onkeypress="return onlynumber();" class="form-control" id="numero_ordem_servico" placeholder="Número da ordem de serviço" name="numero_ordem_servico" value="{{$dados->numero_ordem_servico}}" maxlength="30" size="50" required>
                     </div>
                     <div class="form-group">
                         <label for="usuario">Usuário:</label>
@@ -60,4 +60,7 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script src="{{ url('js/onlynumber.js') }}"></script>
+@endpush
 @endsection
