@@ -15,18 +15,22 @@
                   <th>Ordem</th>
                   <th>Nº Ordem de Serviço</th>
                   <th>Título</th>
-                  <th>Status</th>
-                  <th></th>
+                  <th>Conclusão de Serviço</th>
+                  <th>Data</th>
                 </tr>
             </thead>
             <tbody>
         @foreach($dados as $key => $valor)
                 <tr>
                     <td>{{$key + 1}}</td>
-                    <td>{{$valor->ordem_servico}}</td>
-                    <td><a href="{{URL::route('resposta.show',$valor->ordem_servico)}}">{{$valor->titulo_formulario}}</a></td>
-                    <td>{{$valor->status}}</td>
-                    <td></td>
+                    <td>OS{{$valor->numero_ordem_servico}}</td>
+                    <td><a href="{{URL::route('resposta.show',$valor->ordemservico_id)}}">{{$valor->titulo_formulario}}</a></td>
+                    @if($valor->conclusao_servico == "S")
+                        <td>SIM</td>
+                    @else
+                        <td>NÃO</td>
+                    @endif
+                    <td>{{ \Carbon\Carbon::parse($valor->created_at)->format('d / m / Y') }}</td>
                 </tr>
         @endforeach
             </tbody>

@@ -7,6 +7,7 @@ use App\Http\Requests\NormasFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Mobile_Detect;
 
 class NormasController extends Controller
 {
@@ -17,8 +18,9 @@ class NormasController extends Controller
      */
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = Norma::all();
-        return view('norma.index')->with('dados',$dados);
+        return view("norma.index",compact('dados','detect'));
     }
 
     /**
@@ -28,7 +30,8 @@ class NormasController extends Controller
      */
     public function create()
     {
-        return view('norma.store');
+        $detect = new Mobile_Detect;
+        return view("norma.store",compact('detect'));
     }
 
     /**
@@ -67,8 +70,9 @@ class NormasController extends Controller
      */
     public function edit($id_norma)
     {
+        $detect = new Mobile_Detect;
         $dados = Norma::find($id_norma);
-        return view('norma.edit')->with('dados',$dados);
+        return view("norma.edit",compact('dados','detect'));
     }
 
     /**
@@ -102,4 +106,13 @@ class NormasController extends Controller
         $dados->delete();
         return redirect()->action('NormasController@index')->with('success', 'Excluído com Sucesso!');
     }
+    public function geraPDF()
+    {
+        $dados = Norma::all()->sortBy('numero_norma');
+        return \PDF::loadView('relatorios.relatorionormas', compact('dados'))
+            ->setPaper('A4-P', 'landscape')
+            ->download('Relatorio_Normas.pdf');
+    }
+
+
 }

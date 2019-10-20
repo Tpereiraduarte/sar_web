@@ -8,6 +8,7 @@ use App\Http\Requests\PerguntasFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Mobile_Detect;
 
 class PerguntasController extends Controller
 {
@@ -18,9 +19,9 @@ class PerguntasController extends Controller
      */
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = Pergunta::all();
-        
-        return view('pergunta.index')->with('dados',$dados);
+        return view("pergunta.index",compact('dados','detect'));
     }
 
     /**
@@ -30,8 +31,9 @@ class PerguntasController extends Controller
      */
     public function create()
     {
-        $dados = Norma::all();
-        return view('pergunta.store')->with('dados',$dados);
+        $detect = new Mobile_Detect;
+        $dados = Norma::all()->sortBy("numero_norma");
+        return view("pergunta.store",compact('dados','detect'));
     }
     
     public function dinamico(Request $request)
@@ -41,6 +43,7 @@ class PerguntasController extends Controller
                 ->where('norma_id',$value)
                 ->select('id_paragrafo','norma_id','numero_paragrafo','descricao')
                 ->groupBy('id_paragrafo','norma_id','numero_paragrafo','descricao')
+                ->orderBy('paragrafos.numero_paragrafo', 'asc')
                 ->get();
         $resultado ='<option value="">Escolha o paragrafo desejado</option>';
         foreach($data as $key => $row){
@@ -54,6 +57,7 @@ class PerguntasController extends Controller
         $value = $request->get('value2');
         $dados = DB::table('subparagrafos')
                     ->where('paragrafo_id',$value)
+                    ->orderBy('subparagrafos.numero_paragrafo', 'asc')
                     ->get();
         $resultado ='<div>';
             foreach($dados as $key => $row){
@@ -99,9 +103,11 @@ class PerguntasController extends Controller
      */
     public function edit($id_pergunta)
     {
+        $detect = new Mobile_Detect;
         $dados = Pergunta::find($id_pergunta);
-        $dadosNorma = Norma::all();
-        return view('pergunta.edit')->with('dados',$dados)->with('dadosNorma',$dadosNorma);
+        $dadosNorma = Norma::all()->sortBy("numero_norma");
+        //return view('pergunta.edit')->with('dados',$dados)->with('dadosNorma',$dadosNorma);
+        return view("pergunta.edit",compact('dados','dadosNorma','detect'));
     }
 
     /**
@@ -134,6 +140,13 @@ class PerguntasController extends Controller
         $dados = Pergunta::find($id_pergunta);
         $dados->delete();
         return redirect()->action('PerguntasController@index')->with('success', 'Excluído com Sucesso!');
+    }
+    public function geraPDF()
+    {
+        $dados = Pergunta::all();
+        return \PDF::loadView('relatorios.relatorioperguntas', compact('dados'))
+            ->setPaper('a4', 'landscape')
+            ->download('Relatorio_Perguntas.pdf');
     }
 }
 

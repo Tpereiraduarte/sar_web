@@ -17,15 +17,12 @@
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">{{$dados->titulo}}</h3>
+                <h6>#OS - {{$numero_ordemservico}}</h6>
             </div>
             <form id="myform" role="form" action="{{ action('RespostaFormulariosController@store') }}" method="POST" enctype="multipart/form-data">
             @csrf 
                 @if(!empty($dados) && !empty($lista))
                     <div class="box-body">
-                        <div class="form-group">
-                            <label for="Titulo">Ordem de Serviço</label>
-                            <input type="text" class="form-control" id="ordem" placeholder="Número da ordem de serviço" name="ordem" maxlength="15" size="50" required>
-                        </div>
                         <div class="box-body">
                             <table id="respostas" class="table table-bordered table-hover">
                                 <thead>
@@ -36,15 +33,15 @@
                                 <tbody>
                                     @foreach($lista as $key => $valor)
                                         <tr>
-                                            <td>
-                                                <label>{{$valor->pergunta->pergunta}}</label>
-                                                <input type="hidden" class="form-control" name="pergunta[]" value="{{$valor->pergunta->pergunta}}" required readonly>
-                                                <div class="form-group">
-                                                    <label>Sim <input class="reposta-sim" type="radio" name="valor[{{$key}}]" value="S" required></label>
-                                                    <label>Não <input class="start-video" type="radio" name="valor[{{$key}}]" value="N" required></label>
-                                                    <input style="display:none;" class="foto" type="file" name="foto[]" accept="image/*" capture="camera" id="camera">
-                                                </div>
-                                            </td>
+                                        <td>
+                                            <label>{{$valor->pergunta->pergunta}}</label>
+                                            <input type="hidden" class="form-control" name="pergunta[]" value="{{$valor->pergunta->pergunta}}" required readonly>
+                                            <div class="form-group">
+                                                <label>Sim <input class="reposta-sim" type="radio" name="valor[{{$key}}]" value="S" required></label>
+                                                <label>Não <input class="start-video" type="radio" name="valor[{{$key}}]" value="N" required></label>
+                                                <input style="display:none;" class="foto" type="file" name="foto[]" accept="image/*" capture="camera" id="camera">
+                                            </div>
+                                        </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -55,7 +52,19 @@
                                 <span class="sem-dados">Não há perguntas Cadastradas</span>
                             </div>
                         @endif
+                    <div class="form-group">
+                        <label for="Observacao">Observação</label>
+                        <textarea class="form-control" id="observacao" placeholder="Observacao" name="observacao" maxlength="300" rows="2" cols="50"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="Observacao">O serviço foi Concluído?</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Sim <input type="radio" name="conclusao_servico" value="S" required></label>
+                        <label>Não <input type="radio" name="conclusao_servico" value="N" required></label>
+                    </div>
                 </div>
+                <td><input type="hidden" id="id_ordemservico" name="id_ordemservico" value="{{$id_ordemservico}}"></td>
                 <td><input type="hidden" id="geocalizacao" name="geocalizacao" value=""></td>
                 <td><input type="hidden" class="form-control" id="titulo" name="titulo" value="{{$dados->titulo}}" required></td>
                 <div class="box-footer">

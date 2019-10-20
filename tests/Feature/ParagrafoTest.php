@@ -66,7 +66,7 @@ class ParagrafoTest extends TestCase
     {
         $usuario = factory(User::class)->create();
         $response = $this->actingAs($usuario)
-        ->get('paragrafo');
+        ->get('inicio');
         $response->assertStatus(200);
     }
 

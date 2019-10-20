@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Perfil::class, function (Faker $faker) {
     return [
-        'nome'  => 'Novo Perfil',
-        'usuario_alteracao' => 'Sistema'
+        'nome'  => $faker->name,
+        'usuario_alteracao' => $faker->name
     ];
 });

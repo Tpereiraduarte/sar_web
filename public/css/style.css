@@ -1,8 +1,9 @@
 .acoes-lista{
     display: -webkit-box;
+    font-size: 20px;
 }
 #edit{
-    color:#67a6a6;
+    color:#047d80;
 }
 #delete{
     color:#f00;
@@ -97,11 +98,50 @@
     font-size: 20px;
 }
 .custom {
-    background-color: #003334 !important;
+    background-color: #047d80 !important;
+    /* background-color: #3844d8 !important;  */
     font-size: 14px !important;
     position: relative;
     border:none !important;
-    width: 110px !important; 
-    height: 35px !important;
+    /* width: 110px !important; 
+    height: 35px !important; */
     border-radius: 3px !important;
+    padding: 15px;
+    margin-left:15px;
+}
+.custom-pdf{
+    background-color: #f00 !important;
+    
+    font-size: 14px !important;
+    font-weight: bold;
+    position: relative;
+    border:none !important;
+    border-radius: 3px !important;
+}
+.fa-file-pdf-o{
+    font-weight: bold;
+    font-size: 19px !important;
+}
+
+.titulo-sistema {
+    color: #fff;
+    font-size: 1.8em;
+    font-weight: bold;
+    font-style: italic;
+    padding: 6px;
+    position: absolute;
+
+}
+
+.table-checklist{
+    text-align: center;
+}
+.opcao-checklist{
+    margin-right: 20px;
+}
+.observacao{
+    background-color: #fff700;
+    padding: 10px;
+    border-radius: 4px;
+    color: #000;
 }

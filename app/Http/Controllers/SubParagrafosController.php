@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SubParagrafo;
+use App\Models\Norma;
 use App\Models\Paragrafo;
+use App\Models\SubParagrafo;
 use App\Http\Requests\SubParagrafosFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Mobile_Detect;
 
 class SubParagrafosController extends Controller
 {
@@ -18,8 +20,9 @@ class SubParagrafosController extends Controller
      */
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = SubParagrafo::all();
-        return view('subparagrafo.index')->with('dados',$dados);
+        return view("subparagrafo.index",compact('dados','detect'));
     }
 
     /**
@@ -29,8 +32,9 @@ class SubParagrafosController extends Controller
      */
     public function create()
     {
-        $dados = Paragrafo::all();
-        return view('subparagrafo.store')->with('dados',$dados);
+        $detect = new Mobile_Detect;
+        $dados = Norma::all()->sortBy("numero_norma");
+        return view("subparagrafo.store",compact('dados','detect'));
     }
 
     /**
@@ -70,9 +74,22 @@ class SubParagrafosController extends Controller
      */
     public function edit($id_subparagrafo)
     {
-        $dados = SubParagrafo::find($id_subparagrafo);
-        $dadosParagrafo = Paragrafo::all();
-        return view('subparagrafo.edit')->with('dados',$dados)->with('dadosParagrafo',$dadosParagrafo);
+        $detect = new Mobile_Detect;
+        $dadosNorma = Norma::all()->sortBy("numero_norma");
+        $dados = DB::table('normas')
+        ->join('paragrafos','normas.id_norma','=','paragrafos.norma_id')
+        ->join('subparagrafos','paragrafos.id_paragrafo','=','subparagrafos.paragrafo_id')
+        ->select('normas.id_norma',
+                'paragrafos.id_paragrafo',
+                'subparagrafos.id_subparagrafo',
+                'normas.numero_norma',
+                'paragrafos.numero_paragrafo',
+                'subparagrafos.numero_paragrafo as numero_subparagrafo',
+                'paragrafos.descricao',
+                'subparagrafos.descricao')
+        ->where('subparagrafos.id_subparagrafo',$id_subparagrafo)
+        ->get();
+        return view("subparagrafo.edit",compact('dados','dadosNorma','detect'));
     }
 
     /**
@@ -106,5 +123,13 @@ class SubParagrafosController extends Controller
         $dados = SubParagrafo::find($id_subparagrafo);
         $dados->delete();
         return redirect()->action('SubParagrafosController@index')->with('success', 'Excluído com Sucesso!');
+    }
+
+    public function geraPDF()
+    {
+        $dados = SubParagrafo::all()->sortBy('numero_paragrafo');
+        return \PDF::loadView('relatorios.relatoriosubparagrafo', compact('dados'))
+            ->setPaper('a4', 'landscape')
+            ->download('Relatorio_Sub_Paragrafo.pdf');
     }
 }

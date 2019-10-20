@@ -74,7 +74,7 @@ class UsuarioPerfilTest extends TestCase
         $response->assertStatus(302);
     }
 
-    public function test_rota_usuarioperfil_edit_com_autenticacao()
+    public function test_rota_usuario_perfil_edit_com_autenticacao()
     {
         $usuario = factory(User::class)->create();
         $usuarioperfil = factory(UsuarioPerfil::class)->create();
@@ -82,14 +82,14 @@ class UsuarioPerfilTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_rota_usuarioperfil_create_sem_autenticacao()
+    public function test_rota_usuario_perfil_create_sem_autenticacao()
     {
         $usuarioperfil = factory(UsuarioPerfil::class)->create();
         $response = $this->get('usuarioperfil/create');
         $response->assertStatus(302);
     }
 
-    public function test_rota_usuarioperfil_create_com_autenticacao()
+    public function test_rota_usuario_perfil_create_com_autenticacao()
     {
         $usuario = factory(User::class)->create();
         $usuarioperfil = factory(UsuarioPerfil::class)->create();
@@ -119,7 +119,7 @@ class UsuarioPerfilTest extends TestCase
         $acao->assertStatus(302);
     }
 
-    public function test_editar_usuarioperfi_view()
+    public function test_editar_usuario_perfil_view()
     {
         $usuario = factory(User::class)->create();
         $usuarioperfil = factory(UsuarioPerfil::class)->create();
@@ -141,7 +141,7 @@ class UsuarioPerfilTest extends TestCase
         $acao->assertStatus(200);
     }
 
-    public function test_deletar_usuarioperfi_view()
+    public function test_deletar_usuario_perfil_view()
     {
         $usuario = factory(User::class)->create();
         $usuarioperfil = factory(UsuarioPerfil::class)->create();        

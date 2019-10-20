@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group">
                   <label for="Paragrafo">Parágrafo</label>
-                  <input type="text" class="form-control" id="paragrafo" placeholder="Parágrafo" maxlength="15" name="numero_paragrafo" size="50" required>
+                  <input type="text" onkeypress="return onlynumber();" class="form-control" id="paragrafo" placeholder="Parágrafo" maxlength="15" name="numero_paragrafo" size="50" required>
                 </div>
                 <div class="form-group">
                   <label for="descricao">Descrição</label>
@@ -58,4 +58,7 @@
     }
     </style>
 </div>
+@push('scripts')
+<script src="{{ url('js/onlynumber.js') }}"></script>
+@endpush
 @endsection

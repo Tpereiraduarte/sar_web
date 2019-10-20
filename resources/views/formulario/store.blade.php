@@ -55,14 +55,14 @@
             @endif
               </div>
               <div class="box-footer">
-                <a href="{{URL::route('formulario.index')}}" title="Voltar" class="btn btn-primary">Voltar</a>
+                <a href="{{URL::route('inicio')}}" title="Voltar" class="btn btn-primary">Voltar</a>
                 <button type="submit" id="frm-checklist" class="btn btn-primary">Cadastrar</button>
               </div>
             </form>
         </div>
     </div>
 </div>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script>
 
 $(document).ready( function () {
@@ -77,7 +77,6 @@ $(document).ready( function () {
     "language": {
         "lengthMenu": "Exibe _MENU_ Registros por página",
             "search": "Pesquisar :",
-            //"paginate": { "previous": "Anterior", "next" : "Próximo"},
             "oPaginate": {
                 "sFirst": "Início",
                 "sPrevious": "Anterior",

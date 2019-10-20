@@ -7,23 +7,12 @@ use App\Models\SubParagrafo;
 use Faker\Generator as Faker;
 
 $factory->define(SubParagrafo::class, function (Faker $faker) {
-    $norma = Norma::create([
-        'numero_norma'    =>  '55',
-        'descricao' =>  'Nova Norma',
-        'usuario_alteracao' => 'Sistema'
-    ]); 
-
-    $paragrafo = Paragrafo::create([
-        'norma_id'  =>  $norma->id_norma,
-        'numero_paragrafo'    =>  '55.1',
-        'descricao' =>  'Novo Paragrafo',
-        'usuario_alteracao' => 'Sistema'
-    ]); 
-
+    $norma = factory(Norma::class)->create();
+    $paragrafo = factory(Paragrafo::class)->create();
     return [
         'paragrafo_id'  =>  $paragrafo->id_paragrafo,
-        'numero_paragrafo'    =>  '55.1.1',
-        'descricao' =>  'Novo SubParagrafo',
-        'usuario_alteracao' => 'Sistema'
+        'numero_paragrafo'    =>  $faker->unique()->numberBetween($min = 50, $max = 99999),
+        'descricao' =>  $faker->name,
+        'usuario_alteracao' => $faker->name
     ];
 });

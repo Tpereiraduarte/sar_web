@@ -24,7 +24,7 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="Numero da Norma">Número da Norma</label>
-                  <input type="text" class="form-control" id="numero" placeholder="Número da Normas" name="numero_norma" value="{{$dados->numero_norma}}" maxlength="2" size="50" required>
+                  <input type="text" onkeypress="return onlynumber();" class="form-control" id="numero" placeholder="Número da Normas" name="numero_norma" value="{{$dados->numero_norma}}" maxlength="2" size="50" required>
                 </div>
                 <div class="form-group">
                   <label for="descricao">Descrição</label>
@@ -40,4 +40,7 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script src="{{ url('js/onlynumber.js') }}"></script>
+@endpush
 @endsection

@@ -7,6 +7,7 @@ use App\Http\Requests\PerfilFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Mobile_Detect;
 
 class PerfilsController extends Controller
 {
@@ -17,8 +18,9 @@ class PerfilsController extends Controller
      */
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = Perfil::all();
-        return view('perfil.index')->with('dados',$dados);
+        return view("perfil.index",compact('dados','detect'));
     }
 
     /**
@@ -28,7 +30,8 @@ class PerfilsController extends Controller
      */
     public function create()
     {
-        return view('perfil.store');
+        $detect = new Mobile_Detect;
+        return view("perfil.store",compact('detect'));
     }
 
     /**
@@ -66,8 +69,9 @@ class PerfilsController extends Controller
      */
     public function edit($id_perfil)
     {
+        $detect = new Mobile_Detect;
         $dados = Perfil::find($id_perfil);
-        return view('perfil.edit')->with('dados',$dados);
+        return view("perfil.edit",compact('dados','detect'));
     }
 
     /**
@@ -98,5 +102,13 @@ class PerfilsController extends Controller
         $dados = Perfil::find($id_perfil);
         $dados->delete();
         return redirect()->action('PerfilsController@index')->with('success', 'Excluído com Sucesso!');
+    }
+
+    public function geraPDF()
+    {
+        $dados = Perfil::all()->sortBy('nome');
+        return \PDF::loadView('relatorios.relatorioperfils', compact('dados'))
+            ->setPaper('A4-P', 'landscape')
+            ->download('Relatorio_Perfil.pdf');
     }
 }

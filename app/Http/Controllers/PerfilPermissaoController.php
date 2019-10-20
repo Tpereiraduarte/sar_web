@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Gate;
+use Mobile_Detect;
 
 class PerfilPermissaoController extends Controller
 {
@@ -19,9 +20,10 @@ class PerfilPermissaoController extends Controller
 
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = Perfilpermissao::all();
         Gate::allows('usuario-view',$dados);
-        return view('perfilpermissao.index')->with('dados',$dados);
+        return view("perfilpermissao.index",compact('dados','detect'));
     }
     /**
      * Show the form for creating a new resource.
@@ -31,9 +33,10 @@ class PerfilPermissaoController extends Controller
 
     public function create()
     {
+        $detect = new Mobile_Detect;
         $perfil  = Perfil::all();
         $permissao  = Permissao::all();
-        return view('perfilpermissao.store')->with('perfil',$perfil)->with('permissao',$permissao);
+        return view("perfilpermissao.store",compact('perfil','permissao','detect'));
     }
     /**
      * Store a newly created resource in storage.
@@ -71,10 +74,11 @@ class PerfilPermissaoController extends Controller
 
     public function edit($id_perfilpermissao)
     {
+        $detect = new Mobile_Detect;
         $dados = Perfilpermissao::find($id_perfilpermissao);
         $permissao = Permissao::all();
         $perfil  = Perfil::all();
-        return view('perfilpermissao.edit')->with('permissao',$permissao)->with('perfil',$perfil)->with('dados', $dados);
+        return view("perfilpermissao.edit",compact('permissao','perfil','dados','detect'));
     }
 
     /**
@@ -107,5 +111,12 @@ class PerfilPermissaoController extends Controller
         $dados = Perfilpermissao::find($id_perfilpermissao);
         $dados->delete();
         return redirect()->action('PerfilPermissaoController@index')->with('message', 'Permissão excluida com Sucesso!');
+    }
+    public function geraPDF()
+    {
+        $dados = Perfilpermissao::all();
+        return \PDF::loadView('relatorios.relatorioperfilpermissao', compact('dados'))
+            ->setPaper('a4', 'landscape')
+            ->download('Relatorio_Perfil_Permissao.pdf');
     }
 }

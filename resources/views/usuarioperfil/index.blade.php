@@ -4,10 +4,11 @@
 @endsection
 @section('conteudo')
 <div class="row">
-    <div class="col-xs-2">
-        <a id="list" href="{{URL::route('usuarioperfil.create')}}" title="Cadastrar" class="btn btn-primary custom">Cadastrar</a>
-    </div>
-</div>
+    <div class="col">
+        <a id="list" href="{{URL::route('usuarioperfil.create')}}" title="Novo Perfil Usuário" class="btn btn-primary custom"><i class="fa fa-users"></i> Novo Perfil Usuário</a>
+        <a id="list" href="{{URL::route('relatorios.relatoriousuarioperfil')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
+    </div> 
+</div>     
 @if(!empty($dados) && count($dados) > 0)
 <div class="box">
     <div class="box-header">
@@ -44,7 +45,7 @@
             </tbody>
         </table>
     </div>
-</div>     
+</div>
 @else
     <div class="sem-dados">
         <span class="sem-dados">Não há perfis de usuários Cadastradas</span>
