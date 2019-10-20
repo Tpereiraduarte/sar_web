@@ -37,17 +37,17 @@ class InicioController extends Controller
     	//Gate::allows('usuario-view',$permissao);
     	//dd($permissao);
     	//return view('inicio')->with('Permissao',$permissoes);
-        $ordempendente = $this->ordemservicospendentes();
-        $ordemrealizado = $this->ordemservicosrealizados();
+        $ordempendente = $this->ordemServicosPendentes();
+        $ordemrealizado = $this->ordemServicosRealizados();
 
-        $quantidadeordemservico = $this->quantidadeordemservico();
+        $quantidadeordemservico = $this->quantidadeOrdemServico();
         return view('inicio')
         ->with('quantidadeordemservico',$quantidadeordemservico)
         ->with('ordempendente',$ordempendente)
         ->with('ordemrealizado',$ordemrealizado);
     }
 
-    public function quantidadeordemservico(){
+    public function quantidadeOrdemServico(){
         $pendente = DB::table('ordem_servicos')
         ->select(DB::raw('count(status) as pendente'))->where('status','P')->get();
     
@@ -60,12 +60,12 @@ class InicioController extends Controller
         return [$pendente, $finalizado, $cancelado];
     }
 
-    public function ordemservicospendentes(){
+    public function ordemServicosPendentes(){
         $dados = DB::table('ordem_servicos')->where('status','P')->take(5)->get();        
         return $dados;
     }
 
-    public function ordemservicosrealizados(){
+    public function ordemServicosRealizados(){
         $dados = DB::table('ordem_servicos')->where('status','<>','P')->take(5)->get();        
         return $dados;
     }

@@ -68,6 +68,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ url('/ordemservico/')}}"><i class="fa fa-angle-right"></i>Incumbir Serviço</a></li>
+                    <li><a href="{{ url('/resposta/')}}"><i class="fa fa-angle-right"></i>Resposta dos Serviços</a></li>
                 </ul>
             </li>
         </ul>

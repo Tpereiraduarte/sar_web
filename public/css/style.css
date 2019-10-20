@@ -139,5 +139,9 @@
 .opcao-checklist{
     margin-right: 20px;
 }
-
-
+.observacao{
+    background-color: #fff700;
+    padding: 10px;
+    border-radius: 4px;
+    color: #000;
+}

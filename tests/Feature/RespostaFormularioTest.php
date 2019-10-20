@@ -23,8 +23,8 @@ class RespostaFormularioTest extends TestCase
             'valor' =>  $reposta->valor,
             'localizacao'   =>  $reposta->localizacao,
             'imagem'    =>  $reposta->imagem,
-            'status'    =>  $reposta->status,
             'observacao'    =>  $reposta->observacao,
+            'conclusao_servico'    =>  $reposta->conclusao_servico,
             'usuario_alteracao' => $reposta->usuario_alteracao
         ]);
     }

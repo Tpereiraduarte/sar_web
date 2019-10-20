@@ -26,7 +26,7 @@ class UserFormRequest extends FormRequest
         return  [
             'matricula' =>  'required|unique:users|max:5',
             'nome'      => 'required|max:100',
-            'password'  => 'required|max:10',
+            'password'  => 'required|min:8|max:15',
             'email'     =>'required|unique:users|max:50'          
         ];
     }
@@ -38,7 +38,8 @@ class UserFormRequest extends FormRequest
             'nome.required' => 'O preenchimento do nome é obrigatório',
             'nome.max' => 'O nome tem que ter menos que 100 caracteres',
             'password.required' => 'O preenchimento da senha é obrigatório',
-            'password.max' => 'A senha tem que ter menos que 100 caracteres',
+            'password.min' => 'A senha tem que ter menos que 8 caracteres',
+            'password.max' => 'A senha tem que ter menos que 15 caracteres',
             'email.unique' => 'Já existe esse email cadastro.'
         ];
     }

@@ -24,7 +24,8 @@ class RespostaFormulariosController extends Controller
             ->select('resposta_formularios.ordemservico_id',
                     'resposta_formularios.titulo_formulario',
                     'ordem_servicos.numero_ordem_servico',
-                    'resposta_formularios.conclusao_servico')
+                    'resposta_formularios.conclusao_servico',
+                    'resposta_formularios.created_at')
             ->distinct()
             ->orderBy('ordem_servicos.numero_ordem_servico', 'asc')
             ->get();
@@ -73,10 +74,9 @@ class RespostaFormulariosController extends Controller
         $fotos     = $request->foto;
         
         $imagem = $request->hasFile('foto');
-        $nome   = $this->separadadosimagem($fotos, $imagem, $perguntas);
-        $status = $this->confereStatus($valores);
+        $nome   = $this->separaDadosImagem($fotos, $imagem, $perguntas);
         
-        $ordemservico = $this->alterastatusordemservico(
+        $ordemservico = $this->alteraStatusOrdemServico(
             $request->conclusao_servico, 
             $request->id_ordemservico
         );
@@ -89,25 +89,16 @@ class RespostaFormulariosController extends Controller
             $dados->valor             = $valores[$i];
             $dados->localizacao       = $request->geocalizacao;
             $dados->imagem            = $nome[$i];
-            $dados->status            = $status;
             $dados->observacao        = $request->observacao;
+            $dados->conclusao_servico = $request->conclusao_servico;
             $dados->usuario_alteracao = Auth()->user()->nome;
             //dd($dados);
             $dados->save();
         }
         return redirect()->action('RespostaFormulariosController@tiposervico')->with('success', 'Cadastrado com Sucesso!');
     }
-    
-    public function confereStatus($valores)
-    {
-        if(in_array('N', $valores)){
-            return $status = "Indeferido";
-        }else{
-            return $status = "Concluído";
-        }
-    }
 
-    public function separadadosimagem($fotos, $imagem, $perguntas){      
+    public function separaDadosImagem($fotos, $imagem, $perguntas){      
         for ($n=0; $n < count($perguntas); $n++) { 
             $nome[$n] = "";
         }
@@ -121,7 +112,7 @@ class RespostaFormulariosController extends Controller
         return $nome;
     }
 
-    public function alterastatusordemservico($reposta,$id_ordemservico){      
+    public function alteraStatusOrdemServico($reposta,$id_ordemservico){      
         if($reposta == 'S'){
             
             $dados = OrdemServico::find($id_ordemservico);
@@ -142,6 +133,22 @@ class RespostaFormulariosController extends Controller
     public function show($ordemservico_id)
     {
         $dados = RespostaFormulario::where('ordemservico_id','=',$ordemservico_id)->get();
-        return view('resposta.show')->with('dados',$dados);
+        $ordemservico = OrdemServico::where('id_ordemservico','=',$ordemservico_id)->get();
+        return view('resposta.show')->with('dados',$dados)->with('ordemservico',$ordemservico);
+    }
+
+    public function historico()
+    {
+        $id_usuario = Auth()->user()->id_usuario;
+        $dados = DB::table('resposta_formularios')
+            ->join('ordem_servicos','resposta_formularios.ordemservico_id','=','ordem_servicos.id_ordemservico')
+            ->where('ordem_servicos.usuario_id',$id_usuario)
+            ->select('resposta_formularios.titulo_formulario',
+                    'ordem_servicos.numero_ordem_servico',
+                    'resposta_formularios.created_at')
+            ->distinct()
+            ->orderBy('ordem_servicos.numero_ordem_servico', 'asc')
+            ->get();
+        return view('resposta.historico')->with('dados',$dados);
     }
 }

@@ -17,7 +17,7 @@
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">{{$dados->titulo}}</h3>
-                <h6>#OR - {{$numero_ordemservico}}</h6>
+                <h6>#OS - {{$numero_ordemservico}}</h6>
             </div>
             <form id="myform" role="form" action="{{ action('RespostaFormulariosController@store') }}" method="POST" enctype="multipart/form-data">
             @csrf 
@@ -33,17 +33,15 @@
                                 <tbody>
                                     @foreach($lista as $key => $valor)
                                         <tr>
-                                            <td>
-                                                <label>{{$valor->pergunta->pergunta}}</label>
-                                                <input type="hidden" class="form-control" name="pergunta[]" value="{{$valor->pergunta->pergunta}}" required readonly>
-                                                <div class="form-group">
-                                                  <div class="btn" data-toggle="buttons">
-                                                    <label class="btn btn-success btn-lg opcao-checklist">Sim <input  type="radio" name="valor[{{$key}}]"  value="S" required></label>
-                                                    <label class="btn btn-danger btn-lg ">Não <input  type="radio" name="valor[{{$key}}]"  value="N" required></label>
-                                                    <input style="display:none;" class="foto" type="file" name="foto[]" accept="image/*" capture="camera" id="camera">
-                                                  </div>
-                                                </div>
-                                            </td>
+                                        <td>
+                                            <label>{{$valor->pergunta->pergunta}}</label>
+                                            <input type="hidden" class="form-control" name="pergunta[]" value="{{$valor->pergunta->pergunta}}" required readonly>
+                                            <div class="form-group">
+                                                <label>Sim <input class="reposta-sim" type="radio" name="valor[{{$key}}]" value="S" required></label>
+                                                <label>Não <input class="start-video" type="radio" name="valor[{{$key}}]" value="N" required></label>
+                                                <input style="display:none;" class="foto" type="file" name="foto[]" accept="image/*" capture="camera" id="camera">
+                                            </div>
+                                        </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -62,8 +60,8 @@
                         <label for="Observacao">O serviço foi Concluído?</label>
                     </div>
                     <div class="form-group">
-                        <label>Sim <input class="" type="radio" name="conclusao_servico" value="S" required></label>
-                        <label>Não <input class="" type="radio" name="conclusao_servico" value="N" required></label>
+                        <label>Sim <input type="radio" name="conclusao_servico" value="S" required></label>
+                        <label>Não <input type="radio" name="conclusao_servico" value="N" required></label>
                     </div>
                 </div>
                 <td><input type="hidden" id="id_ordemservico" name="id_ordemservico" value="{{$id_ordemservico}}"></td>

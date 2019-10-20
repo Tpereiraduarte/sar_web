@@ -26,13 +26,13 @@
                         <select class="form-control" id="ordemservico_id" name="ordemservico_id" aria-required="true" required> 
                             <option selected disabled value="">Escolha a ordem de serviço</option>
                             @foreach($dados as $value)
-                              <option value="{{$value->id_ordemservico}}">OR{{$value->numero_ordem_servico}}</option>
+                              <option value="{{$value->id_ordemservico}}">OS{{$value->numero_ordem_servico}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="box-footer">
-                    <a href="{{URL::route('resposta.tiposervico')}}" title="Voltar" class="btn btn-primary">Voltar</a>
+                    <a href="{{URL::route('inicio')}}" title="Voltar" class="btn btn-primary">Voltar</a>
                     <button type="submit" class="btn btn-primary">Continuar</button>
                 </div>
             </form>
