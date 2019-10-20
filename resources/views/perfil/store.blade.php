@@ -23,7 +23,7 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="Perfil">Nome do perfil</label>
-                  <input type="text" class="form-control" id="perfil" placeholder="Ex: Administrador" name="nome" maxlength="50" required>
+                  <input type="text" onkeypress="return lettersOnly(event);" class="form-control" id="perfil" placeholder="Ex: Administrador" name="nome" maxlength="50" required>
                 </div>
               </div>
               <div class="box-footer">
@@ -35,4 +35,5 @@
         </div>
     </div>
 </div>
+<script src="{{ url('js/onlytext.js') }}"></script>
 @endsection

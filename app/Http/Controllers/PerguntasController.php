@@ -8,6 +8,7 @@ use App\Http\Requests\PerguntasFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Mobile_Detect;
 
 class PerguntasController extends Controller
 {
@@ -18,9 +19,9 @@ class PerguntasController extends Controller
      */
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = Pergunta::all();
-        
-        return view('pergunta.index')->with('dados',$dados);
+        return view("pergunta.index",compact('dados','detect'));
     }
 
     /**
@@ -30,8 +31,9 @@ class PerguntasController extends Controller
      */
     public function create()
     {
+        $detect = new Mobile_Detect;
         $dados = Norma::all()->sortBy("numero_norma");
-        return view('pergunta.store')->with('dados',$dados);
+        return view("pergunta.store",compact('dados','detect'));
     }
     
     public function dinamico(Request $request)
@@ -101,9 +103,11 @@ class PerguntasController extends Controller
      */
     public function edit($id_pergunta)
     {
+        $detect = new Mobile_Detect;
         $dados = Pergunta::find($id_pergunta);
         $dadosNorma = Norma::all()->sortBy("numero_norma");
-        return view('pergunta.edit')->with('dados',$dados)->with('dadosNorma',$dadosNorma);
+        //return view('pergunta.edit')->with('dados',$dados)->with('dadosNorma',$dadosNorma);
+        return view("pergunta.edit",compact('dados','dadosNorma','detect'));
     }
 
     /**

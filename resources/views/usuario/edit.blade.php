@@ -24,7 +24,7 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="name">Usuário:</label>
-                        <input id="name" class="form-control" name="nome" type="text" value="{{$dados->nome}}" size="50"/>
+                        <input id="name" class="form-control" name="nome" onkeypress="return lettersOnly(event);" type="text" value="{{$dados->nome}}" size="50"/>
                     </div>
                     <div class="form-group">
                         <label for="email">e-mail:</label>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group">    
                         <label  for="matricula">Matricula:</label>
-                        <input id="matricula" class="form-control" name="matricula" type="text" value="{{$dados->matricula}}" size="20" required readonly/>
+                        <input id="matricula" onkeypress="return onlynumber();" class="form-control" name="matricula" type="text" value="{{$dados->matricula}}" size="20" required readonly/>
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha:</label>
@@ -52,9 +52,16 @@
         </div>
     </div>
 </div>  
+@if($detect->isMobile())
+@else
 <div class="row">  
 <div class="col-md-6">
     <img src="{{Storage::url('/fotos_usuarios/'.Auth::user()->imagem)}}" class="img-circle" alt="User Image">
     </div>   
-</div>     
+</div> 
+@endif
+@push('scripts')
+<script src="{{ url('js/onlynumber.js') }}"></script>
+<script src="{{ url('js/onlytext.js') }}"></script>
+@endpush
 @endsection

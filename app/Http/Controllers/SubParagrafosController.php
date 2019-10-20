@@ -9,6 +9,7 @@ use App\Http\Requests\SubParagrafosFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Mobile_Detect;
 
 class SubParagrafosController extends Controller
 {
@@ -19,8 +20,9 @@ class SubParagrafosController extends Controller
      */
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = SubParagrafo::all();
-        return view('subparagrafo.index')->with('dados',$dados);
+        return view("subparagrafo.index",compact('dados','detect'));
     }
 
     /**
@@ -30,8 +32,9 @@ class SubParagrafosController extends Controller
      */
     public function create()
     {
+        $detect = new Mobile_Detect;
         $dados = Norma::all()->sortBy("numero_norma");
-        return view('subparagrafo.store')->with('dados',$dados);
+        return view("subparagrafo.store",compact('dados','detect'));
     }
 
     /**
@@ -71,6 +74,7 @@ class SubParagrafosController extends Controller
      */
     public function edit($id_subparagrafo)
     {
+        $detect = new Mobile_Detect;
         $dadosNorma = Norma::all()->sortBy("numero_norma");
         $dados = DB::table('normas')
         ->join('paragrafos','normas.id_norma','=','paragrafos.norma_id')
@@ -85,7 +89,7 @@ class SubParagrafosController extends Controller
                 'subparagrafos.descricao')
         ->where('subparagrafos.id_subparagrafo',$id_subparagrafo)
         ->get();
-        return view('subparagrafo.edit')->with('dados',$dados)->with('dadosNorma',$dadosNorma);
+        return view("subparagrafo.edit",compact('dados','dadosNorma','detect'));
     }
 
     /**

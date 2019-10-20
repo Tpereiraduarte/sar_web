@@ -23,7 +23,7 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="Numero da Normas">Nome da Permissão</label>
-                  <input type="text" class="form-control" id="nome" placeholder="Escreva nome da Permissão" name="nome" maxlength="300" size="50" required>
+                  <input type="text" onkeypress="return lettersOnly(event);" class="form-control" id="nome" placeholder="Escreva nome da Permissão" name="nome" maxlength="300" size="50" required>
                 </div>
                 <div class="form-group">
                   <label for="descricao">Descrição</label>
@@ -39,4 +39,5 @@
         </div>
     </div>
 </div>
+<script src="{{ url('js/onlytext.js') }}"></script>
 @endsection

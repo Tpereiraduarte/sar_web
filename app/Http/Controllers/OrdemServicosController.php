@@ -9,6 +9,8 @@ use App\Http\Requests\OrdemServicosFormRequest;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Mobile_Detect;
+
 
 
 class OrdemServicosController extends Controller
@@ -20,8 +22,9 @@ class OrdemServicosController extends Controller
      */
     public function index()
     {
+        $detect = new Mobile_Detect;
         $dados = OrdemServico::all();
-        return view('ordemservico.index')->with('dados',$dados);
+        return view("ordemservico.index",compact('dados','detect'));
     }
 
     /**
@@ -31,9 +34,10 @@ class OrdemServicosController extends Controller
      */
     public function create()
     {
+        $detect = new Mobile_Detect;
         $usuario = User::all();
         $checklist  = Checklist::all();      
-        return view('ordemservico.store')->with('usuario',$usuario)->with('checklist',$checklist);
+        return view("ordemservico.store",compact('usuario','checklist','detect'));
     }
 
     /**
@@ -83,10 +87,11 @@ class OrdemServicosController extends Controller
      */
     public function edit($id_ordemservico)
     {
+        $detect = new Mobile_Detect;
         $dados = OrdemServico::find($id_ordemservico);
         $usuario = User::all();
         $checklist  = Checklist::all();      
-        return view('ordemservico.edit')->with('usuario',$usuario)->with('checklist',$checklist)->with('dados', $dados);
+        return view("ordemservico.edit",compact('usuario','checklist','dados','detect'));
     }
     
     /**

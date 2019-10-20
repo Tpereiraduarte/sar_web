@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group">
                         <label for="numeroparagrafo">SubParágrafo</label>
-                        <input type="text" class="form-control" id="numeroparagrafo" placeholder="Número do sub-parágrafo" maxlength="999999" name="numero_paragrafo" value="{{$dados[0]->numero_subparagrafo}}" size="50" required>
+                        <input type="text" onkeypress="return onlynumber();" class="form-control" id="numeroparagrafo" placeholder="Número do sub-parágrafo" maxlength="10" name="numero_paragrafo" value="{{$dados[0]->numero_subparagrafo}}" size="50" required>
                     </div>
                     <div class="form-group">
                         <label for="descricao">Descrição</label>
@@ -122,5 +122,6 @@
         }
     }
 </script>
-@endpush 
+<script src="{{ url('js/onlynumber.js') }}"></script>
+@endpush
 @endsection

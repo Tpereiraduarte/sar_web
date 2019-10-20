@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Models\Perfilpermissao;
 use App\Models\Usuarioperfil;
 use App\Models\Permissao;
+use App\Models\Inicio;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Gate;
 use Illuminate\Support\Facades\DB;
@@ -43,12 +44,17 @@ class InicioController extends Controller
     	//return view('inicio')->with('Permissao',$permissoes);
         $ordempendente = $this->ordemServicosPendentes();
         $ordemrealizado = $this->ordemServicosRealizados();
-
         $quantidadeordemservico = $this->quantidadeOrdemServico();
-        return view('inicio')
-        ->with('quantidadeordemservico',$quantidadeordemservico)
-        ->with('ordempendente',$ordempendente)
-        ->with('ordemrealizado',$ordemrealizado);
+
+        if ($detect->isMobile()){
+            return view('iniciomobile')->with('detect',$detect);
+        }else{           
+            return view('inicio')
+            ->with('quantidadeordemservico',$quantidadeordemservico)
+            ->with('ordempendente',$ordempendente)
+            ->with('ordemrealizado',$ordemrealizado)
+            ->with('detect',$detect);
+        }
     }
 
     public function quantidadeOrdemServico(){
