@@ -13,7 +13,7 @@
             right: 0cm;
             height: 2cm;
             /** Extra personal styles **/
-            background-color: rgb(0,139,139);
+            background-color: rgb(32,178,170);
             color: white;
             text-align: center;
             font-family:"Times New Roman";
@@ -28,7 +28,7 @@
             right: 0cm;
             height: 2cm;
             /** Extra personal styles **/
-            background-color: rgb(0,139,139);
+            background-color: rgb(0,128,128);
             color: white;
             text-align: center;
             font-family:"Times New Roman";
@@ -40,20 +40,15 @@
             text-align: center;
             font-family:"Times New Roman";
             font-style: normal;
-            color: #696969;
+            color: #4F4F4F;
         }  
         td{
             text-align: left;
             font-family:"Times New Roman";
             font-style: normal;
-            color: #696969;
+            color: #4F4F4F;
         }  
-        table{
-            border: 1; 
-            margin: 10px;
-            padding-right: 20px;           
-        } 
-        .clearfix {
+       .clearfix {
             clear: both;
         }  
         body {
@@ -61,13 +56,26 @@
             margin-left: 2cm;
             margin-right: 2cm;
             margin-bottom: 2cm;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3));
+            
         }
+        .bg-fundo {            
+            background-image: url("http://localhost:8080/sar_web/public/assets/lte/dist/img/logo.jpg");
+            background-attachment: fixed;
+            background-repeat: repeat-y;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.3;
+        }        
     </style>
 </head>
 <body>
     <header>
         Normas cadastradas SAR-WEB        
    </header>
+   <div class="bg-fundo"></div>
    <br class="clearfix" /><br class="clearfix" />
    <footer>
        <div class="direitos_reservados">
@@ -76,7 +84,7 @@
     </footer>
     <br class="clearfix" />
     <div class="box-body">
-        <table align="center" border=1 cellspacing=0 cellpadding=2 bordercolor="#A9A9A9">
+        <table position="fixed" align="center" border=1 cellspacing=0 cellpadding=2 bordercolor="#A9A9A9">
             <thead>
                 <tr>
                     <th>N° Norma</th>

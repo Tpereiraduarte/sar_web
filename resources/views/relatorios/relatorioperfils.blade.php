@@ -57,12 +57,33 @@
             margin-right: 2cm;
             margin-bottom: 2cm;
         }
+        body {
+            margin-top: 2cm;
+            margin-left: 2cm;
+            margin-right: 2cm;
+            margin-bottom: 2cm;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3));
+            
+        }
+        .bg-fundo {
+            background-image: url("http://localhost:8080/sar_web/public/assets/lte/dist/img/logo.jpg");
+            background-attachment: fixed;
+            background-size: 180px 80px;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.3;
+        }
     </style>
 </head>
 <body>
     <header>
         Perfis cadastrados SAR-WEB        
    </header>
+   <div class="bg-fundo"></div>
    <br class="clearfix" /><br class="clearfix" />
    <footer>
        <div class="direitos_reservados">
