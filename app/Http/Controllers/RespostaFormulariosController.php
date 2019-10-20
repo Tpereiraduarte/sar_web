@@ -60,7 +60,7 @@ class RespostaFormulariosController extends Controller
         $numero_ordemservico = $id_checklist[0]->numero_ordem_servico;
         $dados        = Checklist::find($id_checklist[0]->checklist_id);
         $lista        = Formulario::where('checklist_id', '=', $id_checklist[0]->checklist_id)->get();
-        return view("usuarioperfil.store",compact('lista','dados','numero_ordemservico','id_ordemservico','detect'));
+        return view("resposta.store",compact('lista','dados','numero_ordemservico','id_ordemservico','detect'));
     }
     
     /**
@@ -142,6 +142,7 @@ class RespostaFormulariosController extends Controller
 
     public function historico()
     {
+        $detect = new Mobile_Detect;
         $id_usuario = Auth()->user()->id_usuario;
         $dados = DB::table('resposta_formularios')
             ->join('ordem_servicos','resposta_formularios.ordemservico_id','=','ordem_servicos.id_ordemservico')

@@ -44,7 +44,11 @@
                     </div> 
                     <div class="form-group">
                         <div class="box-footer">
-                            <a href="{{URL::route('usuario.index')}}" title="Voltar" class="btn btn-primary custom">Voltar</a>                    
+                        @if ($detect->isMobile())
+                            <a href="{{URL::route('iniciomobile')}}" title="Voltar" class="btn btn-primary custom">Voltar</a>                    
+                        @else
+                        <a href="{{URL::route('usuario.index')}}" title="Voltar" class="btn btn-primary custom">Voltar</a>                    
+                        @endif
                             <input type="submit" class="btn btn-primary custom" value="Editar" />
                         </div>
                     </div>

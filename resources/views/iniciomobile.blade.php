@@ -45,7 +45,7 @@
         </div>
 
 		<div class="col-lg-3 col-xs-6">
-		<a href="#">
+		<a href="{{ url('/resposta/historico/')}}">
           <div class="small-box bg-green">
             <div class="inner">
               <i class="fa fa-th-list" style="font-size:69px"></i>
