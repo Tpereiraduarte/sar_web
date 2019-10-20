@@ -108,4 +108,11 @@ class PerfilPermissaoController extends Controller
         $dados->delete();
         return redirect()->action('PerfilPermissaoController@index')->with('message', 'Permissão excluida com Sucesso!');
     }
+    public function geraPDF()
+    {
+        $dados = Perfilpermissao::all();
+        return \PDF::loadView('relatorios.relatorioperfilpermissao', compact('dados'))
+            ->setPaper('a4', 'landscape')
+            ->download('Relatorio_Perfil_Permissao.pdf');
+    }
 }

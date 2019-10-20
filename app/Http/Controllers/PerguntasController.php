@@ -135,5 +135,12 @@ class PerguntasController extends Controller
         $dados->delete();
         return redirect()->action('PerguntasController@index')->with('success', 'Excluído com Sucesso!');
     }
+    public function geraPDF()
+    {
+        $dados = Pergunta::all();
+        return \PDF::loadView('relatorios.relatorioperguntas', compact('dados'))
+            ->setPaper('a4', 'landscape')
+            ->download('Relatorio_Perguntas.pdf');
+    }
 }
 

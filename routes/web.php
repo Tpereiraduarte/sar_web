@@ -36,6 +36,22 @@ Route::group(['middleware'=>['auth']],function(){
     Route::post('resposta/servico', 'RespostaFormulariosController@servico')->name('servico');
     Route::get('resposta/tiposervico', 'RespostaFormulariosController@tiposervico')->name('resposta.tiposervico');
     Route::resource('resposta', 'RespostaFormulariosController');
+    
+    
+    
+    
+    
+    //rotas relatórios
+
+    Route::get('relatorios/relatorioperfils', 'PerfilsController@geraPDF')->name('relatorios.relatorioperfils');
+    Route::get('relatorios/relatoriousuarios', 'UsersController@geraPDF')->name('relatorios.relatoriousuarios');
+    Route::get('relatorios/relatoriousuarioperfil', 'UsuarioPerfilController@geraPDF')->name('relatorios.relatoriousuarioperfil');
+    Route::get('relatorios/relatorioperguntas', 'PerguntasController@geraPDF')->name('relatorios.relatorioperguntas');
+    Route::get('relatorios/relatorionormas', 'NormasController@geraPDF')->name('relatorios.relatorionormas');
+    Route::get('relatorios/relatorioparagrafo', 'ParagrafosController@geraPDF')->name('relatorios.relatorioparagrafo');
+    Route::get('relatorios/relatoriosubparagrafo', 'SubParagrafosController@geraPDF')->name('relatorios.relatoriosubparagrafo');
+    Route::get('relatorios/relatoriopermissao', 'PermissaoController@geraPDF')->name('relatorios.relatoriopermissao');
+    Route::get('relatorios/relatorioperfilpermissao', 'PerfilPermissaoController@geraPDF')->name('relatorios.relatorioperfilpermissao');
 });
 
 // Password Reset Routes...

@@ -107,4 +107,11 @@ class ParagrafosController extends Controller
         $dados->delete();
         return redirect()->action('ParagrafosController@index')->with('message', 'Excluído com Sucesso!');
     }
+    public function geraPDF()
+    {
+        $dados = Paragrafo::all()->sortBy('numero_paragrafo');
+        return \PDF::loadView('relatorios.relatorioparagrafo', compact('dados'))
+            ->setPaper('a4', 'landscape')
+            ->download('Relatorio_Paragrafo.pdf');
+    }
 }

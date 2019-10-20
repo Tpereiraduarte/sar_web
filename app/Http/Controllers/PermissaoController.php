@@ -106,4 +106,11 @@ class PermissaoController extends Controller
         $dados->delete();
         return redirect()->action('Permissaoontroller@index')->with('message', 'Deletado com Sucesso!');
     }
+    public function geraPDF()
+    {
+        $dados = Permissao::all();
+        return \PDF::loadView('relatorios.relatoriopermissao', compact('dados'))
+            ->setPaper('a4', 'landscape')
+            ->download('Relatorio_Permissao.pdf');
+        }
 }

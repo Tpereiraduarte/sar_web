@@ -107,4 +107,12 @@ class SubParagrafosController extends Controller
         $dados->delete();
         return redirect()->action('SubParagrafosController@index')->with('success', 'Excluído com Sucesso!');
     }
+
+    public function geraPDF()
+    {
+        $dados = SubParagrafo::all()->sortBy('numero_paragrafo');
+        return \PDF::loadView('relatorios.relatoriosubparagrafo', compact('dados'))
+            ->setPaper('a4', 'landscape')
+            ->download('Relatorio_Sub_Paragrafo.pdf');
+    }
 }

@@ -8,7 +8,7 @@
         <a id="list" href="{{URL::route('perfilpermissao.create')}}" title="Cadastrar" class="btn btn-primary"><i class="fa fa-key"></i> Nova Permissão de Perfil</a>
     </div>
     <div class="mr-2">
-        <a id="list" href="#" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
+        <a id="list" href="{{URL::route('relatorios.relatorioperfilpermissao')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
     </div> 
 </div>
 @if(!empty($dados) && count($dados) > 0)

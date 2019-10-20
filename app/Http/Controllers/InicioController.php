@@ -22,7 +22,9 @@ class InicioController extends Controller
         //$permissao = Perfilpermissao::all();
     	//dd($permissao);
 
-    	$usuario = Auth()->user()->id_usuario;
+        $usuario = Auth()->user()->id_usuario;
+        $formularios = DB::table('formularios')->count();
+        $respostas = DB::table('resposta_formularios')->count();
 
     	//dd($usuario);
 
@@ -38,6 +40,6 @@ class InicioController extends Controller
     	//dd($permissao);
     	//return view('inicio')->with('Permissao',$permissoes);
 
-           return view('inicio',compact('permissoes'));
+           return view('inicio',compact('permissoes'))->with('formularios', $formularios);
     }
- }
+}

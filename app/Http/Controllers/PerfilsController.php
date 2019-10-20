@@ -99,4 +99,12 @@ class PerfilsController extends Controller
         $dados->delete();
         return redirect()->action('PerfilsController@index')->with('success', 'Excluído com Sucesso!');
     }
+
+    public function geraPDF()
+    {
+        $dados = Perfil::all();
+        return \PDF::loadView('relatorios.relatorioperfils', compact('dados'))
+            ->setPaper('a4', 'landscape')
+            ->download('Relatorio_Perfil.pdf');
+    }
 }

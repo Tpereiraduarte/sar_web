@@ -124,5 +124,13 @@ class UsersController extends Controller
         $dados->delete();
         return redirect()->action('UsersController@index')->with('success', 'Excluído com Sucesso!');
     }
+    
+    public function geraPDF()
+    {
+        $dados = User::all();
+        return \PDF::loadView('relatorios.relatoriousuarios', compact('dados'))
+            ->setPaper('a4', 'landscape')
+            ->download('Relatorio_Usuario.pdf');
+    }
 
 }
