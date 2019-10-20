@@ -127,7 +127,7 @@ class UsersController extends Controller
     
     public function geraPDF()
     {
-        $dados = User::all();
+        $dados = User::all()->sortBy('nome');
         return \PDF::loadView('relatorios.relatoriousuarios', compact('dados'))
             ->setPaper('a4', 'landscape')
             ->download('Relatorio_Usuario.pdf');

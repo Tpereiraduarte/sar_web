@@ -108,7 +108,7 @@ class PermissaoController extends Controller
     }
     public function geraPDF()
     {
-        $dados = Permissao::all();
+        $dados = Permissao::all()->sortBy('nome');
         return \PDF::loadView('relatorios.relatoriopermissao', compact('dados'))
             ->setPaper('a4', 'landscape')
             ->download('Relatorio_Permissao.pdf');

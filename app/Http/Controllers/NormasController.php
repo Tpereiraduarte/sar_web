@@ -104,9 +104,11 @@ class NormasController extends Controller
     }
     public function geraPDF()
     {
-        $dados = Norma::all();
+        $dados = Norma::all()->sortBy('numero_norma');
         return \PDF::loadView('relatorios.relatorionormas', compact('dados'))
-            ->setPaper('a4', 'landscape')
+            ->setPaper('A4-P', 'landscape')
             ->download('Relatorio_Normas.pdf');
     }
+
+
 }

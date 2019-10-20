@@ -47,7 +47,12 @@
             font-family:"Times New Roman";
             font-style: normal;
             color: #696969;
-        }   
+        }  
+        table{
+            border: 1; 
+            margin: 10px;
+            padding-right: 20px;           
+        } 
         .clearfix {
             clear: both;
         }  
@@ -74,7 +79,6 @@
         <table align="center" border=1 cellspacing=0 cellpadding=2 bordercolor="#A9A9A9">
             <thead>
                 <tr>
-                    <th>Ordem</th>
                     <th>N° Norma</th>
                     <th>Descrição</th>                    
                 </tr>
@@ -82,7 +86,6 @@
             <tbody>
             @foreach($dados as $key => $valor)
                 <tr>
-                    <td width=100>{{$key + 1}}</td>
                     <td width=100>{{$valor->numero_norma}}</td>
                     <td width=200>{{$valor->descricao}}</td>                
                 </tr>

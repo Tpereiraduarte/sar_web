@@ -74,7 +74,6 @@
         <table align="center" border=1 cellspacing=0 cellpadding=2 bordercolor="#A9A9A9">
             <thead>
                 <tr>
-                    <th>Ordem</th>
                     <th>Permissão</th>
                     <th>Perfil</th>
                 </tr>
@@ -82,9 +81,8 @@
             <tbody>
             @foreach($dados as $key => $valor)
                 <tr>
-                    <td>{{$key + 1}}</td>
-                    <td>{{$perfilpermissao->permissao->nome}}</td>
-                    <td>{{$perfilpermissao->perfil->nome}}</td>            
+                    <td>{{$valor->nome}}</td>
+                    <td>{{$valor->descricao}}</td>         
                 </tr>
              @endforeach
             </tbody>
