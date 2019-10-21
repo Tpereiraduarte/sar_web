@@ -38,8 +38,8 @@ class UserFormRequest extends FormRequest
             'nome.required' => 'O preenchimento do nome é obrigatório',
             'nome.max' => 'O nome tem que ter menos que 100 caracteres',
             'password.required' => 'O preenchimento da senha é obrigatório',
-            'password.min' => 'A senha tem que ter menos que 8 caracteres',
-            'password.max' => 'A senha tem que ter menos que 15 caracteres',
+            'password.min' => 'A senha tem que ter minimo de 8 caracteres',
+            'password.max' => 'A senha tem que ter maximo de 15 caracteres',
             'email.unique' => 'Já existe esse email cadastro.'
         ];
     }
