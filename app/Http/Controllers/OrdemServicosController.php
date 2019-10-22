@@ -55,7 +55,7 @@ class OrdemServicosController extends Controller
         $dados->checklist_id = $request->checklist_id;
         $dados->usuario_alteracao = Auth()->user()->nome;
         $dados->save();
-        return redirect()->action('OrdemServicosController@index')->with('success', 'Cadastrado com Sucesso!');
+        return redirect()->action('OrdemServicosController@index')->with('success', 'Serviço delegado com Sucesso!');
     }
 
     public function verificaOrdemServico($id_ordemservico)
