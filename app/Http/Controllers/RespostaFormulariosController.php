@@ -149,6 +149,7 @@ class RespostaFormulariosController extends Controller
             ->where('ordem_servicos.usuario_id',$id_usuario)
             ->select('resposta_formularios.titulo_formulario',
                     'ordem_servicos.numero_ordem_servico',
+                    'ordem_servicos.status',
                     'resposta_formularios.created_at')
             ->distinct()
             ->orderBy('ordem_servicos.numero_ordem_servico', 'asc')
@@ -156,7 +157,15 @@ class RespostaFormulariosController extends Controller
         return view("resposta.historico",compact('dados','detect'));
     }
 
-    public function relatoriomobile(){
+    public function normasmobile()
+    {
+        $detect = new Mobile_Detect;
+        $dados = Norma::all()->sortBy("numero_norma");
+        return view("resposta.normasmobile",compact('dados','detect'));
+    }
+
+    public function relatoriomobile(Request $request){
+        $id_norma = $request->id_norma;
         $dados = DB::table('normas')
         ->join('paragrafos','normas.id_norma','=','paragrafos.norma_id')
         ->join('subparagrafos','paragrafos.id_paragrafo','=','subparagrafos.paragrafo_id')
@@ -166,7 +175,7 @@ class RespostaFormulariosController extends Controller
                 'paragrafos.descricao as descricao_paragrafo',
                 'subparagrafos.numero_paragrafo as numero_subparagrafo',
                 'subparagrafos.descricao as descricao_subparagrafo')
-        ->where('normas.numero_norma', '10')
+        ->where('normas.id_norma', $id_norma)
         ->orderBy('normas.numero_norma', 'asc')
         ->orderBy('paragrafos.numero_paragrafo', 'asc')
         ->orderBy('subparagrafos.numero_paragrafo', 'asc')

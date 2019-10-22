@@ -19,10 +19,28 @@ class UsersTableSeeder extends Seeder
            'matricula'  =>  '1234',
            'nome'   => 'Thiago',
            'password'   =>  bcrypt('123'),
-           'email'  =>  'teste@teste.com',
+           'email'  =>  'thiago@teste.com',
            'imagem'  => 'padrao.jpg',
            'usuario_alteracao'  =>  'Sistema',
            'email_verified_at'  =>  null
         ]);
+        User::create([
+            'matricula'  =>  '123',
+            'nome'   => 'Sanderson',
+            'password'   =>  bcrypt('123'),
+            'email'  =>  'sanderson@teste.com',
+            'imagem'  => 'padrao.jpg',
+            'usuario_alteracao'  =>  'Sistema',
+            'email_verified_at'  =>  null
+        ]);
+        User::create([
+            'matricula'  =>  '12345',
+            'nome'   => 'Amanda',
+            'password'   =>  bcrypt('123'),
+            'email'  =>  'amanda@teste.com',
+            'imagem'  => 'padrao.jpg',
+            'usuario_alteracao'  =>  'Sistema',
+            'email_verified_at'  =>  null
+        ]);         
     }
 }

@@ -56,7 +56,7 @@
         </div>
 
 		<div class="col-lg-3 col-xs-6">
-		<a href="{{ url('/norma/')}}">
+		<a href="{{ url('/resposta/normasmobile')}}">
           <div class="small-box bg-green">
             <div class="inner">
               <i class="fa fa-file" style="font-size:69px"></i>

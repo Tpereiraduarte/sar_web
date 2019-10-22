@@ -1,6 +1,6 @@
 @extends("theme.$theme.layout") 
 @section('titulo') 
-  Serviço 
+  Normas 
 @endsection 
 @section('conteudo') 
 @if ($errors->any())
@@ -16,17 +16,17 @@
     <div class="col-md-10">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Serviço</h3>
+                <h3 class="box-title">Normas</h3>
             </div>
-            <form role="form" action="{{ action('RespostaFormulariosController@servico') }}" method="POST">
+            <form role="form" action="{{ action('RespostaFormulariosController@relatoriomobile') }}" method="POST">
                 @csrf
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="Servico">Ordem de serviço</label>
-                        <select class="form-control" id="ordemservico_id" name="ordemservico_id" aria-required="true" required> 
-                            <option selected disabled value="">Escolha a ordem de serviço</option>
+                        <label for="Servico">Normas</label>
+                        <select class="form-control" name="id_norma" aria-required="true" required> 
+                            <option selected disabled value="">Escolha uma norma</option>
                             @foreach($dados as $value)
-                              <option value="{{$value->id_ordemservico}}">OS{{$value->numero_ordem_servico}}</option>
+                              <option value="{{$value->id_norma}}">{{$value->numero_norma}}</option>
                             @endforeach
                         </select>
                     </div>

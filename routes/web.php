@@ -36,8 +36,9 @@ Route::group(['middleware'=>['auth']],function(){
     Route::resource('perfilpermissao', 'PerfilPermissaoController');
     Route::post('resposta/servico', 'RespostaFormulariosController@servico')->name('servico');
     Route::get('resposta/tiposervico', 'RespostaFormulariosController@tiposervico')->name('resposta.tiposervico');
+    Route::get('resposta/normasmobile', 'RespostaFormulariosController@normasmobile')->name('resposta.normasmobile');
     Route::get('resposta/historico', 'RespostaFormulariosController@historico')->name('resposta.historico');
-    Route::get('resposta/relatoriomobile', 'RespostaFormulariosController@relatoriomobile')->name('resposta.relatoriomobile');
+    Route::post('resposta/relatoriomobile', 'RespostaFormulariosController@relatoriomobile')->name('resposta.relatoriomobile');
     Route::resource('resposta', 'RespostaFormulariosController');
     Route::resource('ordemservico', 'OrdemServicosController');  
     
