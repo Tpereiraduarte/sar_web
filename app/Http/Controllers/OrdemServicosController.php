@@ -136,4 +136,11 @@ class OrdemServicosController extends Controller
             ->withErrors(["Essa ordem de serviço já foi realizada e não pode ser deletada"]);
         }    
     }
+    public function geraPDF()
+    {
+        $dados = OrdemServico::all()->sortBy('numero_ordem_servico');
+        return \PDF::loadView('relatorios.relatorioordemservico', compact('dados'))
+            ->setPaper('a4', 'landscape')
+            ->download('Relatorio_OrdemServico.pdf');
+    }
 }

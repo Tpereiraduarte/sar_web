@@ -56,6 +56,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('relatorios/relatoriosubparagrafo', 'SubParagrafosController@geraPDF')->name('relatorios.relatoriosubparagrafo');
     Route::get('relatorios/relatoriopermissao', 'PermissaoController@geraPDF')->name('relatorios.relatoriopermissao');
     Route::get('relatorios/relatorioperfilpermissao', 'PerfilPermissaoController@geraPDF')->name('relatorios.relatorioperfilpermissao');
+    Route::get('relatorios/relatorioordemservico', 'OrdemServicosController@geraPDF')->name('relatorios.relatorioordemservico');
 });
 
 // Password Reset Routes...
