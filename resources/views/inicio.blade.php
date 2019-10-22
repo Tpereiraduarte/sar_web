@@ -78,7 +78,7 @@
                                 @foreach($ordemrealizado as $valor)
                                 <tr>
                                     <td>OS{{$valor->numero_ordem_servico}}</td>
-                                    <td>Instalar TV a cabo</td>
+                                    <td>{{$valor->titulo}}</td>
                                     <td><span class="status" title="">{{$valor->status}}</span></td>
                                 </tr>
                                 @endforeach
@@ -120,7 +120,7 @@
                                 @foreach($ordempendente as $valor)
                                 <tr>
                                     <td>OS{{$valor->numero_ordem_servico}}</td>
-                                    <td>Instalar TV a cabo</td>
+                                    <td>{{$valor->titulo}}</td>
                                     <td><span class="label label-warning" title="Pendente">{{$valor->status}}endente</span></td>
                                 </tr>
                                 @endforeach

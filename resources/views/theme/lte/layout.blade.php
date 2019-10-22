@@ -25,9 +25,9 @@
    folder instead of downloading all of them to reduce the load. -->
    <link rel="stylesheet" href="{{asset("assets/$theme/dist/css/skins/_all-skins.min.css")}}">
    <!-- Morris chart -->
-  <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/morris.js/morris.css")}}">
+  <!-- <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/morris.js/morris.css")}}"> -->
   <!-- jvectormap -->
-  <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/jvectormap/jquery-jvectormap.css")}}">
+  <!-- <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/jvectormap/jquery-jvectormap.css")}}"> -->
   <!-- Date Picker -->
   <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css")}}">
   <!-- Daterange picker -->
@@ -78,13 +78,13 @@
       <!-- Bootstrap 3.3.7 -->
       <script src="{{asset("assets/$theme/bower_components/jquery-knob/dist/jquery.knob.min.js")}}"></script>
       <!-- Morris.js charts -->
-      <script src="{{asset("assets/$theme/bower_components/raphael/raphael.min.js")}}"></script>
-      <script src="{{asset("assets/$theme/bower_components/morris.js/morris.min.js")}}"></script>
+      <!-- <script src="{{asset("assets/$theme/bower_components/raphael/raphael.min.js")}}"></script>
+      <script src="{{asset("assets/$theme/bower_components/morris.js/morris.min.js")}}"></script> -->
       <!-- Sparkline -->
-      <script src="{{asset("assets/$theme/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js")}}"></script>
+      <!-- <script src="{{asset("assets/$theme/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js")}}"></script> -->
       <!-- jvectormap -->
-      <script src="{{asset("assets/$theme/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js")}}"></script>
-      <script src="{{asset("assets/$theme/plugins/jvectormap/jquery-jvectormap-world-mill-en.js")}}"></script>
+      <!-- <script src="{{asset("assets/$theme/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js")}}"></script>
+      <script src="{{asset("assets/$theme/plugins/jvectormap/jquery-jvectormap-world-mill-en.js")}}"></script> -->
       <!-- jQuery Knob Chart -->
       <script src="{{asset("assets/$theme/bower_components/jquery-knob/dist/jquery.knob.min.js")}}"></script>
       <!-- ChartJS -->
@@ -100,7 +100,7 @@
       <!-- SlimScroll -->
       <script src="{{asset("assets/$theme/bower_components/jquery-slimscroll/jquery.slimscroll.min.js")}}"></script>
       <!-- FastClick -->
-      <script src="{{asset("assets/$theme/bower_components/fastclick/lib/fastclick.js")}}"></script>
+      <!-- <script src="{{asset("assets/$theme/bower_components/fastclick/lib/fastclick.js")}}"></script> -->
       <!-- AdminLTE App -->
       <script src="{{asset("assets/$theme/dist/js/adminlte.min.js")}}"></script>
       <script src="{{asset("assets/$theme/bower_components/datatables.net/js/table.js")}}"></script>

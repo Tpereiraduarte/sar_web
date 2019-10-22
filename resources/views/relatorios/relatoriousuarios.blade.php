@@ -10,10 +10,6 @@
         table{
             border: 1;
         }
-        .logo {
-	        position: absolute;
-            right: 0px;
-        }
         .container {
             max-width: 960px;
             width: 100%;
@@ -60,13 +56,11 @@
         }        
         .bg-fundo {
             background-image: url("http://localhost:8080/sar_web/public/assets/lte/dist/img/logo2.jpg");
-            background-attachment: fixed;
-            background-position: 50% 60%;
             background-repeat: no-repeat;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            position: fixed; 
+            top: 20%;
+            left: 30%;
+            right: 20%;
             bottom: 0;
             opacity: 0.3;
         }       
@@ -78,14 +72,9 @@
    </header>
    <div class="bg-fundo"></div>
    <br class="clearfix" /><br class="clearfix" />
-   <footer>
-       <div class="direitos_reservados">
-           <font color="white">Sistema de Análise de Riscos - SAR WEB</font>
-        </div>
-   </footer>
     <br class="clearfix" />
     <main>
-        <table align="center" border=1 cellspacing=0 cellpadding=2 bordercolor="#A9A9A9" >
+        <table align="center" border=1 cellspacing=0 cellpadding=2 bordercolor="#A9A9A9">
             <thead>
                 <tr>
                     <th>Ordem</th>

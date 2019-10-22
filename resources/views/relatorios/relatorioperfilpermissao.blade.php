@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reltório de Perfil de Permissao</title>
     <style>
+        .box-body{
+            margin: 20px;
+            padding-right: 20px;
+        }
         .logo {
 	        position: absolute;
             right: 0px;
@@ -34,7 +38,8 @@
                 font-style: normal;
                 font-size: 28px;
                 line-height: 1.5cm;
-            }th{
+            }
+        th, td{
             text-align: center;
             font-family:"Times New Roman";
             font-style: normal;
@@ -56,13 +61,11 @@
         }
         .bg-fundo {
             background-image: url("http://localhost:8080/sar_web/public/assets/lte/dist/img/logo2.jpg");
-            background-attachment: fixed;
-            background-position: 50% 60%;
             background-repeat: no-repeat;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            position: fixed; 
+            top: 20%;
+            left: 30%;
+            right: 20%;
             bottom: 0;
             opacity: 0.3;
         }           
@@ -74,6 +77,7 @@
    </header>
    <div class="bg-fundo"></div>
    <br class="clearfix" /><br class="clearfix" />
+    <br class="clearfix" />
     <div class="box-body">
     <table align="center" border=1 cellspacing=0 cellpadding=2 bordercolor="#A9A9A9">
         <thead>

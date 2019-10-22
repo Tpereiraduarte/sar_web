@@ -13,7 +13,13 @@
         <p><strong>Nº da ordem de serviço:</strong> {{$valor->numero_ordem_servico}}</p>
         <p><strong>Título:</strong> {{$valor->titulo_formulario}}</p>
         <p><strong>Data: </strong>{{ \Carbon\Carbon::parse($valor->created_at)->format('d / m / Y') }}</p>
-        <hr> @endforeach
+        @if($valor->status == "F")
+            <p><strong>Status: </strong>Finalizado</p>
+        @else
+            <p><strong>Status: </strong>Cancelado</p>
+        @endif
+        <hr> 
+        @endforeach
     </div>
     @else
     <div class="sem-dados">

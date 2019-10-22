@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reltório de Usuário Perfil</title>
-    <style>
-        .logo {
-	        position: absolute;
-            right: 0px;
+    <style>        
+        table{
+            border: 1;
         }
+        .container {
+            max-width: 960px;
+            width: 100%;
+            margin: 0 auto;
+            
+        } 
         .clearfix {
             clear: both;
         }
@@ -57,13 +62,11 @@
         }
         .bg-fundo {
             background-image: url("http://localhost:8080/sar_web/public/assets/lte/dist/img/logo2.jpg");
-            background-attachment: fixed;
-            background-position: 50% 60%;
             background-repeat: no-repeat;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            position: fixed; 
+            top: 20%;
+            left: 30%;
+            right: 20%;
             bottom: 0;
             opacity: 0.3;
         }         
@@ -75,11 +78,6 @@
    </header>
    <div class="bg-fundo"></div>
    <br class="clearfix" /><br class="clearfix" />
-   <footer>
-       <div class="direitos_reservados">
-           <font color="white">Sistema de Análise de Riscos - SAR WEB</font>
-        </div>
-   </footer>
     <br class="clearfix" />
     <div class="box-body">
         <table align="center" border=1 cellspacing=0 cellpadding=2 bordercolor="#A9A9A9">

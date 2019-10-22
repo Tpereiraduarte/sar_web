@@ -73,12 +73,23 @@ class InicioController extends Controller
     }
 
     public function ordemServicosPendentes(){
-        $dados = DB::table('ordem_servicos')->where('status','P')->take(5)->get();        
+        $dados = DB::table('ordem_servicos')
+        ->join('checklists','ordem_servicos.checklist_id','=','checklists.id_checklist')
+        ->select('ordem_servicos.numero_ordem_servico',
+                'ordem_servicos.status',
+                'checklists.titulo')
+        ->where('status','P')->take(5)->get();        
         return $dados;
     }
 
     public function ordemServicosRealizados(){
-        $dados = DB::table('ordem_servicos')->where('status','<>','P')->take(5)->get();        
+        $dados = DB::table('ordem_servicos')
+        ->join('resposta_formularios','ordem_servicos.id_ordemservico','=','resposta_formularios.ordemservico_id')
+        ->select('ordem_servicos.numero_ordem_servico',
+                'ordem_servicos.status',
+                'resposta_formularios.titulo_formulario as titulo')
+        ->distinct()
+        ->where('status','<>','P')->take(5)->get();
         return $dados;
     }
 }

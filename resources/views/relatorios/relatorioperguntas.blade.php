@@ -21,7 +21,6 @@
             font-size: 28px;
             line-height: 1.5cm;
         }
-        
         th{
             text-align: center;
             font-family:"Times New Roman";
@@ -52,14 +51,12 @@
             
         }
         .bg-fundo {
-            background-image: url("http://localhost:8080/sar_web/public/assets/lte/dist/img/logo.jpg");
-            background-attachment: fixed;
-            background-size: 180px 80px;
+            background-image: url("http://localhost:8080/sar_web/public/assets/lte/dist/img/logo2.jpg");
             background-repeat: no-repeat;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            position: fixed; 
+            top: 20%;
+            left: 30%;
+            right: 20%;
             bottom: 0;
             opacity: 0.3;
         }
@@ -71,7 +68,6 @@
    </header>
    <div class="bg-fundo"></div>
    <br class="clearfix" /><br class="clearfix" />
-   
     <br class="clearfix" />
     <div class="box-body">
         <table align="center" border=1 cellspacing=0 cellpadding=2 bordercolor="#A9A9A9">

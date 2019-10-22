@@ -46,6 +46,7 @@
         }
         .bg-fundo {            
             background-image: url("http://localhost:8080/sar_web/public/assets/lte/dist/img/logo2.jpg");
+<<<<<<< HEAD
             background-attachment: fixed;
             background-position: 50% 60%;
             background-repeat: no-repeat;
@@ -53,6 +54,13 @@
             top: 0;
             left: 0;
             right: 0;
+=======
+            background-repeat: no-repeat;
+            position: fixed; 
+            top: 20%;
+            left: 30%;
+            right: 20%;
+>>>>>>> ea16c505bdf88da72a7e25456c28e68a7b599ec8
             bottom: 0;
             opacity: 0.3;
         }        
@@ -63,7 +71,8 @@
         Normas cadastradas SAR-WEB        
    </header>
    <div class="bg-fundo"></div>
-   <br class="clearfix" /><br class="clearfix" />
+   <br class="clearfix" /><br class="clearfix" />   
+    <br class="clearfix" />
     <div class="box-body">
         <table position="fixed" align="center" border=1 cellspacing=0 cellpadding=2 bordercolor="#A9A9A9">
             <thead>
