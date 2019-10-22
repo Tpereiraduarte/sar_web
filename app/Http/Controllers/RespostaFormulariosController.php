@@ -137,7 +137,7 @@ class RespostaFormulariosController extends Controller
         $detect = new Mobile_Detect;
         $dados = RespostaFormulario::where('ordemservico_id','=',$ordemservico_id)->get();
         $ordemservico = OrdemServico::where('id_ordemservico','=',$ordemservico_id)->get();
-        return view("resposta.show",compact('dados','detect'));
+        return view("resposta.show",compact('dados','ordemservico','detect'));
     }
 
     public function historico()
