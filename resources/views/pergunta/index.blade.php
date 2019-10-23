@@ -5,7 +5,7 @@
 @section('conteudo')
 <div class="row">
     <div class="col">
-        <a id="list" href="{{URL::route('pergunta.create')}}" title="Cadastrar" class="btn btn-primary"><i class="fa  fa-question-circle"></i> Nova Pergunta</a>
+        <a id="list" href="{{URL::route('pergunta.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa  fa-question-circle"></i> Nova Pergunta</a>
         <a id="list" href="{{URL::route('relatorios.relatorioperguntas')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
     </div> 
 </div>
