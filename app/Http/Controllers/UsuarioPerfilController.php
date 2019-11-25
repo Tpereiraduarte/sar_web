@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Mobile_Detect;
+use Gate;
 
 class UsuarioPerfilController extends Controller
 {
@@ -18,11 +19,58 @@ class UsuarioPerfilController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+      public  function useradmin(){
+            $useradmin = DB::table('usuarioperfils')->count();
+            if($useradmin == 0){
+
+              return $admin = ["Administrador"];  
+
+            }else{
+                $usuario = Auth()->user()->id_usuario;
+                $admin = DB::table('users')->where('id_usuario','=',$usuario)
+            ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
+            ->join('perfils', 'perfils.id_perfil', '=', 'usuarioperfils.perfil_id')
+            ->select('perfils.nome')
+            ->pluck('nome'); 
+                return $admin;
+            }
+    }
+
+
+       public  function nome_permissoes(){
+
+        $usuario = Auth()->user()->id_usuario;
+        $permissoes = DB::table('users')->where('id_usuario','=',$usuario)
+            ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
+            ->join('perfilpermissaos', 'perfilpermissaos.perfil_id', '=', 'usuarioperfils.perfil_id')
+            ->join('permissoes', 'permissoes.id_permissao', '=', 'perfilpermissaos.permissao_id')
+            ->select('permissoes.nome')
+            ->pluck('nome');  
+
+        return $permissoes;
+    }
+
     public function index()
     {
         $detect = new Mobile_Detect;
         $dados = UsuarioPerfil::all();
-        return view("usuarioperfil.index",compact('dados','detect'));
+        $admin = $this->useradmin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("usuarioperfil.index",compact('dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('usuarioperfil-view',$value)) {
+                return view("usuarioperfil.index",compact('dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        } 
     }
 
     /**
@@ -34,8 +82,24 @@ class UsuarioPerfilController extends Controller
     {
         $detect = new Mobile_Detect;
         $usuario = User::all();
-        $perfil  = Perfil::all();      
-        return view("usuarioperfil.store",compact('usuario','perfil','detect'));
+        $perfil  = Perfil::all(); 
+        $admin = $this->useradmin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("usuarioperfil.store",compact('usuario','perfil','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('usuarioperfil-create',$value)) {
+                return view("usuarioperfil.store",compact('usuario','perfil','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
 
     /**
@@ -79,8 +143,24 @@ class UsuarioPerfilController extends Controller
         $detect = new Mobile_Detect;
         $dados = UsuarioPerfil::find($id_usuarioperfil);
         $usuario = User::all();
-        $perfil  = Perfil::all();      
-        return view("usuarioperfil.edit",compact('usuario','perfil','dados','detect'));
+        $perfil  = Perfil::all();  
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("usuarioperfil.edit",compact('usuario','perfil','dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('usuarioperfil-edit',$value)) {
+                return view("usuarioperfil.edit",compact('usuario','perfil','dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }    
     }
 
     /**

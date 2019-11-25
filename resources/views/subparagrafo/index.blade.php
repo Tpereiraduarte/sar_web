@@ -5,8 +5,18 @@
 @section('conteudo')
 <div class="row">
     <div class="col">
+        @can('Administrador',$admin)
         <a id="list" href="{{URL::route('subparagrafo.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-align-left"></i> Novo Sub Parágrafo</a>
-        <a id="list" href="{{URL::route('relatorios.relatoriosubparagrafo')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
+        <a id="list" href="{{URL::route('relatorios.relatoriosubparagrafo')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>             
+        @endcan
+
+        @can('subparagrafo-create',$permissoes)
+        <a id="list" href="{{URL::route('subparagrafo.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-align-left"></i> Novo Sub Parágrafo</a>          
+        @endcan
+
+        @can('relatorio-subparagrafo',$permissoes)
+        <a id="list" href="{{URL::route('relatorios.relatoriosubparagrafo')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>               
+        @endcan
     </div> 
 </div>
 @if(!empty($dados) && count($dados) > 0)
@@ -31,12 +41,24 @@
                     <td>{{$valor->numero_paragrafo}}</td>
                     <td>{{$valor->descricao}}</td>
                     <td class="acoes-lista">
-                        <a id="edit" href="{{URL::route('subparagrafo.edit',$valor->id_subparagrafo)}}" title="Editar" class="fa fa-edit"></a>
-                        <form action="{{ action('SubParagrafosController@destroy', $valor->id_subparagrafo) }}" method="POST">
-                            {{ method_field('DELETE') }}
-                            {{ csrf_field() }}
-                            <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
-                        </form>
+                        @can('Administrador',$admin)
+                                <a id="edit" href="{{URL::route('subparagrafo.edit',$valor->id_subparagrafo)}}" title="Editar" class="fa fa-edit"></a>
+                                <form action="{{ action('SubParagrafosController@destroy', $valor->id_subparagrafo) }}" method="POST">
+                                         {{ method_field('DELETE') }}
+                                         {{ csrf_field() }}
+                                    <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
+                                </form>
+                            @endcan
+                            @can('subparagrafo-edit',$permissoes)
+                                <a id="edit" href="{{URL::route('subparagrafo.edit',$valor->id_subparagrafo)}}" title="Editar" class="fa fa-edit"></a>
+                            @endcan
+                            @can('subparagrafo-delete',$permissoes)
+                                 <form action="{{ action('SubParagrafosController@destroy', $valor->id_subparagrafo) }}" method="POST">
+                                         {{ method_field('DELETE') }}
+                                         {{ csrf_field() }}
+                                    <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
+                                </form>
+                            @endcan   
                     </td>
                 </tr>
         @endforeach

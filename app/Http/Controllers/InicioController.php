@@ -18,44 +18,63 @@ class InicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public  function useradmin(){
+            $useradmin = DB::table('usuarioperfils')->count();
+            if($useradmin == 0){
+
+              return $admin = ["Administrador"];  
+
+            }else{
+                $usuario = Auth()->user()->id_usuario;
+
+                $admin = DB::table('users')->where('id_usuario','=',$usuario)
+            ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
+            ->join('perfils', 'perfils.id_perfil', '=', 'usuarioperfils.perfil_id')
+            ->select('perfils.nome')
+            ->pluck('nome'); 
+                return $admin;
+            }
+    }
+
+
     public function index()
 
     {
-
-         $detect = new Mobile_Detect;
-
-        //$permissao = Perfilpermissao::all();
-    	//dd($permissao);
-
+        $admin = $this->useradmin();
+        $detect = new Mobile_Detect;
         $usuario = Auth()->user()->id_usuario;
         $formularios = DB::table('formularios')->count();
         $respostas = DB::table('resposta_formularios')->count();
 
-    	//dd($usuario);
+    	
 
         $permissoes = DB::table('users')->where('id_usuario','=',$usuario)
             ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
             ->join('perfilpermissaos', 'perfilpermissaos.perfil_id', '=', 'usuarioperfils.perfil_id')
             ->join('permissoes', 'permissoes.id_permissao', '=', 'perfilpermissaos.permissao_id')
             ->select('permissoes.nome')
-            ->get();
+            ->pluck('nome');  
 
 
-    	//Gate::allows('usuario-view',$permissao);
-    	//dd($permissao);
-    	//return view('inicio')->with('Permissao',$permissoes);
+        //dd($permissoes);
+            
+
         $ordempendente = $this->ordemServicosPendentes();
         $ordemrealizado = $this->ordemServicosRealizados();
         $quantidadeordemservico = $this->quantidadeOrdemServico();
 
         if ($detect->isMobile()){
-            return view('iniciomobile')->with('detect',$detect);
-        }else{           
-            return view('inicio')
+            //return view('iniciomobile')->with('detect',$detect);
+            return view('iniciomobile',compact('admin','permissoes','detect'));
+        }else{    
+            return view("inicio",compact('quantidadeordemservico','ordempendente','ordemrealizado','admin','permissoes','detect'));
+
+           /* return view('inicio')
             ->with('quantidadeordemservico',$quantidadeordemservico)
             ->with('ordempendente',$ordempendente)
             ->with('ordemrealizado',$ordemrealizado)
             ->with('detect',$detect);
+          */            
         }
     }
 

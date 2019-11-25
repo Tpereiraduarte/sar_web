@@ -1,12 +1,26 @@
 @extends("theme.$theme.layout")
 @section('titulo')
-    Usuários
+Usuários
 @endsection
 @section('conteudo')
+@if (session('status'))
+<div class="alert alert-success">
+    {{ session('status') }}
+</div>
+@endif
 <div class="row">
     <div class="col">
-        <a id="list" href="{{URL::route('usuario.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-user"></i> Novo Usuário</a>
-        <a id="list" href="{{URL::route('relatorios.relatoriousuarios')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
+       @can('Administrador',$admin)
+        <a id="list" href="{{URL::route('usuario.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-user"></i> Novo Usuário</a>   
+        <a id="list" href="{{URL::route('relatorios.relatoriousuarios')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>                
+        @endcan
+        @can('usuario-create',$permissoes)
+        <a id="list" href="{{URL::route('usuario.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-user"></i> Novo Usuário</a>                
+        @endcan
+
+        @can('relatorio-usuario',$permissoes)
+        <a id="list" href="{{URL::route('relatorios.relatoriousuarios')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>               
+        @endcan
     </div> 
 </div>  
 @if(!empty($dados) && count($dados) > 0)
@@ -15,7 +29,7 @@
         <h3 class="box-title">Dados Pessoais</h3>
     </div>
     <div class="box-body">
-    <table id="table" class="table table-striped table-bordered" style="width:100%">
+        <table id="table" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>Ordem</th>
@@ -26,7 +40,7 @@
                 </tr>
             </thead>
             <tbody>
-        @foreach($dados as $key => $user)
+                @foreach($dados as $key => $user)
                 <tr>
                     <td>{{$key + 1}}</td>
                     <td>{{$user->matricula}}</td>
@@ -34,26 +48,38 @@
                     <td>{{$user->email}}</td>
                     <td>
                         <div class="acoes-lista">
+                            @can('Administrador',$admin)
                             <a id="edit" href="{{URL::route('usuario.edit',$user->id_usuario)}}" title="Editar" class="fa fa-edit"></a>
                             <form action="{{ action('UsersController@destroy', $user->id_usuario) }}"   method="POST">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
                                 <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"> </button>
                             </form>
-                        </div>
-                    </td>
-                </tr>
-        @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>   
-@else
+                            @endcan
+                                @can('usuario-edit',$permissoes)
+                                <a id="edit" href="{{URL::route('usuario.edit',$user->id_usuario)}}" title="Editar" class="fa fa-edit"></a>
+                                @endcan
+                                @can('usuario-delete',$permissoes)
+                                <form action="{{ action('UsersController@destroy', $user->id_usuario) }}"   method="POST">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"> </button>
+                                </form>
+                                @endcan
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>   
+    @else
     <div class="sem-dados">
         <span class="sem-dados">Não há usuários Cadastradas</span>
     </div>    
-@endif
-@push('scripts')
+    @endif
+    @push('scripts')
     <script src="{{ url('js/toast.js') }}"></script>
-@endpush
-@endsection
+    @endpush
+    @endsection

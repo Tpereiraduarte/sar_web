@@ -23,7 +23,16 @@
 </div>
 <div class="row">
         <div class="col-lg-3 col-xs-6">
-			<a href="{{ url('/resposta/tiposervico/')}}">
+          @foreach($admin as $adm)
+            @if(strcmp($adm, "Administrador") == 0)
+                <a href="{{ url('/resposta/tiposervico/')}}">
+            @endif
+          @endforeach
+          @foreach($permissoes as $permissao)
+            @if(strcmp($permissao, "respostaformulario-tiposervico") == 0) 
+                <a href="{{ url('/resposta/tiposervico/')}}">
+            @endif
+          @endforeach
           <div class="small-box bg-green">
             <div class="inner">
               <i class="fa fa-check-square-o" style="font-size:69px"></i>
@@ -34,7 +43,16 @@
         </div>
 
 		<div class="col-lg-3 col-xs-6">
-		<a href="{{ action('UsersController@edit', Auth::user()->id_usuario) }}">
+         @foreach($admin as $adm)
+            @if(strcmp($adm, "Administrador") == 0)
+               <a href="{{ action('UsersController@edit', Auth::user()->id_usuario) }}">
+              @endif
+          @endforeach
+          @foreach($permissoes as $permissao)
+            @if(strcmp($permissao, "usuario-edit-perfil") == 0)
+                <a href="{{ action('UsersController@edit', Auth::user()->id_usuario) }}">
+            @endif
+        @endforeach
           <div class="small-box bg-green">
             <div class="inner">
               <i class="fa fa-user" style="font-size:69px"></i>
@@ -45,7 +63,16 @@
         </div>
 
 		<div class="col-lg-3 col-xs-6">
-		<a href="{{ url('/resposta/historico/')}}">
+      @foreach($admin as $adm)
+            @if(strcmp($adm, "Administrador") == 0)
+               <a href="{{ url('/resposta/historico/')}}">
+              @endif
+          @endforeach
+          @foreach($permissoes as $permissao)
+            @if(strcmp($permissao, "respostaformulario-historico") == 0)
+                <a href="{{ url('/resposta/historico/')}}">
+            @endif
+        @endforeach
           <div class="small-box bg-green">
             <div class="inner">
               <i class="fa fa-th-list" style="font-size:69px"></i>
@@ -56,7 +83,16 @@
         </div>
 
 		<div class="col-lg-3 col-xs-6">
-		<a href="{{ url('/resposta/normasmobile')}}">
+      @foreach($admin as $adm)
+        @if(strcmp($adm, "Administrador") == 0)
+            <a href="{{ url('/resposta/normasmobile')}}">
+        @endif
+     @endforeach
+      @foreach($permissoes as $permissao)
+         @if(strcmp($permissao, "respostaformulario-historico") == 0)
+            <a href="{{ url('/resposta/normasmobile')}}">
+          @endif
+      @endforeach
           <div class="small-box bg-green">
             <div class="inner">
               <i class="fa fa-file" style="font-size:69px"></i>

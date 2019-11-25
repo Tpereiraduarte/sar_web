@@ -5,8 +5,20 @@
 @section('conteudo')
 <div class="row">
     <div class="col">
+
+        @can('Administrador',$admin)
         <a id="list" href="{{URL::route('pergunta.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa  fa-question-circle"></i> Nova Pergunta</a>
-        <a id="list" href="{{URL::route('relatorios.relatorioperguntas')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
+        <a id="list" href="{{URL::route('relatorios.relatorioperguntas')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>             
+        @endcan
+
+        @can('pergunta-create',$permissoes)
+        <a id="list" href="{{URL::route('pergunta.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa  fa-question-circle"></i> Nova Pergunta</a>          
+        @endcan
+
+        @can('relatorio-perguntas',$permissoes)
+        <a id="list" href="{{URL::route('relatorios.relatorioperguntas')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>               
+        @endcan
+
     </div> 
 </div>
 @if(!empty($dados) && count($dados) > 0)
@@ -31,12 +43,24 @@
                     <td title="{{$valor->paragrafos->numero_paragrafo}} - {{$valor->paragrafos->descricao}}">{{$valor->pergunta}}</td>
                     <td>NR: {{$valor->normas->numero_norma}}</td>
                     <td class="acoes-lista">
-                        <a id="edit" href="{{URL::route('pergunta.edit',$valor->id_pergunta)}}" title="Editar" class="fa fa-edit"></a>
-                        <form action="{{ action('PerguntasController@destroy', $valor->id_pergunta) }}" method="POST">
-                            {{ method_field('DELETE') }}
-                            {{ csrf_field() }}
-                            <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
-                        </form>
+                        @can('Administrador',$admin)
+                                <a id="edit" href="{{URL::route('pergunta.edit',$valor->id_pergunta)}}" title="Editar" class="fa fa-edit"></a>
+                                 <form action="{{ action('PerguntasController@destroy', $valor->id_pergunta) }}" method="POST">
+                                        {{ method_field('DELETE') }}
+                                        {{ csrf_field() }}
+                                    <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
+                                </form>
+                            @endcan
+                            @can('pergunta-edit',$permissoes)
+                                <a id="edit" href="{{URL::route('pergunta.edit',$valor->id_pergunta)}}" title="Editar" class="fa fa-edit"></a>
+                            @endcan
+                            @can('pergunta-delete',$permissoes)
+                                 <form action="{{ action('PerguntasController@destroy', $valor->id_pergunta) }}" method="POST">
+                                            {{ method_field('DELETE') }}
+                                          {{ csrf_field() }}
+                                      <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
+                                </form>
+                            @endcan   
                     </td>
                 </tr>
         @endforeach

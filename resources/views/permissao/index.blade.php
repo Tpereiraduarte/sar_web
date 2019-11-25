@@ -5,8 +5,18 @@
 @section('conteudo')
 <div class="row">
     <div class="col">
+        @can('Administrador',$admin)
         <a id="list" href="{{URL::route('permissao.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-file-text-o"></i> Nova Permissão</a>
-        <a id="list" href="{{URL::route('relatorios.relatoriopermissao')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
+        <a id="list" href="{{URL::route('relatorios.relatoriopermissao')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>            
+        @endcan
+
+        @can('permissao-create',$permissoes)
+       <a id="list" href="{{URL::route('permissao.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-file-text-o"></i> Nova Permissão</a>          
+        @endcan
+
+        @can('relatorio-permissao',$permissoes)
+        <a id="list" href="{{URL::route('relatorios.relatoriopermissao')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>              
+        @endcan
     </div> 
 </div>
 @if(!empty($dados) && count($dados) > 0)
@@ -31,12 +41,24 @@
                     <td>{{$valor->nome}}</td>
                     <td>{{$valor->descricao}}</td>
                     <td class="acoes-lista">
-                        <a id="edit" href="{{URL::route('permissao.edit',$valor->id_permissao)}}" title="Editar" class="fa fa-edit"></a>
-                        <form action="{{ action('PermissaoController@destroy', $valor->id_permissao) }}" method="POST">
-                            {{ method_field('DELETE') }}
-                            {{ csrf_field() }}
-                            <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
-                        </form>
+                    @can('Administrador',$admin)
+                                <a id="edit" href="{{URL::route('permissao.edit',$valor->id_permissao)}}" title="Editar" class="fa fa-edit"></a>
+                                <form action="{{ action('PermissaoController@destroy', $valor->id_permissao) }}" method="POST">
+                                        {{ method_field('DELETE') }}
+                                        {{ csrf_field() }}
+                                    <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
+                                </form>
+                            @endcan
+                            @can('permissao-edit',$permissoes)
+                                <a id="edit" href="{{URL::route('permissao.edit',$valor->id_permissao)}}" title="Editar" class="fa fa-edit"></a>
+                            @endcan
+                            @can('permissao-delete',$permissoes)
+                                 <form action="{{ action('PermissaoController@destroy', $valor->id_permissao) }}" method="POST">
+                                        {{ method_field('DELETE') }}
+                                        {{ csrf_field() }}
+                                    <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
+                                </form>
+                            @endcan   
                     </td>
                 </tr>
         @endforeach

@@ -5,8 +5,18 @@
 @section('conteudo')
 <div class="row">
     <div class="col">
-        <a id="list" href="{{URL::route('formulario.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-check-square-o"></i> Novo Checklist</a>
-        <a id="list" href="#" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
+        @can('Administrador',$admin)
+        <a id="list" href="{{URL::route('formulario.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-check-square-o"></i> Novo Checklist</a>  
+        <a id="list" href="#" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>               
+        @endcan
+
+        @can('formulario-create',$permissoes)
+        <a id="list" href="{{URL::route('formulario.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-check-square-o"></i> Novo Checklist</a>               
+        @endcan
+
+        @can('relatorio-formulario',$permissoes)
+        <a id="list" href="#" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>              
+        @endcan
     </div> 
 </div>
 @if(!empty($dados) && count($dados) > 0)
@@ -27,14 +37,33 @@
         @foreach($dados as $key => $valor)
                 <tr>
                     <td>{{$key + 1}}</td>
-                    <td><a href="{{URL::route('formulario.show',$valor->id_checklist)}}">{{$valor->titulo}}</a></td>
+                    <td>
+                        @can('Administrador',$admin)
+                            <a href="{{URL::route('formulario.show',$valor->id_checklist)}}">{{$valor->titulo}}</a> 
+                        @endcan
+                        @can('formulario-show',$permissoes)
+                             <a href="{{URL::route('formulario.show',$valor->id_checklist)}}">{{$valor->titulo}}</a>              
+                        @endcan
+                    </td>
                     <td class="acoes-lista">
-                        <a id="edit" href="{{URL::route('formulario.edit',$valor->id_checklist)}}" title="Editar" class="fa fa-edit"></a>
-                        <form action="{{ action('FormulariosController@destroy', $valor->id_checklist) }}" method="POST">
-                            {{ method_field('DELETE') }}
-                            {{ csrf_field() }}
-                            <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
-                        </form>
+                        @can('Administrador',$admin)
+                            <a id="edit" href="{{URL::route('formulario.edit',$valor->id_checklist)}}" title="Editar" class="fa fa-edit"></a>
+                            <form action="{{ action('FormulariosController@destroy', $valor->id_checklist) }}" method="POST">
+                                    {{ method_field('DELETE') }}
+                                     {{ csrf_field() }}
+                                <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
+                            </form>
+                            @endcan
+                        @can('formulario-edit',$permissoes)
+                            <a id="edit" href="{{URL::route('formulario.edit',$valor->id_checklist)}}" title="Editar" class="fa fa-edit"></a>
+                        @endcan
+                         @can('formulario-delete',$permissoes)
+                             <form action="{{ action('FormulariosController@destroy', $valor->id_checklist) }}" method="POST">
+                                    {{ method_field('DELETE') }}
+                                     {{ csrf_field() }}
+                                <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
+                            </form>
+                        @endcan
                     </td>
                 </tr>
         @endforeach

@@ -39,15 +39,115 @@
 
                 @else
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('/usuario/')}}"><i class="fa fa-angle-right"></i> Usuários</a></li>
-                    <li><a href="{{ url('/perfil/')}}"><i class="fa fa-angle-right"></i> Perfil</a></li>
-                    <li><a href="{{ url('/norma/')}}"><i class="fa fa-angle-right"></i> Normas</a></li>
-                    <li><a href="{{ url('/usuarioperfil/')}}"><i class="fa fa-angle-right"></i> Perfil de Usuários</a></li>
-                    <li><a href="{{ url('/paragrafo/')}}"><i class="fa fa-angle-right"></i> Paragrafos</a></li>
-                    <li><a href="{{ url('/pergunta/')}}"><i class="fa fa-angle-right"></i> Perguntas</a></li>
-                    <li><a href="{{ url('/subparagrafo/')}}"><i class="fa fa-angle-right"></i> Sub-Paragrafos</a></li>
-                    <li><a href="{{ url('/permissao/')}}"><i class="fa fa-angle-right"></i> Permissão</a></li>
-                    <li><a href="{{ url('/perfilpermissao/')}}"><i class="fa fa-angle-right"></i>Permissão do Perfil</a></li>
+
+                    @foreach($admin as $adm)
+                    @if(strcmp($adm, "Administrador") == 0)
+                        <li><a href="{{ url('/usuario/')}}"><i class="fa fa-angle-right"></i> Usuários</a></li>
+                    @endif
+                    @endforeach
+                        @foreach($permissoes as $permissao)
+                            @if(strcmp($permissao, "usuario-view") == 0) 
+                                <li><a href="{{ url('/usuario/')}}"><i class="fa fa-angle-right"></i> Usuários</a></li>
+                            @endif
+                        @endforeach
+
+            
+                    @foreach($admin as $adm)
+                    @if(strcmp($adm, "Administrador") == 0)
+                        <li><a href="{{ url('/perfil/')}}"><i class="fa fa-angle-right"></i> Perfil</a></li>
+                    @endif
+                    @endforeach
+                         @foreach($permissoes as $permissao)
+                            @if(strcmp($permissao, "perfil-view") == 0)
+                                <li><a href="{{ url('/perfil/')}}"><i class="fa fa-angle-right"></i> Perfil</a></li>
+                            @endif
+                        @endforeach
+
+
+
+                    @foreach($admin as $adm)
+                    @if(strcmp($adm, "Administrador") == 0)
+                        <li><a href="{{ url('/norma/')}}"><i class="fa fa-angle-right"></i> Normas</a></li>
+                    @endif
+                    @endforeach
+                        @foreach($permissoes as $permissao)
+                            @if(strcmp($permissao, "norma-view") == 0)
+                                <li><a href="{{ url('/norma/')}}"><i class="fa fa-angle-right"></i> Normas</a></li>
+                            @endif
+                        @endforeach
+
+
+                    @foreach($admin as $adm)
+                    @if(strcmp($adm, "Administrador") == 0)
+                         <li><a href="{{ url('/usuarioperfil/')}}"><i class="fa fa-angle-right"></i> Perfil de Usuários</a></li>
+                    @endif
+                    @endforeach
+                        @foreach($permissoes as $permissao)
+                            @if(strcmp($permissao, "usuarioperfil-view") == 0)
+                                 <li><a href="{{ url('/usuarioperfil/')}}"><i class="fa fa-angle-right"></i> Perfil de Usuários</a></li>
+                            @endif
+                        @endforeach
+
+
+                    @foreach($admin as $adm)
+                    @if(strcmp($adm, "Administrador") == 0)
+                        <li><a href="{{ url('/paragrafo/')}}"><i class="fa fa-angle-right"></i> Paragrafos</a></li>
+                    @endif
+                    @endforeach
+                        @foreach($permissoes as $permissao)
+                            @if(strcmp($permissao, "paragrafo-view") == 0)
+                                <li><a href="{{ url('/paragrafo/')}}"><i class="fa fa-angle-right"></i> Paragrafos</a></li>
+                            @endif
+                        @endforeach
+
+                    
+                    @foreach($admin as $adm)
+                    @if(strcmp($adm, "Administrador") == 0)
+                        <li><a href="{{ url('/pergunta/')}}"><i class="fa fa-angle-right"></i> Perguntas</a></li>
+                    @endif
+                    @endforeach
+                        @foreach($permissoes as $permissao)
+                            @if(strcmp($permissao, "pergunta-view") == 0) 
+                                <li><a href="{{ url('/pergunta/')}}"><i class="fa fa-angle-right"></i> Perguntas</a></li>
+                            @endif
+                        @endforeach
+                   
+
+                    @foreach($admin as $adm)
+                    @if(strcmp($adm, "Administrador") == 0)
+                        <li><a href="{{ url('/subparagrafo/')}}"><i class="fa fa-angle-right"></i> Sub-Paragrafos</a></li>
+                    @endif
+                    @endforeach
+                        @foreach($permissoes as $permissao)
+                            @if(strcmp($permissao, "subparagrafo-view") == 0) 
+                                 <li><a href="{{ url('/subparagrafo/')}}"><i class="fa fa-angle-right"></i> Sub-Paragrafos</a></li>
+                            @endif
+                        @endforeach
+                    
+
+                    @foreach($admin as $adm)
+                    @if(strcmp($adm, "Administrador") == 0)
+                        <li><a href="{{ url('/permissao/')}}"><i class="fa fa-angle-right"></i> Permissão</a></li>
+                    @endif
+                    @endforeach
+                        @foreach($permissoes as $permissao)
+                            @if(strcmp($permissao, "permissao-view") == 0)
+                                <li><a href="{{ url('/permissao/')}}"><i class="fa fa-angle-right"></i> Permissão</a></li>
+                            @endif
+                        @endforeach
+
+                    
+                    @foreach($admin as $adm)
+                    @if(strcmp($adm, "Administrador") == 0)
+                        <li><a href="{{ url('/perfilpermissao/')}}"><i class="fa fa-angle-right"></i>Permissão do Perfil</a></li>
+                    @endif
+                    @endforeach
+                   
+                        @foreach($permissoes as $permissao)
+                            @if(strcmp($permissao, "perfilpermissao-view") == 0)
+                                <li><a href="{{ url('/perfilpermissao/')}}"><i class="fa fa-angle-right"></i>Permissão do Perfil</a></li>
+                            @endif
+                        @endforeach
                 </ul>
             </li>
 
@@ -60,7 +160,16 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('/formulario/')}}"><i class="fa fa-angle-right"></i> Novo Checklist</a></li>
+                    @foreach($admin as $adm)
+                    @if(strcmp($adm, "Administrador") == 0)
+                         <li><a href="{{ url('/formulario/')}}"><i class="fa fa-angle-right"></i> Novo Checklist</a></li>
+                    @endif
+                    @endforeach
+                         @foreach($permissoes as $permissao)
+                             @if(strcmp($permissao, "checklist-view") == 0)
+                                <li><a href="{{ url('/formulario/')}}"><i class="fa fa-angle-right"></i> Novo Checklist</a></li>
+                            @endif
+                        @endforeach
                 </ul>
             </li>
             <li class="treeview">
@@ -72,11 +181,26 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
+                   @foreach($admin as $adm)
+                    @if(strcmp($adm, "Administrador") == 0)
                     <li><a href="{{ url('/ordemservico/')}}"><i class="fa fa-angle-right"></i>Delegar Ordem de Serviço</a></li>
                     <li><a href="{{ url('/resposta/')}}"><i class="fa fa-angle-right"></i>Resposta dos Serviços</a></li>
+                    @endif
+                    @endforeach
+                    @foreach($permissoes as $permissao)
+                             @if(strcmp($permissao, "ordemservico-view") == 0)
+                                <li><a href="{{ url('/ordemservico/')}}"><i class="fa fa-angle-right"></i>Delegar Ordem de Serviço</a></li>
+                            @endif
+                    @endforeach
+                    @foreach($permissoes as $permissao)
+                             @if(strcmp($permissao, "respostaformulario-view") == 0)
+                                <li><a href="{{ url('/resposta/')}}"><i class="fa fa-angle-right"></i>Resposta dos Serviços</a></li>
+                            @endif
+                    @endforeach
                 </ul>
             </li>
         </ul>
+       
         @endif
     </section>
 </aside>

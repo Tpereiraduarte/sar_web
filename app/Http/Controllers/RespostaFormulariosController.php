@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Mobile_Detect; 
+use Gate;
+
 
 class RespostaFormulariosController extends Controller
 {
@@ -19,6 +21,31 @@ class RespostaFormulariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function admin(){
+            $usuario = Auth()->user()->id_usuario;
+             $admin = DB::table('users')->where('id_usuario','=',$usuario)
+            ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
+            ->join('perfils', 'perfils.id_perfil', '=', 'usuarioperfils.perfil_id')
+            ->select('perfils.nome')
+            ->pluck('nome'); 
+
+            return $admin;
+        }
+
+
+       public  function nome_permissoes(){
+
+        $usuario = Auth()->user()->id_usuario;
+        $permissoes = DB::table('users')->where('id_usuario','=',$usuario)
+            ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
+            ->join('perfilpermissaos', 'perfilpermissaos.perfil_id', '=', 'usuarioperfils.perfil_id')
+            ->join('permissoes', 'permissoes.id_permissao', '=', 'perfilpermissaos.permissao_id')
+            ->select('permissoes.nome')
+            ->pluck('nome');  
+
+        return $permissoes;
+    }
+
     public function index()
     {
         $detect = new Mobile_Detect;
@@ -32,7 +59,24 @@ class RespostaFormulariosController extends Controller
             ->distinct()
             ->orderBy('ordem_servicos.numero_ordem_servico', 'asc')
             ->get();
-        return view("resposta.index",compact('dados','detect'));
+            
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("resposta.index",compact('dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('respostaformulario-view',$value)) {
+                return view("resposta.index",compact('dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
     
     public function tiposervico()
@@ -45,7 +89,23 @@ class RespostaFormulariosController extends Controller
         ->select('id_ordemservico','numero_ordem_servico')
         ->orderBy('numero_ordem_servico', 'asc')
         ->get();
-        return view("resposta.tiposervico",compact('dados','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("resposta.tiposervico",compact('dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('respostaformulario-tiposervico',$value)) {
+                return view("resposta.tiposervico",compact('dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
 
     public function servico(Request $request)
@@ -60,7 +120,23 @@ class RespostaFormulariosController extends Controller
         $numero_ordemservico = $id_checklist[0]->numero_ordem_servico;
         $dados        = Checklist::find($id_checklist[0]->checklist_id);
         $lista        = Formulario::where('checklist_id', '=', $id_checklist[0]->checklist_id)->get();
-        return view("resposta.store",compact('lista','dados','numero_ordemservico','id_ordemservico','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("resposta.store",compact('lista','dados','numero_ordemservico','id_ordemservico','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('respostaformulario-create',$value)) {
+                return view("resposta.store",compact('lista','dados','numero_ordemservico','id_ordemservico','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }   
     }
     
     /**
@@ -137,7 +213,23 @@ class RespostaFormulariosController extends Controller
         $detect = new Mobile_Detect;
         $dados = RespostaFormulario::where('ordemservico_id','=',$ordemservico_id)->get();
         $ordemservico = OrdemServico::where('id_ordemservico','=',$ordemservico_id)->get();
-        return view("resposta.show",compact('dados','ordemservico','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("resposta.show",compact('dados','ordemservico','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('respostaformulario-show',$value)) {
+                return view("resposta.show",compact('dados','ordemservico','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
 
     public function historico()
@@ -154,15 +246,52 @@ class RespostaFormulariosController extends Controller
             ->distinct()
             ->orderBy('ordem_servicos.numero_ordem_servico', 'asc')
             ->get();
-        return view("resposta.historico",compact('dados','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("resposta.historico",compact('dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('respostaformulario-historico',$value)) {
+                return view("resposta.historico",compact('dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
+
+
 
     public function normasmobile()
     {
         $detect = new Mobile_Detect;
         $dados = Norma::all()->sortBy("numero_norma");
-        return view("resposta.normasmobile",compact('dados','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("resposta.normasmobile",compact('dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('respostaformulario-normasmobile',$value)) {
+                return view("resposta.normasmobile",compact('dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
+
+
+
 
     public function relatoriomobile(Request $request){
         $id_norma = $request->id_norma;

@@ -5,8 +5,18 @@
 @section('conteudo')
 <div class="row">
     <div class="col">
-        <a id="list" href="{{URL::route('norma.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-file-text-o"></i> Nova Norma</a>
-        <a id="list" href="{{URL::route('relatorios.relatorionormas')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
+        @can('Administrador',$admin)
+        <a id="list" href="{{URL::route('norma.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-file-text-o"></i> Nova Norma</a>   
+        <a id="list" href="{{URL::route('relatorios.relatorionormas')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>               
+        @endcan
+
+        @can('norma-create',$permissoes)
+        <a id="list" href="{{URL::route('norma.create')}}" title="Cadastrar" class="btn btn-primary custom"><i class="fa fa-file-text-o"></i> Nova Norma</a>              
+        @endcan
+
+        @can('relatorio-normas',$permissoes)
+         <a id="list" href="{{URL::route('relatorios.relatorionormas')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>              
+        @endcan
     </div> 
 </div>
 @if(!empty($dados) && count($dados) > 0)
@@ -31,12 +41,24 @@
                     <td>{{$valor->numero_norma}}</td>
                     <td>{{$valor->descricao}}</td>
                     <td class="acoes-lista">
-                        <a id="edit" href="{{URL::route('norma.edit',$valor->id_norma)}}" title="Editar" class="fa fa-edit"></a>
-                        <form action="{{ action('NormasController@destroy', $valor->id_norma) }}" method="POST">
-                            {{ method_field('DELETE') }}
-                            {{ csrf_field() }}
-                            <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
-                        </form>
+                        @can('Administrador',$admin)
+                            <a id="edit" href="{{URL::route('norma.edit',$valor->id_norma)}}" title="Editar" class="fa fa-edit"></a>
+                            <form action="{{ action('NormasController@destroy', $valor->id_norma) }}" method="POST">
+                                  {{ method_field('DELETE') }}
+                                  {{ csrf_field() }}
+                                <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
+                            </form>
+                        @endcan
+                        @can('norma-edit',$permissoes)
+                                <a id="edit" href="{{URL::route('norma.edit',$valor->id_norma)}}" title="Editar" class="fa fa-edit"></a>
+                        @endcan
+                        @can('norma-delete',$permissoes)
+                                <form action="{{ action('NormasController@destroy', $valor->id_norma) }}" method="POST">
+                                  {{ method_field('DELETE') }}
+                                  {{ csrf_field() }}
+                                  <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
+                                 </form>
+                        @endcan
                     </td>
                 </tr>
         @endforeach

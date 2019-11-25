@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Mobile_Detect;
+use Gate;
+
 
 
 class FormulariosController extends Controller
@@ -18,12 +20,53 @@ class FormulariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function admin(){
+            $usuario = Auth()->user()->id_usuario;
+             $admin = DB::table('users')->where('id_usuario','=',$usuario)
+            ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
+            ->join('perfils', 'perfils.id_perfil', '=', 'usuarioperfils.perfil_id')
+            ->select('perfils.nome')
+            ->pluck('nome'); 
+
+            return $admin;
+    }
+    public  function nome_permissoes(){
+
+        $usuario = Auth()->user()->id_usuario;
+        $permissoes = DB::table('users')->where('id_usuario','=',$usuario)
+            ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
+            ->join('perfilpermissaos', 'perfilpermissaos.perfil_id', '=', 'usuarioperfils.perfil_id')
+            ->join('permissoes', 'permissoes.id_permissao', '=', 'perfilpermissaos.permissao_id')
+            ->select('permissoes.nome')
+            ->pluck('nome');  
+
+        return $permissoes;
+    }
+
     public function index()
     {
         $detect = new Mobile_Detect;
         $dados = Checklist::all();
-        return view("formulario.index",compact('dados','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("formulario.index",compact('dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('formulario-view',$value)) {
+                return view("formulario.index",compact('dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }  
     }
+        
+   
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +77,24 @@ class FormulariosController extends Controller
     {
         $detect = new Mobile_Detect;
         $dados = Pergunta::all();
-        return view("formulario.store",compact('dados','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("formulario.store",compact('dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('formulario-create',$value)) {
+                return view("formulario.store",compact('dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
+        
     }
 
     /**
@@ -71,7 +131,23 @@ class FormulariosController extends Controller
         $detect = new Mobile_Detect;
         $dados = Checklist::find($id_checklist);
         $lista = Formulario::where('checklist_id','=',$id_checklist)->get();
-        return view("formulario.show",compact('lista','dados','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("formulario.show",compact('lista','dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('formulario-show',$value)) {
+                return view("formulario.show",compact('lista','dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
 
     /**
@@ -86,7 +162,23 @@ class FormulariosController extends Controller
         $perguntas = Pergunta::all();
         $dados = Checklist::find($id_checklist);
         $listas = DB::table('formularios')->where('checklist_id', '=', $id_checklist)->get();
-        return view("formulario.edit",compact('listas','dados','perguntas','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("formulario.edit",compact('listas','dados','perguntas','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('formulario-edit',$value)) {
+               return view("formulario.edit",compact('listas','dados','perguntas','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
 
     /**

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Mobile_Detect;
+use Gate;
 
 class PerguntasController extends Controller
 {
@@ -17,11 +18,52 @@ class PerguntasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function admin(){
+            $usuario = Auth()->user()->id_usuario;
+             $admin = DB::table('users')->where('id_usuario','=',$usuario)
+            ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
+            ->join('perfils', 'perfils.id_perfil', '=', 'usuarioperfils.perfil_id')
+            ->select('perfils.nome')
+            ->pluck('nome'); 
+
+            return $admin;
+        }
+
+
+       public  function nome_permissoes(){
+
+        $usuario = Auth()->user()->id_usuario;
+        $permissoes = DB::table('users')->where('id_usuario','=',$usuario)
+            ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
+            ->join('perfilpermissaos', 'perfilpermissaos.perfil_id', '=', 'usuarioperfils.perfil_id')
+            ->join('permissoes', 'permissoes.id_permissao', '=', 'perfilpermissaos.permissao_id')
+            ->select('permissoes.nome')
+            ->pluck('nome');  
+
+        return $permissoes;
+    }
+
     public function index()
     {
         $detect = new Mobile_Detect;
         $dados = Pergunta::all();
-        return view("pergunta.index",compact('dados','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("pergunta.index",compact('dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+           if (Gate::allows('pergunta-view',$value)) {
+                return view("pergunta.index",compact('dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
 
     /**
@@ -33,7 +75,23 @@ class PerguntasController extends Controller
     {
         $detect = new Mobile_Detect;
         $dados = Norma::all()->sortBy("numero_norma");
-        return view("pergunta.store",compact('dados','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("pergunta.store",compact('dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('pergunta-create',$value)) {
+                return view("pergunta.store",compact('dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
     
     public function dinamico(Request $request)
@@ -107,7 +165,23 @@ class PerguntasController extends Controller
         $dados = Pergunta::find($id_pergunta);
         $dadosNorma = Norma::all()->sortBy("numero_norma");
         //return view('pergunta.edit')->with('dados',$dados)->with('dadosNorma',$dadosNorma);
-        return view("pergunta.edit",compact('dados','dadosNorma','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("pergunta.edit",compact('dados','dadosNorma','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('pergunta-edit',$value)) {
+                return view("pergunta.edit",compact('dados','dadosNorma','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
 
     /**

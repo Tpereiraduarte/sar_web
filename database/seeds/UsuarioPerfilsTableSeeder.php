@@ -20,5 +20,15 @@ class UsuarioPerfilsTableSeeder extends Seeder
            'perfil_id'  =>  '1',
            'usuario_alteracao'  =>  'Sistema'
         ]);
+        UsuarioPerfil::create([
+           'usuario_id'   => '2',
+           'perfil_id'  =>  '1',
+           'usuario_alteracao'  =>  'Sistema'
+        ]);
+        UsuarioPerfil::create([
+           'usuario_id'   => '3',
+           'perfil_id'  =>  '1',
+           'usuario_alteracao'  =>  'Sistema'
+        ]);
     }
 }

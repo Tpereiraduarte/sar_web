@@ -32,8 +32,18 @@
                         </li>
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="{{ action('UsersController@edit', Auth::user()->id_usuario) }}"
-                                    class="btn btn-default btn-flat">Perfil</a>
+                                @foreach($admin as $adm)
+                                    @if(strcmp($adm, "Administrador") == 0)
+                                        <a href="{{ action('UsersController@edit', Auth::user()->id_usuario) }}"
+                                            class="btn btn-default btn-flat">Perfil</a>
+                                    @endif
+                                @endforeach
+                                @foreach($permissoes as $permissao)
+                                    @if(strcmp($permissao, "usuario-edit-perfil") == 0)
+                                         <a href="{{ action('UsersController@edit', Auth::user()->id_usuario) }}"
+                                        class="btn btn-default btn-flat">Perfil</a>
+                                    @endif
+                                @endforeach
                             </div>
                             <div class="pull-right">
                                 <a href="{{ url('/logout')}}" class="btn btn-default btn-flat">Sair</a>

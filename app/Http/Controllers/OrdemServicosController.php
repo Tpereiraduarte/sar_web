@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\CollectionCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Mobile_Detect;
+use Gate;
 
 
 
@@ -20,11 +21,53 @@ class OrdemServicosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function admin(){
+            $usuario = Auth()->user()->id_usuario;
+             $admin = DB::table('users')->where('id_usuario','=',$usuario)
+            ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
+            ->join('perfils', 'perfils.id_perfil', '=', 'usuarioperfils.perfil_id')
+            ->select('perfils.nome')
+            ->pluck('nome'); 
+
+            return $admin;
+        }
+
+
+    public  function nome_permissoes(){
+
+        $usuario = Auth()->user()->id_usuario;
+        $permissoes = DB::table('users')->where('id_usuario','=',$usuario)
+            ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
+            ->join('perfilpermissaos', 'perfilpermissaos.perfil_id', '=', 'usuarioperfils.perfil_id')
+            ->join('permissoes', 'permissoes.id_permissao', '=', 'perfilpermissaos.permissao_id')
+            ->select('permissoes.nome')
+            ->pluck('nome');  
+
+        return $permissoes;
+    }
+
     public function index()
     {
         $detect = new Mobile_Detect;
         $dados = OrdemServico::all();
-        return view("ordemservico.index",compact('dados','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+       foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("ordemservico.index",compact('dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('ordemservico-view',$value)) {
+                return view("ordemservico.index",compact('dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
+        
     }
 
     /**
@@ -36,8 +79,24 @@ class OrdemServicosController extends Controller
     {
         $detect = new Mobile_Detect;
         $usuario = User::all();
-        $checklist  = Checklist::all();      
-        return view("ordemservico.store",compact('usuario','checklist','detect'));
+        $checklist  = Checklist::all();
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+       foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("ordemservico.store",compact('usuario','checklist','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('ordemservico-create',$value)) {
+                return view("ordemservico.store",compact('usuario','checklist','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }      
     }
 
     /**
@@ -90,8 +149,24 @@ class OrdemServicosController extends Controller
         $detect = new Mobile_Detect;
         $dados = OrdemServico::find($id_ordemservico);
         $usuario = User::all();
-        $checklist  = Checklist::all();      
-        return view("ordemservico.edit",compact('usuario','checklist','dados','detect'));
+        $checklist  = Checklist::all(); 
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+       foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("ordemservico.edit",compact('usuario','checklist','dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('ordemservico-edit',$value)) {
+                return view("ordemservico.edit",compact('usuario','checklist','dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        } 
     }
     
     /**

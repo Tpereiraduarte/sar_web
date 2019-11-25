@@ -5,8 +5,18 @@
 @section('conteudo')
 <div class="row">
     <div class="col">
-        <a id="list" href="{{URL::route('usuarioperfil.create')}}" title="Novo Perfil Usuário" class="btn btn-primary custom"><i class="fa fa-users"></i> Novo Perfil Usuário</a>
-        <a id="list" href="{{URL::route('relatorios.relatoriousuarioperfil')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
+
+       @can('Administrador',$admin)
+       <a id="list" href="{{URL::route('usuarioperfil.create')}}" title="Novo Perfil Usuário" class="btn btn-primary custom"><i class="fa fa-users"></i> Novo Perfil Usuário</a>
+        <a id="list" href="{{URL::route('relatorios.relatoriousuarioperfil')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>               
+        @endcan
+
+        @can('usuarioperfil-create',$permissoes)
+        <a id="list" href="{{URL::route('usuarioperfil.create')}}" title="Novo Perfil Usuário" class="btn btn-primary custom"><i class="fa fa-users"></i> Novo Perfil Usuário</a>      @endcan
+
+        @can('relatorio-usuarioperfil',$permissoes)
+        <a id="list" href="{{URL::route('relatorios.relatoriousuarioperfil')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>               
+        @endcan
     </div> 
 </div>     
 @if(!empty($dados) && count($dados) > 0)
@@ -32,12 +42,24 @@
                     <td>{{$usuarioperfil->perfil->nome}}</td>
                     <td>
                         <div class="acoes-lista">
+                        @can('Administrador',$admin)
                             <a id="edit" href="{{URL::route('usuarioperfil.edit',$usuarioperfil->id_usuarioperfil)}}" title="Editar" class="fa fa-edit"></a>
                             <form action="{{ action('UsuarioPerfilController@destroy', $usuarioperfil->id_usuarioperfil) }}"   method="POST">
-                                {{ method_field('DELETE') }}
-                                {{ csrf_field() }}
+                                     {{ method_field('DELETE') }}
+                                     {{ csrf_field() }}
                                 <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"> </button>
                             </form>
+                        @endcan
+                        @can('usuarioperfil-edit',$permissoes)
+                                 <a id="edit" href="{{URL::route('usuarioperfil.edit',$usuarioperfil->id_usuarioperfil)}}" title="Editar" class="fa fa-edit"></a>
+                        @endcan
+                        @can('usuarioperfil-delete',$permissoes)
+                               <form action="{{ action('UsuarioPerfilController@destroy', $usuarioperfil->id_usuarioperfil) }}"   method="POST">
+                                     {{ method_field('DELETE') }}
+                                     {{ csrf_field() }}
+                                    <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"> </button>
+                                </form>
+                        @endcan
                         </div>
                     </td>                          
                 </tr>

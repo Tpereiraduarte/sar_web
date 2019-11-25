@@ -14,8 +14,18 @@
 @endif
 <div class="row">
     <div class="col">
-        <a id="list" href="{{URL::route('ordemservico.create')}}" title="Cadastrar" class="btn btn-primary custom">Delegar Ordem de serviço</a>
-        <a id="list" href="{{URL::route('relatorios.relatorioordemservico')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>
+        @can('Administrador',$admin)
+        <a id="list" href="{{URL::route('ordemservico.create')}}" title="Cadastrar" class="btn btn-primary custom">Delegar Ordem de serviço</a>   
+        <a id="list" href="{{URL::route('relatorios.relatorioordemservico')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>               
+        @endcan
+
+        @can('ordemservico-create',$permissoes)
+        <a id="list" href="{{URL::route('ordemservico.create')}}" title="Cadastrar" class="btn btn-primary custom">Delegar Ordem de serviço</a>                
+        @endcan
+
+        @can('relatorio-ordemservico',$permissoes)
+        <a id="list" href="{{URL::route('relatorios.relatorioordemservico')}}" title="Gerar Pdf" class="btn btn-primary custom-pdf"><i class="fa fa-file-pdf-o"></i></a>               
+        @endcan
     </div>
 </div>
 @if(!empty($dados) && count($dados) > 0)
@@ -54,12 +64,24 @@
                         <td>Cancelado</td>
                     @endif
                     <td class="acoes-lista">
-                        <a id="edit" href="{{URL::route('ordemservico.edit',$valor->id_ordemservico)}}" title="Editar" class="fa fa-edit"></a>
-                        <form action="{{ action('OrdemServicosController@destroy', $valor->id_ordemservico) }}" method="POST">
-                            {{ method_field('DELETE') }}
-                            {{ csrf_field() }}
-                            <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
-                        </form>
+                        @can('Administrador',$admin)
+                            <a id="edit" href="{{URL::route('ordemservico.edit',$valor->id_ordemservico)}}" title="Editar" class="fa fa-edit"></a>
+                            <form action="{{ action('OrdemServicosController@destroy', $valor->id_ordemservico) }}" method="POST">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
+                            </form>
+                        @endcan
+                        @can('ordemservico-edit',$permissoes)
+                                <a id="edit" href="{{URL::route('ordemservico.edit',$valor->id_ordemservico)}}" title="Editar" class="fa fa-edit"></a>
+                        @endcan
+                        @can('ordemservico-delete',$permissoes)
+                               <form action="{{ action('OrdemServicosController@destroy', $valor->id_ordemservico) }}" method="POST">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <button id="delete" type='submit' title="Excluir" class="fa fa-fw fa-trash"></button>
+                            </form>
+                        @endcan
                     </td>
                 </tr>
         @endforeach

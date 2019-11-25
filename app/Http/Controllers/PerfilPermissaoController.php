@@ -17,13 +17,51 @@ class PerfilPermissaoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function admin(){
+            $usuario = Auth()->user()->id_usuario;
+             $admin = DB::table('users')->where('id_usuario','=',$usuario)
+            ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
+            ->join('perfils', 'perfils.id_perfil', '=', 'usuarioperfils.perfil_id')
+            ->select('perfils.nome')
+            ->pluck('nome'); 
+
+            return $admin;
+        }
+
+
+       public  function nome_permissoes(){
+
+        $usuario = Auth()->user()->id_usuario;
+        $permissoes = DB::table('users')->where('id_usuario','=',$usuario)
+            ->join('usuarioperfils','usuarioperfils.usuario_id', '=','users.id_usuario')
+            ->join('perfilpermissaos', 'perfilpermissaos.perfil_id', '=', 'usuarioperfils.perfil_id')
+            ->join('permissoes', 'permissoes.id_permissao', '=', 'perfilpermissaos.permissao_id')
+            ->select('permissoes.nome')
+            ->pluck('nome');  
+
+        return $permissoes;
+    }
 
     public function index()
     {
         $detect = new Mobile_Detect;
         $dados = Perfilpermissao::all();
-        Gate::allows('usuario-view',$dados);
-        return view("perfilpermissao.index",compact('dados','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+        
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("perfilpermissao.index",compact('dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('perfilpermissao-view',$value)) {
+                return view("perfilpermissao.index",compact('dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
     /**
      * Show the form for creating a new resource.
@@ -34,9 +72,26 @@ class PerfilPermissaoController extends Controller
     public function create()
     {
         $detect = new Mobile_Detect;
-        $perfil  = Perfil::all();
-        $permissao  = Permissao::all();
-        return view("perfilpermissao.store",compact('perfil','permissao','detect'));
+        //$perfil  = Perfil::all();
+        $perfil = DB::table('perfils')->where('nome','<>','Administrador')->select('perfils.id_perfil','perfils.nome')->get();
+        $permissao  = Permissao::all()->sortBy("nome");;
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("perfilpermissao.store",compact('perfil','permissao','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('perfilpermissao-create',$value)) {
+                return view("perfilpermissao.store",compact('perfil','permissao','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
     /**
      * Store a newly created resource in storage.
@@ -78,7 +133,23 @@ class PerfilPermissaoController extends Controller
         $dados = Perfilpermissao::find($id_perfilpermissao);
         $permissao = Permissao::all();
         $perfil  = Perfil::all();
-        return view("perfilpermissao.edit",compact('permissao','perfil','dados','detect'));
+        $admin = $this->admin();
+        $permissoes =  $this->nome_permissoes();
+
+
+        foreach ($admin as $value) {
+        if(strcmp($value, "Administrador") == 0){
+                return view("perfilpermissao.edit",compact('permissao','perfil','dados','admin','permissoes','detect'));
+           }
+        }
+
+        foreach ($permissoes as $value) {
+            if (Gate::allows('perfilpermissao-edit',$value)) {
+                return view("perfilpermissao.edit",compact('permissao','perfil','dados','admin','permissoes','detect'));
+            }else{
+                return redirect('inicio')->with('status', 'Você não tem acesso!');
+            }     
+        }
     }
 
     /**
