@@ -115,7 +115,7 @@ class UserTest extends TestCase
         $acao = $this->json('POST', '/usuario',[
             'matricula' => '2567',
             'nome'  => 'Thiago',
-            'password'  => '123',
+            'password'  => '12345678',
             'email' => 'testeunitario@teste.com.br',
             'imagem' => 'padrao3.png',
             'usuario_alteracao' => 'Thiago',
@@ -124,7 +124,7 @@ class UserTest extends TestCase
         $this->assertDatabaseMissing('users',[
             'matricula' => '2567',
             'nome'  => 'Thiago',
-            'password'  => '123',
+            'password'  => '12345678',
             'email' => 'testeunitario@teste.com.br',
             'imagem' => 'padrao3.png',
             'usuario_alteracao' => 'Thiago',

@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
            'matricula'  =>  '1234',
            'nome'   => 'Thiago',
            'password'   =>  bcrypt('123'),
-           'email'  =>  'thiago@teste.com',
+           'email'  =>  'tpereiraduarte@gmail.com',
            'imagem'  => 'padrao.jpg',
            'usuario_alteracao'  =>  'Sistema',
            'email_verified_at'  =>  null

@@ -10,7 +10,7 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'matricula' => $faker->unique()->numberBetween($min = 1, $max = 99999),
         'nome'  => $faker->name,
-        'password'  => bcrypt('123'),
+        'password'  => bcrypt('12345678'),
         'email' => $faker->unique()->safeEmail,
         'imagem' => 'padrao.png',
         'usuario_alteracao' => $faker->name,
