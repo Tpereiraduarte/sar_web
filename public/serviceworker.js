@@ -1,10 +1,17 @@
 var staticCacheName = "pwa-v" + new Date().getTime();
 var filesToCache = [
-    '/iniciomobile',
+    '/inicio',
+    '/offline',
     '/css/app.css',
     '/js/app.js',
     '/imagens/icons/icon-72x72.png',
-    
+    '/imagens/icons/icon-96x96.png',
+    '/imagens/icons/icon-128x128.png',
+    '/imagens/icons/icon-144x144.png',
+    '/imagens/icons/icon-152x152.png',
+    '/imagens/icons/icon-192x192.png',
+    '/imagens/icons/icon-384x384.png',
+    '/imagens/icons/icon-512x512.png',
 ];
 
 // Cache on install

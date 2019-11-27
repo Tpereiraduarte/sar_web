@@ -6,8 +6,9 @@
   <link rel="shortcut icon" href="{{asset("assets/$theme/dist/img/logo.jpg")}}">
   <title>@yield('titulo','Sistema Análise de Riscos') 
   </title>
-  <!-- Tell the browser to be responsive to screen width -->
+   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+@laravelPWA
   <!-- Bootstrap 3.3.7 -->
   <link href="{{URL::asset('css/style.css')}}" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/bootstrap/dist/css/bootstrap.min.css")}}">
@@ -34,7 +35,6 @@
   <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/bootstrap-daterangepicker/daterangepicker.css")}}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset("assets/$theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")}}">
-    @laravelPWA
    @yield("style")
   </head>
    
